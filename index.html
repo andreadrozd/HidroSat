@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monitoreo Satelital de Aguas — Argentina | LaDAAS ENVSAT</title>
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+<link  href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet"/>
+<script src="https://unpkg.com/deck.gl@9.0.36/dist.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;display:flex;flex-direction:column;overflow:hidden}
+
+.header{
+  background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 100%);
+  color:#fff;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  flex:0 0 auto;
+}
+.header-logo{height:56px;width:auto;flex-shrink:0}
+.header-left h1{font-size:clamp(15px,2.2vw,21px);font-weight:700}
+.header-left p{font-size:clamp(11px,1.2vw,13px);opacity:.85;margin-top:2px}
+.header-badge{
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);
+  border-radius:8px;padding:4px 11px;font-size:11px;text-align:center;line-height:1.5;
+}
+.header-select{
+  background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);
+  border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;
+}
+.header-select option{color:#222;background:#fff}
+.header-link{
+  background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);
+  border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer;text-decoration:none;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:background .18s;
+}
+.header-link:hover{background:rgba(255,255,255,.32)}
+.header-hint{font-size:11px;opacity:.85;white-space:nowrap}
+.header-cta{
+  background:linear-gradient(135deg,#ff9a3c,#ff6f3c);color:#fff;font-weight:700;
+  border:1px solid rgba(255,255,255,.5);border-radius:6px;padding:6px 13px;font-size:12px;
+  cursor:pointer;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;
+  box-shadow:0 0 0 0 rgba(255,140,60,.6);animation:ctaPulse 2.2s infinite;transition:transform .15s,filter .15s;
+}
+.header-cta:hover{transform:translateY(-1px);filter:brightness(1.07)}
+@keyframes ctaPulse{0%{box-shadow:0 0 0 0 rgba(255,140,60,.55)}70%{box-shadow:0 0 0 8px rgba(255,140,60,0)}100%{box-shadow:0 0 0 0 rgba(255,140,60,0)}}
+
+.tabs-bar{display:none}
+
+/* Área de mapa a pantalla completa (estilo Windy) */
+#app{position:relative;flex:1 1 auto;overflow:hidden;background:#e2e6ec}
+.tabs-container{position:absolute;inset:0}
+.tab-content{display:none;position:absolute;inset:0}
+.tab-content.active{display:block}
+.map-div{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#e2e6ec}
+
+.map-tooltip{
+  position:absolute;pointer-events:none;display:none;z-index:99;
+  background:rgba(18,36,60,.93);color:#fff;padding:8px 30px 8px 12px;border-radius:6px;
+  font-size:13px;line-height:1.55;max-width:240px;box-shadow:0 2px 10px rgba(0,0,0,.35);
+}
+.tt-x{position:absolute;top:3px;right:5px;background:transparent;border:none;color:#fff;
+  font-size:19px;line-height:1;cursor:pointer;pointer-events:auto;padding:0 3px}
+.tt-x:hover{color:#ffd0d0}
+.map-tooltip.tt-docked{
+  left:50%!important;right:auto;top:auto!important;bottom:16px;transform:translateX(-50%);
+  max-width:90vw;font-size:15px;padding:13px 42px 13px 16px;line-height:1.6;z-index:110;
+}
+
+/* Lista de variables (borde derecho) */
+#var-list{position:absolute;top:12px;right:12px;z-index:40;display:flex;flex-direction:column;gap:6px;max-height:calc(100% - 24px);overflow-y:auto}
+.varitem{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);border:1px solid #cbd6e2;
+  border-radius:9px;padding:9px 12px;font-size:14px;color:#1a3a5c;cursor:pointer;white-space:nowrap;
+  box-shadow:0 1px 6px rgba(0,0,0,.16);transition:background .15s}
+.varitem:hover{background:#fff}
+.varitem.active{background:#1a3a5c;color:#fff;font-weight:700;border-color:#1a3a5c}
+.varitem .vi-ic{font-size:20px;line-height:1;flex-shrink:0}
+
+/* Control arriba-izquierda: botón con ☰ + "Menú" adentro */
+#top-ctrl{position:absolute;top:12px;left:12px;z-index:45}
+#menu-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  min-width:50px;padding:7px 11px;border:none;border-radius:10px;background:#1a3a5c;color:#fff;cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#menu-btn:hover{background:#2d6a9f}
+.mb-ic{font-size:20px;line-height:1}
+.mb-tx{font-size:11px;font-weight:700;letter-spacing:.4px}
+.sp-search{padding:10px 12px 11px;flex:0 0 auto;background:#fff;border-bottom:1px solid #eef1f5;position:relative;z-index:5}
+#search-wrap{position:relative}
+#search-inp{width:100%;height:42px;border:1px solid #cbd6e2;border-radius:9px;padding:0 13px;font-size:14px;outline:none}
+#search-inp:focus{border-color:#2d6a9f}
+#search-sug{position:absolute;top:46px;left:0;right:0;background:#fff;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.24);
+  max-height:300px;overflow-y:auto;display:none;z-index:70}
+.sug-item{padding:10px 13px;font-size:14px;cursor:pointer;border-bottom:1px solid #eef1f5;color:#243b53}
+.sug-item:hover{background:#eef5fb}
+.sug-prov{color:#8a94a6;font-size:12px}
+.sug-empty{padding:10px 13px;font-size:13px;color:#999;font-style:italic}
+
+/* Leyenda (overlay abajo-izquierda) */
+#legend-ov{position:absolute;right:12px;bottom:12px;z-index:40;background:rgba(255,255,255,.95);
+  border-radius:11px;box-shadow:0 2px 12px rgba(0,0,0,.2);padding:10px 15px;max-width:min(560px,66%)}
+.lg-title{font-size:15px;font-weight:700;color:#1a3a5c;margin-bottom:7px}
+.lg-unit{font-weight:400;color:#66707d}
+.lg-items{display:flex;flex-wrap:wrap;gap:6px}
+.lg-item{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#333;background:#f0f2f5;padding:4px 9px;border-radius:14px}
+.lg-sw{width:15px;height:15px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
+.lg-rng{font-weight:400;color:#66707d}
+
+/* Panel lateral izquierdo (se abre con ☰) */
+#side-panel{position:absolute;top:0;left:0;height:100%;width:40%;max-width:520px;min-width:320px;z-index:60;background:#fff;
+  box-shadow:3px 0 20px rgba(0,0,0,.22);transform:translateX(-102%);transition:transform .28s ease;display:flex;flex-direction:column}
+#side-panel.open{transform:translateX(0)}
+.sp-head{display:flex;align-items:center;justify-content:space-between;background:#1a3a5c;color:#fff;padding:12px 16px;flex:0 0 auto}
+.sp-head span{font-size:16px;font-weight:700}
+.sp-x{background:transparent;border:none;color:#fff;font-size:24px;line-height:1;cursor:pointer;padding:0 2px}
+.sp-x:hover{color:#ffd0d0}
+.sp-modes{display:flex;gap:4px;padding:8px 8px 0;background:#eef1f5;flex-wrap:wrap;flex:0 0 auto}
+.sp-mode{flex:1 1 auto;background:rgba(26,58,92,.08);border:none;border-radius:8px 8px 0 0;padding:9px 6px;font-size:13px;
+  color:#1a3a5c;cursor:pointer;white-space:nowrap}
+.sp-mode.active{background:#fff;font-weight:700}
+.sp-body{flex:1 1 auto;overflow-y:auto;padding:14px 16px}
+.sp-section{display:none}
+.sp-section.active{display:block}
+
+/* Panel de consultas (derecha, plegable) */
+.query-panel{position:fixed;top:226px;right:0;z-index:60;width:200px;transition:transform .25s ease}
+.query-panel.collapsed{transform:translateX(100%)}
+.query-toggle{position:absolute;left:-26px;top:0;width:26px;height:50px;border:none;background:#1a3a5c;color:#fff;
+  border-radius:8px 0 0 8px;cursor:pointer;font-size:14px;box-shadow:-2px 1px 8px rgba(0,0,0,.28);z-index:2}
+.query-toggle:hover{background:#2d6a9f}
+.query-body{background:#fff;border-radius:10px 0 0 10px;box-shadow:-3px 3px 18px rgba(0,0,0,.2);padding:11px;width:100%;box-sizing:border-box}
+.query-title{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:9px}
+.query-btn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:#f0f3f7;border:1px solid #dde4ee;
+  border-radius:8px;padding:9px 10px;margin-bottom:7px;font-size:12.5px;color:#243b53;cursor:pointer;transition:background .15s}
+.query-btn:hover{background:#e2ebf5}
+.qb-ic{font-size:17px;flex-shrink:0}
+
+/* Paneles flotantes */
+.float-panel{position:fixed;z-index:120;background:#fff;border-radius:10px;box-shadow:0 10px 34px rgba(0,0,0,.3);max-width:92vw;display:none}
+.float-panel.open{display:block}
+.float-head{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#1a3a5c;color:#fff;
+  padding:8px 12px;border-radius:10px 10px 0 0;cursor:move;font-size:13px;font-weight:700;user-select:none}
+.float-x{background:transparent;border:none;color:#fff;font-size:20px;line-height:1;cursor:pointer;padding:0 2px}
+.float-x:hover{color:#ffd0d0}
+.float-body{padding:11px 13px;max-height:62vh;overflow:auto}
+.float-hint{font-size:12px;color:#888;font-style:italic;text-align:center;padding:16px 6px}
+
+/* Resumen por municipio */
+.mu-head{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:2px}
+.mu-sub{font-size:11px;color:#777;margin-bottom:9px}
+.mu-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #eef1f5}
+.mu-ic{font-size:16px;flex-shrink:0;width:20px;text-align:center}
+.mu-lbl{flex:1;font-size:12px;color:#333}
+.mu-chip{font-size:10.5px;font-weight:700;color:#fff;padding:2px 7px;border-radius:10px;white-space:nowrap}
+.mu-val{font-size:12px;font-weight:700;color:#1a3a5c;white-space:nowrap;min-width:74px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* Evolución temporal */
+.tl-head{font-size:13px;font-weight:700;color:#1a3a5c;margin-bottom:2px}
+.tl-sub{font-size:11px;color:#777;margin-bottom:9px}
+.tl-wrap{display:flex;flex-direction:column;gap:10px}
+.tl-cell{display:flex;align-items:center;gap:15px;background:#f6f8fb;border-radius:12px;padding:14px 16px}
+.tl-chip{width:56px;height:56px;line-height:56px;border-radius:12px;font-size:30px;color:#fff;flex-shrink:0;text-align:center}
+.tl-meta{display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl-month{font-size:15px;color:#334155;font-weight:700}
+.tl-cat{font-size:12.5px;color:#667085}
+.tl-val{font-size:22px;font-weight:700;color:#1a3a5c;font-variant-numeric:tabular-nums;margin-left:auto;white-space:nowrap}
+
+/* Reutilizados en el panel de provincia */
+.prov-select{width:100%;padding:7px 9px;font-size:13px;border:1px solid #b9cbe0;border-radius:6px;margin-bottom:9px;color:#222}
+.prov-var{font-size:12px;color:#555;margin-bottom:11px;background:#f0f3f7;border-radius:6px;padding:5px 8px}
+.prov-section{margin-bottom:13px}
+.prov-section h4{font-size:12px;color:#1a3a5c;font-weight:700;margin-bottom:6px}
+.prov-cat-row,.prov-rank-row{display:flex;align-items:center;gap:6px;font-size:12px;padding:2.5px 0}
+.prov-sw{width:12px;height:12px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
+.prov-bar{height:12px;border-radius:3px;flex-shrink:0;opacity:.85}
+.prov-rank-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#333}
+.prov-rank-val{font-weight:700;color:#1a3a5c;white-space:nowrap;font-variant-numeric:tabular-nums}
+.prov-empty{font-size:12px;color:#999;font-style:italic}
+
+.loading{display:flex;align-items:center;justify-content:center;height:300px;font-size:14px;color:#888}
+
+.footer{text-align:center;padding:6px;font-size:10px;color:#888;background:#dde3ec;flex:0 0 auto}
+
+@media(max-width:960px){.layout-grid{grid-template-columns:1fr}.dash-panel{order:2}}
+@media(max-width:600px){
+  .header{padding:8px 10px}
+  .tabs-bar{padding:4px 5px 0;gap:3px}
+  .tab-btn{flex:1 1 calc(25% - 4px);padding:8px 4px;font-size:13px}
+  .tab-content{padding:6px}
+}
+
+/* Textos del panel de consultas un poco más grandes (desktop) */
+.sp-mode{font-size:13.5px}
+.prov-select{font-size:14px}
+.sp-body .prov-var{font-size:13px}
+.sp-body .prov-section h4{font-size:13.5px}
+.sp-body .prov-cat-row,.sp-body .prov-rank-row{font-size:13.5px}
+.sp-body .prov-rank-val{font-size:13.5px}
+.sp-body .mu-head{font-size:15px}
+.sp-body .mu-sub{font-size:12.5px}
+.sp-body .mu-lbl{font-size:13.5px}
+.sp-body .mu-val{font-size:13.5px}
+.sp-body .mu-chip{font-size:11.5px}
+.sp-body .tl-head{font-size:15px}
+.sp-body .tl-sub{font-size:12.5px}
+.sp-body .float-hint{font-size:13.5px}
+
+/* ── MODO CELULAR ─────────────────────────────────────────────────────────── */
+@media(max-width:760px){
+  /* Header compacto que entra en el ancho del celular */
+  .header{padding:8px 10px;gap:6px}
+  .header-logo{height:38px}
+  .header-left h1{font-size:15px}
+  .header-left p{font-size:10.5px}
+  .header-select,.header-link,.header-cta{font-size:11px;padding:5px 9px}
+  .header-hint{display:none}
+
+  #side-panel{width:90%;max-width:none;min-width:0}
+  /* Variables: solo ícono */
+  .varitem .vi-lbl{display:none}
+  .varitem{padding:10px;gap:0}
+  .varitem .vi-ic{font-size:23px}
+  #var-list{gap:7px}
+  #search-inp{width:100%;height:46px;font-size:15px}
+  #legend-ov{left:10px;right:10px;bottom:10px;max-width:none}
+  .lg-title{font-size:16px}
+  .lg-item{font-size:14px}
+
+  /* Panel: textos grandes */
+  .sp-mode{font-size:14px;padding:11px 6px}
+  .sp-head span{font-size:17px}
+  .float-hint{font-size:14px;padding:20px 8px}
+  .mu-head{font-size:18px}
+  .mu-sub{font-size:13.5px;margin-bottom:11px}
+  .mu-row{padding:9px 0;gap:10px}
+  .mu-ic{font-size:21px;width:27px}
+  .mu-lbl{font-size:15px}
+  .mu-chip{font-size:12.5px;padding:3px 10px}
+  .mu-val{font-size:15px;min-width:88px}
+  .tl-head{font-size:18px}
+  .tl-sub{font-size:13.5px;margin-bottom:11px}
+  .prov-select{font-size:16px;padding:10px}
+  .prov-var{font-size:14px;padding:7px 10px}
+  .prov-section h4{font-size:15px}
+  .prov-cat-row,.prov-rank-row{font-size:14.5px;padding:5px 0}
+  .prov-rank-val{font-size:14.5px}
+  .prov-sw{width:15px;height:15px}
+
+  /* Evolución temporal (tarjeta fila): más grande en celular */
+  .tl-cell{padding:16px 16px;gap:16px}
+  .tl-chip{width:62px;height:62px;line-height:62px;font-size:33px}
+  .tl-month{font-size:17px}
+  .tl-cat{font-size:14px}
+  .tl-val{font-size:25px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img id="logo-cyano" class="header-logo" alt="CyanoSat">
+  <div class="header-left">
+    <h1>Monitoreo Satelital de Aguas — Argentina</h1>
+    <p>Mapas 3D temáticos por departamento | Variables hidroclimáticas | LaDAAS · ENVSAT</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <select id="period-select" class="header-select" onchange="loadPeriod(this.value)"></select>
+    <a href="metodologia.html" target="_blank" rel="noopener" class="header-link" title="Ver la metodología de las variables">&#8505;&#65039; Metodología</a>
+    <span class="header-hint">Más detalle:</span>
+    <a href="https://envsat.projects.earthengine.app/view/appfloods-android" target="_blank" rel="noopener" class="header-cta" title="Para más detalle, ingresá a AppFloods">&#127754; AppFloods</a>
+  </div>
+  <img id="logo-envsat" class="header-logo" alt="ENVSAT">
+</div>
+
+<div id="app">
+  <div class="tabs-container" id="tabs-container"></div>
+
+  <div id="top-ctrl">
+    <button id="menu-btn" onclick="toggleSidePanel()" title="Consultas, búsqueda y estadísticas">
+      <span class="mb-ic">&#9776;</span><span class="mb-tx">Menú</span>
+    </button>
+  </div>
+
+  <div id="var-list"></div>
+
+  <div id="legend-ov"></div>
+
+  <div id="side-panel">
+    <div class="sp-head"><span id="sp-title">Consultas</span><button class="sp-x" onclick="toggleSidePanel(false)" title="Cerrar">&times;</button></div>
+    <div class="sp-search">
+      <div id="search-wrap">
+        <input id="search-inp" type="text" placeholder="Buscar departamento…" autocomplete="off">
+        <div id="search-sug"></div>
+      </div>
+    </div>
+    <div class="sp-modes">
+      <button class="sp-mode" data-mode="prov" onclick="setPanelMode('prov')">&#128202; Provincia</button>
+      <button class="sp-mode" data-mode="muni" onclick="setPanelMode('muni')">&#128203; Municipio</button>
+      <button class="sp-mode" data-mode="resumen" onclick="setPanelMode('resumen')">&#129518; Período</button>
+      <button class="sp-mode" data-mode="temporal" onclick="setPanelMode('temporal')">&#128200; Evolución</button>
+    </div>
+    <div class="sp-body">
+      <div id="sp-placeholder" class="float-hint">Elegí una consulta en las solapas de arriba.</div>
+      <div id="mode-prov" class="sp-section">
+        <select id="prov-select" class="prov-select" onchange="renderProv()"></select>
+        <div id="prov-var" class="prov-var"></div>
+        <div id="prov-cats" class="prov-section"></div>
+        <div id="prov-top" class="prov-section"></div>
+        <div id="prov-bot" class="prov-section"></div>
+      </div>
+      <div id="mode-muni" class="sp-section"><div id="muni-body"><div class="float-hint">Hacé click en el mapa o buscá un departamento.</div></div></div>
+      <div id="mode-resumen" class="sp-section"><div id="resumen-body"><div class="float-hint">Hacé click en el mapa o buscá un departamento.</div></div></div>
+      <div id="mode-temporal" class="sp-section"><div id="temporal-body"><div class="float-hint">Hacé click en el mapa o buscá un departamento.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  LaDAAS — Laboratorio de Desarrollos de Aplicaciones Ambientales y Satelitales — UNDAV |
+  ENVSAT: Monitoreo Ambiental Satelital
+</div>
+
+<script>
+// ── Configuration ────────────────────────────────────────────────────────────
+var DATA_DIR = 'data/';
+
+var PERIODS = [
+  {file: 'Arg_Hidro_202607.geojson', label: 'Julio 2026'},
+  {file: 'Arg_Hidro_202606.geojson', label: 'Junio 2026'},
+  {file: 'Arg_Hidro_202605.geojson', label: 'Mayo 2026'},
+  {file: 'Arg_Hidro_202604.geojson', label: 'Abril 2026'},
+  {file: 'Arg_Hidro_202603.geojson', label: 'Marzo 2026'},
+  {file: 'Arg_Hidro_202602.geojson', label: 'Febrero 2026'},
+  {file: 'Arg_Hidro_202601.geojson', label: 'Enero 2026'},
+];
+
+var VARS = {
+  ppt_mean:  {label:'Precipitación Acumulada',             unit:'mm',    icon:'\u{1F327}️',
+    thresholds:[
+      {cat:'Bajo',              rgb:[215,48,39],   range:'< 70 mm',        test:function(v){return v<70}},
+      {cat:'Satisfactorio',     rgb:[77,172,38],   range:'70 – 150 mm',    test:function(v){return v>=70&&v<=150}},
+      {cat:'Levemente elevado', rgb:[116,173,209], range:'150 – 200 mm',   test:function(v){return v>150&&v<=200}},
+      {cat:'Elevado',           rgb:[33,102,172],  range:'> 200 mm',       test:function(v){return v>200}},
+    ], vmin:0, vmax:210},
+  APPT_mean: {label:'Anomalía de Precipitación',         unit:'(adim.)', icon:'\u{1F4CA}',
+    thresholds:[
+      {cat:'Déficit',      rgb:[215,48,39],   range:'< −0.5',         test:function(v){return v<-0.5}},
+      {cat:'Normal',       rgb:[77,172,38],   range:'−0.5 – 0.5',     test:function(v){return v>=-0.5&&v<=0.5}},
+      {cat:'Leve exceso',  rgb:[116,173,209], range:'0.5 – 1.0',      test:function(v){return v>0.5&&v<=1.0}},
+      {cat:'Exceso',       rgb:[33,102,172],  range:'> 1.0',           test:function(v){return v>1.0}},
+    ], vmin:-0.6, vmax:1.4},
+  Tppt_mean: {label:'Tasa Media de Precipitación - durante Días de Lluvia', unit:'mm/día', icon:'⏱️',
+    thresholds:[
+      {cat:'Bajo',            rgb:[215,48,39],   range:'< 5 mm/día',     test:function(v){return v<5}},
+      {cat:'Satisfactorio',   rgb:[77,172,38],   range:'5 – 13 mm/día',  test:function(v){return v>=5&&v<=13}},
+      {cat:'Levemente alto',  rgb:[116,173,209], range:'13 – 20 mm/día', test:function(v){return v>13&&v<=20}},
+      {cat:'Elevado',         rgb:[33,102,172],  range:'> 20 mm/día',    test:function(v){return v>20}},
+    ], vmin:0, vmax:95},
+  Hum_mean:  {label:'Humedad del Suelo Media',           unit:'m³/m³', icon:'\u{1F4A7}',
+    thresholds:[
+      {cat:'Bajo',    rgb:[215,48,39],   range:'< 0.25 m³/m³',       test:function(v){return v<0.25}},
+      {cat:'Satisfactorio',  rgb:[77,172,38],   range:'0.25 – 0.38 m³/m³',  test:function(v){return v>=0.25&&v<=0.38}},
+      {cat:'Elevado', rgb:[33,102,172],  range:'> 0.38 m³/m³',       test:function(v){return v>0.38}},
+    ], vmin:0.15, vmax:0.42},
+  AHum_mean: {label:'Anomalía de Humedad del Suelo',     unit:'(adim.)', icon:'\u{1F331}',
+    thresholds:[
+      {cat:'Déficit', rgb:[215,48,39],   range:'< −0.05',         test:function(v){return v<-0.05}},
+      {cat:'Normal',  rgb:[77,172,38],   range:'−0.05 – 0.05',   test:function(v){return v>=-0.05&&v<=0.05}},
+      {cat:'Exceso',  rgb:[33,102,172],  range:'> 0.05',          test:function(v){return v>0.05}},
+    ], vmin:-0.11, vmax:0.07},
+  inf_mean:  {label:'Infiltración acumulada media mensual de agua en suelos',    unit:'mm', icon:'⬇️',
+    thresholds:[
+      {cat:'Déficit',    rgb:[215,48,39],   range:'< 0 mm',        test:function(v){return v<0}},
+      {cat:'Baja',       rgb:[253,174,97],  range:'0 – 5 mm',      test:function(v){return v>=0&&v<5}},
+      {cat:'Aceptable',  rgb:[77,172,38],   range:'5 – 10 mm',     test:function(v){return v>=5&&v<=10}},
+      {cat:'Buena',      rgb:[116,173,209], range:'10 – 20 mm',    test:function(v){return v>10&&v<=20}},
+      {cat:'Muy buena',  rgb:[33,102,172],  range:'> 20 mm',       test:function(v){return v>20}},
+    ], vmin:0, vmax:37},
+  InfEf_mean: {label:'Eficiencia de Infiltración (Inf/PPT)',  unit:'(adim.)', icon:'\u{1F4A7}',
+    thresholds:[
+      {cat:'Déficit',    rgb:[215,48,39],   range:'< 0',           test:function(v){return v<0}},
+      {cat:'Baja',       rgb:[253,174,97],  range:'0 – 0.07',      test:function(v){return v>=0&&v<0.07}},
+      {cat:'Aceptable',  rgb:[77,172,38],   range:'0.07 – 0.15',   test:function(v){return v>=0.07&&v<=0.15}},
+      {cat:'Buena',      rgb:[116,173,209], range:'0.15 – 0.22',   test:function(v){return v>0.15&&v<=0.22}},
+      {cat:'Muy buena',  rgb:[33,102,172],  range:'> 0.22',        test:function(v){return v>0.22}},
+    ], vmin:0, vmax:0.3},
+  ndvi_mean: {label:'NDVI - Índice de Vegetación', unit:'(índice)', icon:'\u{1F33F}',
+    thresholds:[
+      {cat:'Con agua',                 rgb:[43,131,186],  range:'< 0',         test:function(v){return v<0}},
+      {cat:'Vegetación nula a escasa', rgb:[193,140,79],  range:'0 – 0.3',     test:function(v){return v>=0&&v<0.3}},
+      {cat:'Vegetación poco frondosa', rgb:[199,215,111], range:'0.3 – 0.6',   test:function(v){return v>=0.3&&v<0.6}},
+      {cat:'Vegetación frondosa',      rgb:[90,180,60],   range:'0.6 – 0.75',  test:function(v){return v>=0.6&&v<=0.75}},
+      {cat:'Muy frondosa',             rgb:[26,120,50],   range:'> 0.75',      test:function(v){return v>0.75}},
+    ], vmin:-0.2, vmax:0.9},
+  Andvi_mean: {label:'Anomalía de NDVI', unit:'(adim.)', icon:'\u{1F343}',
+    thresholds:[
+      {cat:'Alta disminución', rgb:[140,81,10],   range:'< −0.7',       test:function(v){return v<-0.7}},
+      {cat:'Disminución',      rgb:[216,179,101], range:'−0.7 – −0.3',  test:function(v){return v>=-0.7&&v<-0.3}},
+      {cat:'Variación normal', rgb:[178,196,166], range:'−0.3 – 0.3',   test:function(v){return v>=-0.3&&v<=0.3}},
+      {cat:'Aumento',          rgb:[120,198,121], range:'0.3 – 0.7',    test:function(v){return v>0.3&&v<=0.7}},
+      {cat:'Alto aumento',     rgb:[26,120,50],   range:'> 0.7',        test:function(v){return v>0.7}},
+    ], vmin:-1, vmax:1},
+};
+
+var VAR_IDS = Object.keys(VARS);
+var CAT_HEX = {
+  'Bajo':'#d73027','Déficit':'#d73027','Baja':'#fdae61',
+  'Normal':'#4dac26','Satisfactorio':'#4dac26',
+  'Leve exceso':'#74add1','Levemente alto':'#74add1','Levemente elevado':'#74add1',
+  'Exceso':'#2166ac','Elevado':'#2166ac','Elevada':'#2166ac',
+  'Aceptable':'#4dac26','Satisfactoria':'#4dac26',
+  'Buena':'#74add1','Muy buena':'#2166ac',
+  'Sin datos':'#cccccc'
+};
+
+var MAX_ELEVATION = 80000;
+var deckInstances = {};
+var currentGeoJSON = null;
+var initialized = {};
+var currentVid = null;
+var currentLabel = '';
+var lastClickIn1 = null;
+var MONTHS = [];
+// Agregación por variable para el "Resumen del período": 'sum', 'mean' o 'last' (última estimación)
+var AGG = {ppt_mean:'sum', APPT_mean:'sum', Tppt_mean:'mean', Hum_mean:'mean',
+           AHum_mean:'last', inf_mean:'sum', InfEf_mean:'mean',
+           ndvi_mean:'mean', Andvi_mean:'last'};
+
+// ── Logos (base64) ───────────────────────────────────────────────────────────
+function loadLogos() {
+  // Load logos from data/ directory as base64 text files
+  fetch(DATA_DIR + '../cyanosat_b64.txt').then(r=>r.text()).then(function(b64){
+    document.getElementById('logo-cyano').src = 'data:image/png;base64,' + b64.trim();
+  }).catch(function(){});
+  fetch(DATA_DIR + '../envsat_b64.txt').then(r=>r.text()).then(function(b64){
+    document.getElementById('logo-envsat').src = 'data:image/png;base64,' + b64.trim();
+  }).catch(function(){});
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function getCat(val, thresholds) {
+  if (val === null || val === undefined || isNaN(val)) return {cat:'Sin datos', rgb:[180,180,180]};
+  for (var i=0; i<thresholds.length; i++) {
+    if (thresholds[i].test(val)) return thresholds[i];
+  }
+  return {cat:'Sin datos', rgb:[180,180,180]};
+}
+
+function normElev(val, vmin, vmax) {
+  if (val === null || val === undefined || isNaN(val)) return 0.05;
+  var t = (val - vmin) / (vmax - vmin);
+  return Math.max(0.05, Math.min(1.0, t));
+}
+
+// ── Build tabs HTML ──────────────────────────────────────────────────────────
+function buildTabs() {
+  var container = document.getElementById('tabs-container');
+  container.innerHTML = '';
+  VAR_IDS.forEach(function(vid, i) {
+    var div = document.createElement('div');
+    div.id = 'tab-' + vid;
+    div.className = 'tab-content' + (i === 0 ? ' active' : '');
+    div.innerHTML =
+      '<div id="deckgl-'+vid+'" class="map-div">' +
+        '<div id="tooltip-'+vid+'" class="map-tooltip"></div>' +
+      '</div>';
+    container.appendChild(div);
+  });
+  buildVarList();
+}
+
+// Lista de variables (borde derecho, estilo Windy)
+function buildVarList() {
+  var el = document.getElementById('var-list');
+  if (!el) return;
+  el.innerHTML = '';
+  VAR_IDS.forEach(function(vid, i) {
+    var v = VARS[vid];
+    var b = document.createElement('button');
+    b.className = 'varitem' + (i === 0 ? ' active' : '');
+    b.setAttribute('data-vid', vid);
+    b.title = v.label;
+    b.onclick = function() { showTab(vid); };
+    b.innerHTML = '<span class="vi-ic">' + v.icon + '</span><span class="vi-lbl">' + v.label + '</span>';
+    el.appendChild(b);
+  });
+}
+
+// Leyenda overlay (nombre de variable + umbrales)
+function renderLegend(vid) {
+  var el = document.getElementById('legend-ov');
+  if (!el) return;
+  var v = VARS[vid];
+  var chips = v.thresholds.map(function(t) {
+    return '<span class="lg-item"><span class="lg-sw" style="background:rgb('+t.rgb.join(',')+')"></span>' +
+      t.cat + (t.range ? ' <span class="lg-rng">('+t.range+')</span>' : '') + '</span>';
+  }).join('');
+  el.innerHTML = '<div class="lg-title">' + v.icon + ' ' + v.label + ' <span class="lg-unit">(' + v.unit + ')</span></div>' +
+    '<div class="lg-items">' + chips + '</div>';
+}
+
+// ── Deck.gl map ──────────────────────────────────────────────────────────────
+function initDeck(vid) {
+  if (!currentGeoJSON) return;
+  var container = document.getElementById('deckgl-' + vid);
+  if (!container || container.offsetWidth === 0) return;
+
+  // Destroy previous instance
+  if (deckInstances[vid]) {
+    deckInstances[vid].finalize();
+    delete deckInstances[vid];
+  }
+
+  var vdef = VARS[vid];
+  var tooltipEl = document.getElementById('tooltip-' + vid);
+
+  // Pre-process: inject color/elevation into features
+  var gj = JSON.parse(JSON.stringify(currentGeoJSON));
+  gj.features.forEach(function(f) {
+    var val = parseFloat(f.properties[vid]);
+    var c = getCat(val, vdef.thresholds);
+    f.properties._r = c.rgb[0];
+    f.properties._g = c.rgb[1];
+    f.properties._b = c.rgb[2];
+    f.properties._cat = c.cat;
+    f.properties._elev = normElev(val, vdef.vmin, vdef.vmax);
+    f.properties._val = (val !== null && val !== undefined && !isNaN(val)) ? val.toFixed(3) : 'N/D';
+  });
+
+  var layer = new deck.GeoJsonLayer({
+    id: 'geo-' + vid,
+    data: gj,
+    extruded: true,
+    filled: true,
+    stroked: true,
+    wireframe: true,
+    elevationScale: MAX_ELEVATION,
+    getElevation: function(f) { return f.properties._elev; },
+    getFillColor: function(f) { return [f.properties._r, f.properties._g, f.properties._b, 255]; },
+    getLineColor: function(f) { return [f.properties._r, f.properties._g, f.properties._b, 255]; },
+    getLineWidth: 80,
+    lineWidthMinPixels: 0.3,
+    pickable: true,
+    autoHighlight: true,
+    highlightColor: [255, 255, 255, 70],
+    material: {
+      ambient: 0.35,
+      diffuse: 0.7,
+      shininess: 32,
+      specularColor: [180, 180, 180]
+    },
+    onClick: function(pi) {
+      if (!pi.object) return;
+      var p = pi.object.properties;
+      var nombre = p.iadepto_si || p.nam || '';
+      var prov = p.iaprov_sin || '';
+      // Popup solo al clickear (no al pasar el mouse); persiste hasta la ✕
+      tooltipEl.innerHTML = '<button class="tt-x" onclick="hideTooltip(this)" title="Cerrar">&times;</button>' +
+        '<b>' + nombre + '</b>' +
+        (prov ? ' <span style="opacity:.8">(' + prov + ')</span>' : '') + '<br>' +
+        vdef.label + ': ' + p._val + ' ' + vdef.unit + '<br>Estado: <b>' + p._cat + '</b>';
+      tooltipEl.style.display = 'block';
+      if (isMobile()) {
+        tooltipEl.classList.add('tt-docked');           // celular: anclado abajo-centro
+        tooltipEl.style.left = ''; tooltipEl.style.top = '';
+      } else {
+        tooltipEl.classList.remove('tt-docked');
+        tooltipEl.style.left = (pi.x + 14) + 'px';
+        tooltipEl.style.top  = (pi.y - 10) + 'px';
+      }
+      selectMuni(p.in1);
+    }
+  });
+
+  deckInstances[vid] = new deck.DeckGL({
+    container: 'deckgl-' + vid,
+    mapLib: maplibregl,
+    mapStyle: {
+      version: 8,
+      sources: {
+        argenmap: {
+          type: 'raster',
+          tiles: ['https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          scheme: 'tms',
+          attribution: '© IGN Argentina — Argenmap'
+        }
+      },
+      layers: [{ id: 'argenmap', type: 'raster', source: 'argenmap' }]
+    },
+    initialViewState: {
+      longitude: -64.5, latitude: -40.0,
+      zoom: 3.7, pitch: 45, bearing: -12,
+    },
+    controller: true,
+    layers: [layer],
+    effects: [new deck.LightingEffect({
+      ambientLight: new deck.AmbientLight({ color: [255,255,255], intensity: 1.0 }),
+      dirLight: new deck.DirectionalLight({
+        color: [255,255,240],
+        intensity: 2.2,
+        direction: [-1, 0, -1]
+      })
+    })]
+  });
+}
+
+// ── Plotly dashboards ────────────────────────────────────────────────────────
+function initPlotly(vid) {
+  if (!currentGeoJSON) return;
+  var vdef = VARS[vid];
+  var col = vid;
+  var features = currentGeoJSON.features;
+
+  // Colores por categoría tomados de los umbrales de ESTA variable (coinciden con el mapa)
+  var catColor = {};
+  vdef.thresholds.forEach(function(t){ catColor[t.cat] = 'rgb('+t.rgb.join(',')+')'; });
+  catColor['Sin datos'] = '#cccccc';
+
+  // Count by category
+  var catOrder = vdef.thresholds.map(function(t){return t.cat}).concat(['Sin datos']);
+  var counts = {};
+  catOrder.forEach(function(c){counts[c]=0});
+  var vals = [];
+
+  features.forEach(function(f) {
+    var v = parseFloat(f.properties[col]);
+    var c = getCat(v, vdef.thresholds);
+    counts[c.cat] = (counts[c.cat]||0) + 1;
+    if (!isNaN(v)) vals.push({nam: f.properties.iadepto_si||f.properties.nam||'', val: v, cat: c.cat});
+  });
+
+  var total = features.length;
+  var countArr = catOrder.map(function(c){return counts[c]||0});
+  var pcts = countArr.map(function(n){return total>0?(n/total*100).toFixed(1):'0'});
+  var barColors = catOrder.map(function(c){return catColor[c]||'#aaa'});
+
+  // Dashboard bars
+  Plotly.newPlot('dash-'+vid, [{
+    y: catOrder, x: countArr, orientation:'h', type:'bar',
+    marker:{color:barColors},
+    text: countArr.map(function(n,i){return n+' ('+pcts[i]+'%)'}),
+    textposition:'outside', textfont:{size:11},
+  }], {
+    title:{text:'Municipios por categoría',font:{size:12,color:'#1a3a5c'},x:0.5},
+    xaxis:{range:[0,Math.max.apply(null,countArr)*1.4],showgrid:false},
+    yaxis:{autorange:'reversed',ticksuffix:'   '},
+    height:175, margin:{l:110,r:10,t:32,b:20},
+    paper_bgcolor:'#f4f6fa', plot_bgcolor:'#f4f6fa',
+  }, {responsive:true,displayModeBar:false});
+
+  // Sort for top/bottom
+  vals.sort(function(a,b){return b.val-a.val});
+  var top10 = vals.slice(0,10);
+  var bot10 = vals.slice(-10).reverse();
+
+  // Top 10
+  Plotly.newPlot('top-'+vid, [{
+    y:top10.map(function(d){return d.nam.substring(0,20)}),
+    x:top10.map(function(d){return d.val}),
+    orientation:'h', type:'bar',
+    marker:{color:top10.map(function(d){return catColor[d.cat]||'#aaa'})},
+    text:top10.map(function(d){return d.val.toFixed(2)}),
+    textposition:'outside', textfont:{size:11},
+  }], {
+    title:{text:'▲ Top 10 mayores',font:{size:11,color:'#1a3a5c'},x:0.5},
+    yaxis:{autorange:'reversed',ticksuffix:'   '},
+    xaxis:{range:[0,(top10.length?top10[0].val:1)*1.35],showgrid:false},
+    height:220, margin:{l:130,r:10,t:28,b:15},
+    paper_bgcolor:'#f4f6fa', plot_bgcolor:'#f4f6fa',
+  }, {responsive:true,displayModeBar:false});
+
+  // Bottom 10
+  Plotly.newPlot('bot-'+vid, [{
+    y:bot10.map(function(d){return d.nam.substring(0,20)}),
+    x:bot10.map(function(d){return d.val}),
+    orientation:'h', type:'bar',
+    marker:{color:bot10.map(function(d){return catColor[d.cat]||'#aaa'})},
+    text:bot10.map(function(d){return d.val.toFixed(2)}),
+    textposition:'outside', textfont:{size:11},
+  }], {
+    title:{text:'▼ Top 10 menores',font:{size:11,color:'#1a3a5c'},x:0.5},
+    yaxis:{autorange:'reversed',ticksuffix:'   '},
+    xaxis:{range:[0,Math.max(bot10.length?bot10[bot10.length-1].val:1, 0.01)*1.35],showgrid:false},
+    height:220, margin:{l:130,r:10,t:28,b:15},
+    paper_bgcolor:'#f4f6fa', plot_bgcolor:'#f4f6fa',
+  }, {responsive:true,displayModeBar:false});
+}
+
+// ── Panel lateral + consultas ────────────────────────────────────────────────
+var currentMode = null;   // ninguna consulta activa hasta que el usuario elija una solapa
+function isMobile() { return window.matchMedia('(max-width:760px)').matches; }
+function hideTooltip(btn) { var t = btn.closest('.map-tooltip'); if (t) t.style.display = 'none'; }
+
+function toggleSidePanel(open) {
+  var p = document.getElementById('side-panel');
+  var willOpen = (open === undefined) ? !p.classList.contains('open') : open;
+  p.classList.toggle('open', willOpen);
+  document.getElementById('menu-btn').style.background = willOpen ? '#2d6a9f' : '';
+  // Al abrir NO se calcula ningún resumen: queda el aviso hasta que se elija una solapa.
+}
+
+function setPanelMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.sp-mode').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-mode') === mode); });
+  document.querySelectorAll('.sp-section').forEach(function(s){ s.classList.remove('active'); });
+  var ph = document.getElementById('sp-placeholder'); if (ph) ph.style.display = 'none';
+  document.getElementById('mode-' + mode).classList.add('active');
+  renderPanelMode(mode);
+}
+
+function renderPanelMode(mode) {
+  if (mode === 'prov') {
+    if (!document.getElementById('prov-select').options.length) populateProvinces();
+    renderProv();
+  } else if (mode === 'muni')     { if (lastClickIn1) renderMuni(lastClickIn1); }
+  else if (mode === 'temporal')   { if (lastClickIn1) renderTemporal(lastClickIn1); }
+  else if (mode === 'resumen')    { if (lastClickIn1) renderResumen(lastClickIn1); }
+}
+
+// Refresca el modo activo cuando cambia la variable o el mes
+function refreshPanel() {
+  if (document.getElementById('side-panel').classList.contains('open')) renderPanelMode(currentMode);
+}
+
+// ── Buscador de departamentos + zoom ─────────────────────────────────────────
+function sinTilde(s) { return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[ñÑ]/g, 'n').toLowerCase(); }
+
+function initSearch() {
+  var inp = document.getElementById('search-inp');
+  var sug = document.getElementById('search-sug');
+  if (!inp) return;
+  inp.addEventListener('input', function() {
+    var q = sinTilde(inp.value.trim());
+    if (!q || !currentGeoJSON) { sug.style.display = 'none'; return; }
+    var matches = currentGeoJSON.features.filter(function(f) {
+      return sinTilde(f.properties.iadepto_si || '').indexOf(q) >= 0;
+    }).sort(function(a, b){ return (a.properties.iadepto_si || '').localeCompare(b.properties.iadepto_si || ''); }).slice(0, 10);
+    if (!matches.length) { sug.innerHTML = '<div class="sug-empty">Sin resultados</div>'; sug.style.display = 'block'; return; }
+    sug.innerHTML = matches.map(function(f) {
+      var p = f.properties;
+      return '<div class="sug-item" onclick="pickDept(\'' + p.in1 + '\')">' + p.iadepto_si +
+        ' <span class="sug-prov">' + (p.iaprov_sin || '') + '</span></div>';
+    }).join('');
+    sug.style.display = 'block';
+  });
+  document.addEventListener('click', function(e) {
+    var wrap = document.getElementById('search-wrap');
+    if (wrap && !wrap.contains(e.target)) sug.style.display = 'none';
+  });
+}
+
+function pickDept(in1) {
+  document.getElementById('search-sug').style.display = 'none';
+  var p = findFeat(in1);
+  if (p) document.getElementById('search-inp').value = p.iadepto_si || '';
+  zoomToDept(in1);
+  lastClickIn1 = in1;
+  setPanelMode('muni');   // el buscador vive dentro del panel: mostrar el resumen del depto buscado
+}
+
+function bboxOfFeature(feat) {
+  var minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
+  (function scan(c) {
+    if (typeof c[0] === 'number') {
+      if (c[0] < minx) minx = c[0]; if (c[0] > maxx) maxx = c[0];
+      if (c[1] < miny) miny = c[1]; if (c[1] > maxy) maxy = c[1];
+    } else { for (var i = 0; i < c.length; i++) scan(c[i]); }
+  })(feat.geometry.coordinates);
+  return [minx, miny, maxx, maxy];
+}
+
+function zoomToDept(in1) {
+  var feat = null;
+  for (var i = 0; i < currentGeoJSON.features.length; i++) {
+    if (currentGeoJSON.features[i].properties.in1 === in1) { feat = currentGeoJSON.features[i]; break; }
+  }
+  if (!feat) return;
+  var b = bboxOfFeature(feat);
+  var cx = (b[0] + b[2]) / 2, cy = (b[1] + b[3]) / 2;
+  var maxd = Math.max(b[2] - b[0], b[3] - b[1], 1e-4);
+  var zoom = Math.max(4.2, Math.min(9, Math.log2(360 / maxd) - 1.2));
+  var dk = deckInstances[currentVid];
+  if (!dk) return;
+  var vs = { longitude: cx, latitude: cy, zoom: zoom, pitch: 45, bearing: -12, transitionDuration: 900 };
+  if (deck.FlyToInterpolator) vs.transitionInterpolator = new deck.FlyToInterpolator();
+  dk.setProps({ initialViewState: vs });
+}
+
+function findFeat(in1) {
+  if (!currentGeoJSON) return null;
+  for (var i = 0; i < currentGeoJSON.features.length; i++) {
+    if (currentGeoJSON.features[i].properties.in1 === in1) return currentGeoJSON.features[i].properties;
+  }
+  return null;
+}
+
+// Click/búsqueda de un departamento -> panel lateral
+function selectMuni(in1) {
+  if (!in1) return;
+  lastClickIn1 = in1;
+  var open = document.getElementById('side-panel').classList.contains('open');
+  // Solo actualiza si el panel YA está abierto en una consulta por-departamento; nunca lo abre solo.
+  if (open && (currentMode === 'muni' || currentMode === 'temporal' || currentMode === 'resumen')) {
+    renderPanelMode(currentMode);
+  }
+}
+
+function renderMuni(in1) {
+  var el = document.getElementById('muni-body');
+  var p = findFeat(in1);
+  if (!p) { el.innerHTML = '<div class="float-hint">Municipio no encontrado.</div>'; return; }
+  var rows = VAR_IDS.map(function(vid) {
+    var vdef = VARS[vid], val = parseFloat(p[vid]), c = getCat(val, vdef.thresholds);
+    return '<div class="mu-row"><span class="mu-ic">' + vdef.icon + '</span>' +
+      '<span class="mu-lbl">' + vdef.label + '</span>' +
+      '<span class="mu-chip" style="background:rgb(' + c.rgb.join(',') + ')">' + c.cat + '</span>' +
+      '<span class="mu-val">' + (isNaN(val) ? 's/d' : val.toFixed(2)) + ' ' + vdef.unit + '</span></div>';
+  }).join('');
+  el.innerHTML = '<div class="mu-head">' + (p.iadepto_si || in1) + '</div>' +
+    '<div class="mu-sub">' + (p.iaprov_sin || '') + ' &middot; ' + currentLabel + '</div>' + rows;
+}
+
+function renderTemporal(in1) {
+  var el = document.getElementById('temporal-body');
+  var vdef = VARS[currentVid];
+  var base = findFeat(in1) || {};
+  if (!MONTHS.length) { el.innerHTML = '<div class="float-hint">Cargando meses&hellip;</div>'; return; }
+  var cells = MONTHS.slice().reverse().map(function(m) {   // más reciente arriba, más antiguo abajo
+    var props = m.byIn1[in1];
+    var val = props ? parseFloat(props[currentVid]) : NaN;
+    var c = getCat(val, vdef.thresholds);
+    return '<div class="tl-cell">' +
+      '<div class="tl-chip" style="background:rgb(' + c.rgb.join(',') + ')">' + vdef.icon + '</div>' +
+      '<div class="tl-meta"><div class="tl-month">' + m.label + '</div><div class="tl-cat">' + c.cat + '</div></div>' +
+      '<div class="tl-val">' + (isNaN(val) ? 's/d' : val.toFixed(2)) + '</div>' +
+      '</div>';
+  }).join('');
+  el.innerHTML = '<div class="tl-head">' + (base.iadepto_si || in1) +
+      ' <span style="opacity:.7;font-weight:400">(' + (base.iaprov_sin || '') + ')</span></div>' +
+    '<div class="tl-sub">' + vdef.icon + ' ' + vdef.label + ' (' + vdef.unit + ') &mdash; avance mensual</div>' +
+    '<div class="tl-wrap">' + cells + '</div>';
+}
+
+function renderResumen(in1) {
+  var el = document.getElementById('resumen-body');
+  var base = findFeat(in1) || {};
+  if (!MONTHS.length) { el.innerHTML = '<div class="float-hint">Cargando meses&hellip;</div>'; return; }
+  var rows = VAR_IDS.map(function(vid) {
+    var vdef = VARS[vid], method = AGG[vid] || 'mean';
+    var sum = 0, cnt = 0, lastVal = NaN;
+    MONTHS.forEach(function(m) {          // MONTHS en orden cronológico ascendente
+      var props = m.byIn1[in1]; if (!props) return;
+      var v = parseFloat(props[vid]); if (isNaN(v)) return;
+      sum += v; cnt++; lastVal = v;       // lastVal queda como el mes más reciente con dato
+    });
+    var agg;
+    if (method === 'sum') agg = cnt ? sum : NaN;
+    else if (method === 'last') agg = lastVal;
+    else agg = cnt ? sum / cnt : NaN;
+    var valTxt = isNaN(agg) ? 's/d' : agg.toFixed(2);
+    var chip, chipStyle;
+    if (method === 'sum') {
+      chip = '&Sigma; acumulado'; chipStyle = 'background:#8a94a6';
+    } else {
+      var c = getCat(agg, vdef.thresholds);
+      chip = c.cat + (method === 'last' ? ' (última)' : ' (media)');
+      chipStyle = 'background:rgb(' + c.rgb.join(',') + ')';
+    }
+    return '<div class="mu-row"><span class="mu-ic">' + vdef.icon + '</span>' +
+      '<span class="mu-lbl">' + vdef.label + '</span>' +
+      '<span class="mu-chip" style="' + chipStyle + '">' + chip + '</span>' +
+      '<span class="mu-val">' + valTxt + ' ' + vdef.unit + '</span></div>';
+  }).join('');
+  var per = MONTHS.length > 1 ? (MONTHS[0].label + ' – ' + MONTHS[MONTHS.length - 1].label) : (MONTHS[0] ? MONTHS[0].label : '');
+  el.innerHTML = '<div class="mu-head">' + (base.iadepto_si || in1) + '</div>' +
+    '<div class="mu-sub">' + (base.iaprov_sin || '') + ' &middot; ' + per + ' (' + MONTHS.length + ' meses)</div>' + rows;
+}
+
+// Carga la serie temporal compacta (sin geometría). Escala a 12+ meses sin peso.
+// Si falta el archivo, cae al método viejo (descarga los GeoJSON completos).
+function loadAllMonths() {
+  fetch(DATA_DIR + 'series_hidro.json')
+    .then(function(r){ if (!r.ok) throw new Error('no series'); return r.json(); })
+    .then(function(s){
+      MONTHS = s.meses.map(function(lbl){
+        var byIn1 = {};
+        for (var in1 in s.datos) { if (s.datos[in1][lbl]) byIn1[in1] = s.datos[in1][lbl]; }
+        return { label: lbl, byIn1: byIn1 };
+      });
+      refreshPanel();
+    })
+    .catch(function(){ loadAllMonthsFallback(); });
+}
+
+function loadAllMonthsFallback() {
+  var ordered = PERIODS.slice().sort(function(a, b){ return a.file.localeCompare(b.file); });
+  Promise.all(ordered.map(function(p) {
+    return fetch(DATA_DIR + p.file).then(function(r){ return r.json(); }).then(function(gj) {
+      var byIn1 = {};
+      gj.features.forEach(function(f){ if (f.properties.in1) byIn1[f.properties.in1] = f.properties; });
+      return { label: p.label, file: p.file, byIn1: byIn1 };
+    });
+  })).then(function(arr){ MONTHS = arr; refreshPanel(); }).catch(function(e){ console.error('loadAllMonths', e); });
+}
+
+// Arrastre de los paneles flotantes por su encabezado
+function initDrags() {
+  document.querySelectorAll('.float-panel .float-head').forEach(function(h) {
+    var panel = h.parentElement, drag = false, sx, sy, ox, oy;
+    h.addEventListener('mousedown', function(e) {
+      if (isMobile()) return;              // en celular el panel va acoplado abajo, sin arrastre
+      if (e.target.classList.contains('float-x')) return;
+      var r = panel.getBoundingClientRect();
+      panel.style.left = r.left + 'px'; panel.style.top = r.top + 'px';
+      panel.style.right = 'auto'; panel.style.bottom = 'auto';
+      drag = true; sx = e.clientX; sy = e.clientY; ox = r.left; oy = r.top; e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e) {
+      if (!drag) return;
+      panel.style.left = (ox + e.clientX - sx) + 'px';
+      panel.style.top = (oy + e.clientY - sy) + 'px';
+    });
+    document.addEventListener('mouseup', function(){ drag = false; });
+  });
+}
+
+function populateProvinces() {
+  var sel = document.getElementById('prov-select');
+  if (!sel || !currentGeoJSON) return;
+  var map = {};
+  currentGeoJSON.features.forEach(function(f) {
+    var cp = (f.properties.in1 || '').substring(0, 2);
+    if (cp && !map[cp]) map[cp] = f.properties.iaprov_sin || cp;
+  });
+  var arr = Object.keys(map).map(function(k) { return {cod: k, nom: map[k]}; });
+  arr.sort(function(a, b) { return a.nom.localeCompare(b.nom); });
+  var prev = sel.value;
+  sel.innerHTML = '';
+  arr.forEach(function(o) {
+    var op = document.createElement('option');
+    op.value = o.cod; op.textContent = o.nom;
+    sel.appendChild(op);
+  });
+  if (prev && map[prev]) sel.value = prev;
+}
+
+function provRankRows(list, catColor) {
+  if (!list.length) return '<div class="prov-empty">Sin datos</div>';
+  var maxAbs = Math.max.apply(null, list.map(function(d){return Math.abs(d.val)}).concat([0.0001]));
+  return list.map(function(d) {
+    var w = Math.max(4, Math.abs(d.val) / maxAbs * 90);
+    return '<div class="prov-rank-row">' +
+      '<span class="prov-rank-name" title="' + d.nam + '">' + d.nam + '</span>' +
+      '<span class="prov-bar" style="width:' + w + 'px;background:' + (catColor[d.cat]||'#aaa') + '"></span>' +
+      '<span class="prov-rank-val">' + d.val.toFixed(2) + '</span></div>';
+  }).join('');
+}
+
+function renderProv() {
+  if (!currentGeoJSON || !currentVid) return;
+  var sel = document.getElementById('prov-select');
+  if (!sel || !sel.value) return;
+  var vdef = VARS[currentVid], col = currentVid, codp = sel.value;
+
+  var catColor = {};
+  vdef.thresholds.forEach(function(t){ catColor[t.cat] = 'rgb(' + t.rgb.join(',') + ')'; });
+  catColor['Sin datos'] = '#cccccc';
+  var catOrder = vdef.thresholds.map(function(t){return t.cat}).concat(['Sin datos']);
+  var counts = {}; catOrder.forEach(function(c){counts[c] = 0});
+  var vals = [];
+
+  var feats = currentGeoJSON.features.filter(function(f) {
+    return (f.properties.in1 || '').substring(0, 2) === codp;
+  });
+  feats.forEach(function(f) {
+    var v = parseFloat(f.properties[col]);
+    var c = getCat(v, vdef.thresholds);
+    counts[c.cat] = (counts[c.cat] || 0) + 1;
+    if (!isNaN(v)) vals.push({nam: f.properties.iadepto_si||f.properties.nam||'', val: v, cat: c.cat});
+  });
+  var total = feats.length;
+
+  document.getElementById('prov-var').innerHTML =
+    '<b>' + vdef.label + '</b> &middot; ' + vdef.unit + ' &middot; ' + total + ' deptos.';
+
+  // Cantidad de departamentos por categoría
+  var maxCount = Math.max.apply(null, catOrder.map(function(c){return counts[c]}).concat([1]));
+  var ch = '<h4>Departamentos por categoría</h4>';
+  catOrder.forEach(function(c) {
+    var n = counts[c] || 0; if (n === 0) return;
+    var pct = total > 0 ? Math.round(n / total * 100) : 0;
+    var w = Math.max(4, n / maxCount * 70);
+    ch += '<div class="prov-cat-row"><span class="prov-sw" style="background:' + (catColor[c]||'#aaa') + '"></span>' +
+      '<span class="prov-rank-name">' + c + '</span>' +
+      '<span class="prov-bar" style="width:' + w + 'px;background:' + (catColor[c]||'#aaa') + '"></span>' +
+      '<span class="prov-rank-val">' + n + ' (' + pct + '%)</span></div>';
+  });
+  document.getElementById('prov-cats').innerHTML = ch;
+
+  // Top / Bottom 10
+  vals.sort(function(a, b){ return b.val - a.val; });
+  var top = vals.slice(0, 10);
+  var bot = vals.slice(-10).reverse();
+  document.getElementById('prov-top').innerHTML = '<h4>&#9650; 10 mayores</h4>' + provRankRows(top, catColor);
+  document.getElementById('prov-bot').innerHTML = '<h4>&#9660; 10 menores</h4>' + provRankRows(bot, catColor);
+}
+
+// Fuerza que MapLibre dimensione el basemap al contenedor (reintenta hasta lograrlo)
+function fixMapSize() {
+  var tries = 0;
+  var iv = setInterval(function() {
+    window.dispatchEvent(new Event('resize'));
+    tries++;
+    var tc = document.querySelector('.tab-content.active');
+    var c = tc && tc.querySelector('.maplibregl-canvas');
+    if ((c && c.width > 500) || tries >= 8) clearInterval(iv);
+  }, 220);
+}
+
+// ── Selección de variable ────────────────────────────────────────────────────
+function showTab(vid) {
+  currentVid = vid;
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active')});
+  document.getElementById('tab-'+vid).classList.add('active');
+  document.querySelectorAll('#var-list .varitem').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-vid') === vid); });
+  renderLegend(vid);
+
+  if (!initialized[vid]) {
+    setTimeout(function(){
+      initDeck(vid);
+      initialized[vid] = true;
+      fixMapSize();  // MapLibre dimensiona el basemap al contenedor
+      refreshPanel();
+    }, 80);
+  } else {
+    setTimeout(function(){
+      if (deckInstances[vid]) deckInstances[vid].redraw(true);
+      fixMapSize();
+    }, 30);
+    refreshPanel();
+  }
+}
+
+// ── Load period data ─────────────────────────────────────────────────────────
+function loadPeriod(file) {
+  // Reset
+  for (var k in deckInstances) {
+    if (deckInstances[k]) deckInstances[k].finalize();
+  }
+  deckInstances = {};
+  initialized = {};
+
+  fetch(DATA_DIR + file)
+    .then(function(r){ return r.json(); })
+    .then(function(gj){
+      currentGeoJSON = gj;
+
+      // Find label for this file
+      var lbl = file;
+      PERIODS.forEach(function(p){ if(p.file===file) lbl=p.label; });
+      currentLabel = lbl;
+      document.querySelector('.header-left p').textContent =
+        'Mapas 3D temáticos por departamento | Variables hidroclimáticas | ' + lbl;
+
+      buildTabs();
+      currentVid = VAR_IDS[0];
+      renderLegend(currentVid);
+      populateProvinces();
+      refreshPanel();
+      // Init first tab
+      setTimeout(function(){
+        var first = VAR_IDS[0];
+        initDeck(first);
+        initialized[first] = true;
+        fixMapSize();  // basemap MapLibre al tamaño real
+      }, 200);
+    })
+    .catch(function(err){
+      console.error('Error cargando datos', err);
+    });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', function() {
+  loadLogos();
+
+  // Populate period selector
+  var sel = document.getElementById('period-select');
+  PERIODS.forEach(function(p, i){
+    var opt = document.createElement('option');
+    opt.value = p.file;
+    opt.textContent = p.label;
+    if (i===0) opt.selected = true;
+    sel.appendChild(opt);
+  });
+
+  // Cargar primer período + todos los meses (evolución temporal) + buscador
+  loadPeriod(PERIODS[0].file);
+  loadAllMonths();
+  initSearch();
+});
+
+window.addEventListener('resize', function(){
+  for (var vid in deckInstances) {
+    if (deckInstances[vid]) deckInstances[vid].redraw(true);
+  }
+});
+</script>
+</body>
+</html>
