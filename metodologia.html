@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodología — Monitoreo Hídrico Argentina | LaDAAS ENVSAT</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;line-height:1.6}
+
+.header{
+  background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 100%);
+  color:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.header-left h1{font-size:clamp(16px,2.2vw,22px);font-weight:700}
+.header-left p{font-size:clamp(11px,1.2vw,13px);opacity:.85;margin-top:2px}
+.back-link{
+  background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);
+  border-radius:6px;padding:7px 13px;font-size:13px;cursor:pointer;text-decoration:none;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:6px;transition:background .18s;
+}
+.back-link:hover{background:rgba(255,255,255,.32)}
+
+.wrap{max-width:1000px;margin:0 auto;padding:22px 20px 60px}
+
+.toc{
+  background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);
+  padding:16px 20px;margin-bottom:24px;border-left:5px solid #2d6a9f;
+}
+.toc h2{font-size:15px;color:#1a3a5c;margin-bottom:8px}
+.toc ul{list-style:none;columns:2;column-gap:28px}
+.toc li{margin:4px 0;font-size:13.5px}
+.toc a{color:#2d6a9f;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.toc .grp{font-weight:700;color:#1a3a5c;list-style:none;margin-top:6px;break-after:avoid}
+@media(max-width:640px){.toc ul{columns:1}}
+
+.card{
+  background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);
+  padding:22px 26px;margin-bottom:20px;
+}
+.card.src{border-left:5px solid #2d6a9f}
+h2.sec{font-size:clamp(18px,2vw,23px);color:#1a3a5c;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #e3e8ef;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.srcbadge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:11px}
+.b-gsmap{background:#e2eef9;color:#1d5a8c}
+.b-smap{background:#e7eafa;color:#42449c}
+.b-era5{background:#e7f3e4;color:#3a7a2c}
+.b-modis{background:#e3f0d8;color:#3f6b1e}
+h3.sub{font-size:clamp(15px,1.6vw,18px);color:#2d6a9f;margin:18px 0 6px}
+p{margin:8px 0}
+.intro{font-size:14.5px;color:#444}
+
+.callout{
+  background:#eef5fb;border-left:4px solid #2d6a9f;border-radius:0 8px 8px 0;
+  padding:11px 16px;margin:14px 0;font-size:13.5px;color:#26405c;
+}
+.callout.warn{background:#fdf3e7;border-left-color:#e08e2a;color:#6a4818}
+
+.formula{
+  background:#1a3a5c;color:#eaf2fb;border-radius:8px;padding:11px 16px;margin:12px 0;
+  font-family:'Consolas','Courier New',monospace;font-size:14px;text-align:center;letter-spacing:.3px;
+}
+.formula .eq{display:block;font-size:11px;color:#9fc3e6;margin-top:6px;font-family:'Segoe UI',Arial,sans-serif;letter-spacing:0}
+
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13px;background:#fff}
+th,td{border:1px solid #d6dde6;padding:7px 10px;text-align:left;vertical-align:top}
+.tscroll{overflow-x:auto;margin:14px 0;-webkit-overflow-scrolling:touch}
+.tscroll table{margin:0;min-width:560px}
+th{background:#1a3a5c;color:#fff;font-weight:600;font-size:12.5px}
+tbody tr:nth-child(even){background:#f5f8fb}
+code{background:#eef1f5;border-radius:4px;padding:1px 5px;font-family:'Consolas','Courier New',monospace;font-size:12.5px;color:#1a3a5c}
+
+.sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid rgba(0,0,0,.15)}
+
+.footer{text-align:center;padding:18px;font-size:11px;color:#888;background:#dde3ec}
+.footer b{color:#5a6677}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Metodología — Monitoreo Hídrico de Argentina</h1>
+    <p>Variables del visor 3D · Proyecto Hidro Arg | LaDAAS · ENVSAT</p>
+  </div>
+  <a href="index.html" class="back-link">&#8592; Volver al dashboard</a>
+</div>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h2>Contenido</h2>
+    <ul>
+      <li class="grp">Fuentes</li>
+      <li><a href="#fuentes">Fuentes de datos</a></li>
+      <li class="grp">Precipitación (GSMaP)</li>
+      <li><a href="#ppt">1. Precipitación acumulada</a></li>
+      <li><a href="#appt">2. Anomalía de precipitación</a></li>
+      <li><a href="#tppt">3. Tasa media de precipitación</a></li>
+      <li class="grp">Humedad del suelo (SMAP)</li>
+      <li><a href="#hum">4. Humedad del suelo media</a></li>
+      <li><a href="#ahum">5. Anomalía de humedad</a></li>
+      <li class="grp">Infiltración (ERA5-Land)</li>
+      <li><a href="#inf">6. Infiltración media mensual</a></li>
+      <li><a href="#infef">7. Eficiencia de infiltración</a></li>
+      <li class="grp">Vegetación (MODIS)</li>
+      <li><a href="#ndvi">8. NDVI</a></li>
+      <li><a href="#andvi">9. Anomalía de NDVI</a></li>
+      <li class="grp">Agregación temporal</li>
+      <li><a href="#resumen">10. Resumen del período</a></li>
+      <li class="grp">&nbsp;</li>
+      <li><a href="#sintesis">Síntesis y referencias</a></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <p class="intro">El dashboard <b>Monitoreo Hídrico — Argentina</b> presenta <b>9 variables</b> por departamento (<b>527 unidades</b>, nivel ADM2), reducidas a su valor medio zonal. Cada departamento se identifica con su <b>código INDEC</b> (campo <code>in1</code>, 5 dígitos), que permite unir los datos entre meses y filtrar por provincia. Las variables provienen de cuatro productos satelitales/de reanálisis, elegidos según la variable: <b>GSMaP</b> (precipitación), <b>SMAP</b> (humedad del suelo), <b>ERA5-Land</b> (infiltración) y <b>MODIS</b> (índice de vegetación NDVI). Esta página documenta el cálculo, las unidades y los umbrales de cada una.</p>
+    <div class="callout"><b>Sobre los umbrales.</b> Las categorías y rangos de cada variable se calibraron originalmente en el estudio de la <b>provincia de Buenos Aires</b> (Drozd et al. 2025) y se aplican a todo el país como primera aproximación. En regiones con regímenes muy distintos (árido patagónico, subtropical del NEA) conviene interpretarlos con ese recaudo.</div>
+  </div>
+
+  <!-- FUENTES -->
+  <div class="card src" id="fuentes">
+    <h2 class="sec">Fuentes de datos</h2>
+    <p>Cada familia de variables usa el producto con mejor compromiso entre resolución, latencia y disponibilidad en Google Earth Engine (GEE).</p>
+    <div class="tscroll"><table>
+      <thead><tr><th>Variables</th><th>Producto</th><th>Colección / sensor</th><th>Res. espacial</th><th>Res. temporal</th><th>Latencia</th></tr></thead>
+      <tbody>
+        <tr><td>Precipitación (1, 2, 3)</td><td><b>GSMaP</b> (JAXA)</td><td>Kubota et al. 2020</td><td>0.1° (~11 km)</td><td>horaria</td><td>~20 h</td></tr>
+        <tr><td>Humedad del suelo (4, 5)</td><td><b>SMAP</b></td><td>NSIDC SPL3SMP_E v6 · Reichle 2022</td><td>9000 m (~9 km)</td><td>diaria</td><td>—</td></tr>
+        <tr><td>Infiltración (6, 7)</td><td><b>ERA5-Land</b></td><td><code>ECMWF/ERA5_LAND/DAILY_AGGR</code> · HTESSEL</td><td>0.1° (~11 km)</td><td>diaria → mensual</td><td>—</td></tr>
+        <tr><td>Vegetación · NDVI (8, 9)</td><td><b>MODIS</b> (Terra)</td><td><code>MODIS/061/MOD13A1</code></td><td>500 m</td><td>compuesto 16 días</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <ul style="margin:8px 0 0 22px;font-size:13.5px">
+      <li><b>Reducción espacial:</b> estadística zonal (media) sobre los 527 departamentos (capa IGN, nivel ADM2).</li>
+      <li><b>Flujo:</b> GEE → estadística zonal por departamento (clave <code>in1</code>) → shapefile → GeoJSON → serie compacta (<code>series_hidro.json</code>) → dashboard.</li>
+    </ul>
+    <div class="callout">
+      <b>¿Por qué GSMaP y no CHIRPS o GPM?</b> CHIRPS (0.05°) tiene ~15 días de latencia y GPM (0.1°) ~32 h; <b>GSMaP</b> (0.1°, horaria) tiene la menor latencia (~20 h), apta para un monitoreo casi continuo. Error estimado: 3–12 mm/h.<br>
+      <b>¿Por qué SMAP y no SAOCOM?</b> SAOCOM (CONAE) da mayor resolución pero acceso condicionado; <b>SMAP</b> (error global 0.04) es de uso internacional y está disponible en GEE.
+    </div>
+  </div>
+
+  <!-- 1 PPT -->
+  <div class="card" id="ppt">
+    <h2 class="sec">🌧️ 1. Precipitación acumulada <code>ppt_mean</code> <span class="srcbadge b-gsmap">GSMaP</span></h2>
+    <p><b>Definición.</b> Lámina total de agua precipitada acumulada durante el mes, estimada por satélite.</p>
+    <p><b>Cálculo.</b> De GSMaP se seleccionan todas las imágenes del mes sobre cada departamento y se <b>suman</b> los valores de la banda <code>hourlyPrecipRate</code>, renombrando el resultado <code>ppt</code>:</p>
+    <div class="formula">ppt_mean (mm) = Σ(hourlyPrecipRate horaria del mes)</div>
+    <p><b>Unidad:</b> mm (acumulado mensual).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Bajo</td><td>&lt; 70 mm</td><td>Mes seco</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Satisfactorio</td><td>70 – 150 mm</td><td>Precipitación típica mensual</td></tr>
+        <tr><td><span class="sw" style="background:#74add1"></span>Levemente elevado</td><td>150 – 200 mm</td><td>Mes lluvioso</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Elevado</td><td>&gt; 200 mm</td><td>Mes muy lluvioso / riesgo de excesos</td></tr>
+      </tbody>
+    </table>
+    <p><b>Contexto.</b> A escala nacional la precipitación varía enormemente entre regiones (del árido patagónico y cuyano al subtropical húmedo del NEA). Como ejemplo, la provincia de Buenos Aires presenta un gradiente del <b>sudoeste seco (~500–600 mm/año)</b> al <b>noreste húmedo (~1000–1100 mm/año)</b>, con promedios mensuales de 40–90 mm; en eventos extremos los acumulados superan ampliamente ese rango (marzo 2025: ~500 mm en el sudoeste, hasta 8× la media histórica).</p>
+  </div>
+
+  <!-- 2 APPT -->
+  <div class="card" id="appt">
+    <h2 class="sec">📊 2. Anomalía de precipitación <code>APPT_mean</code> <span class="srcbadge b-gsmap">GSMaP</span></h2>
+    <p><b>Definición.</b> Desvío de la precipitación del mes respecto a su comportamiento climatológico normal, <b>estandarizado por el rango de variación histórica</b>.</p>
+    <p><b>Cálculo.</b> Con todas las imágenes GSMaP del <b>mismo mes calendario entre 2000 y 2023</b> se estiman la media, el máximo y el mínimo, y con ellos el rango de variación. La anomalía sigue la <b>Ecuación 1</b>:</p>
+    <div class="formula">APPT_mean = (PPTo − PPTm) / Rango
+      <span class="eq">PPTo = precipitación observada del mes · PPTm = media mensual histórica (2000–2023) · Rango = máximo − mínimo</span>
+    </div>
+    <div class="callout">A diferencia de un z-score clásico (que normaliza por el desvío estándar σ), aquí la normalización es <b>por el rango de variación</b>. Esta climatología 2000–2023 se calcula <b>solo sobre la precipitación GSMaP</b>; la anomalía de humedad (variable 5) no la usa.</div>
+    <p><b>Unidad:</b> adimensional.</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Déficit</td><td>&lt; −0.5</td><td>Mes más seco que lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Normal</td><td>−0.5 – 0.5</td><td>Dentro de la variabilidad esperable</td></tr>
+        <tr><td><span class="sw" style="background:#74add1"></span>Leve exceso</td><td>0.5 – 1.0</td><td>Algo más húmedo que lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Exceso</td><td>&gt; 1.0</td><td>Marcadamente más húmedo que lo normal</td></tr>
+      </tbody>
+    </table>
+    <p><b>Interpretación.</b> El cero es la referencia normal: positivos = exceso de lluvia, negativos = déficit. Al estar estandarizada por el rango, es comparable entre departamentos con distintos regímenes de lluvia.</p>
+  </div>
+
+  <!-- 3 TPPT -->
+  <div class="card" id="tppt">
+    <h2 class="sec">⏱️ 3. Tasa media de precipitación en días de lluvia <code>Tppt_mean</code> <span class="srcbadge b-gsmap">GSMaP</span></h2>
+    <p><b>Definición.</b> Intensidad media de la precipitación considerando <b>solo los días en que llovió</b>. Distingue un mes de lluvia frecuente y suave de uno con pocos eventos intensos.</p>
+    <p><b>Cálculo.</b> De la serie diaria de GSMaP se cuentan los <b>días con precipitación positiva</b> y se calcula la tasa media sobre esos días:</p>
+    <div class="formula">Tppt_mean (mm/día) = PPT_acumulada_mes / N.º de días con precipitación positiva</div>
+    <p><b>Unidad:</b> mm/día.</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Bajo</td><td>&lt; 5 mm/día</td><td>Lluvias débiles</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Satisfactorio</td><td>5 – 13 mm/día</td><td>Intensidad moderada típica</td></tr>
+        <tr><td><span class="sw" style="background:#74add1"></span>Levemente alto</td><td>13 – 20 mm/día</td><td>Eventos intensos</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Elevado</td><td>&gt; 20 mm/día</td><td>Lluvias torrenciales / riesgo de escorrentía</td></tr>
+      </tbody>
+    </table>
+    <p><b>Interpretación.</b> A igual acumulado, una <b>tasa alta</b> implica lluvia concentrada en pocos eventos intensos (más escorrentía, menos infiltración efectiva); una <b>tasa baja</b>, lluvias repartidas y suaves (más favorables a la infiltración). Complementa a <code>ppt_mean</code>: el total no dice cómo cayó la lluvia.</p>
+  </div>
+
+  <!-- 4 HUM -->
+  <div class="card" id="hum">
+    <h2 class="sec">💧 4. Humedad del suelo media <code>Hum_mean</code> <span class="srcbadge b-smap">SMAP</span></h2>
+    <p><b>Definición.</b> Contenido volumétrico de agua en el suelo superficial, promediado sobre el mes.</p>
+    <p><b>Cálculo.</b> De SMAP se toma la banda <code>soil_moisture_am</code> (humedad entre <b>0 y 5 cm</b>). Los valores diarios se <b>integran por su valor medio</b> mensual (sin conversión de unidades). Error global del producto: 0.04.</p>
+    <div class="formula">Hum_mean (m³/m³) = media mensual de soil_moisture_am</div>
+    <p><b>Unidad:</b> m³/m³ (fracción volumétrica).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Bajo</td><td>&lt; 0.25 m³/m³</td><td>Suelo seco — estrés hídrico</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Satisfactorio</td><td>0.25 – 0.38 m³/m³</td><td>Humedad adecuada</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Elevado</td><td>&gt; 0.38 m³/m³</td><td>Suelo muy húmedo / cercano a saturación</td></tr>
+      </tbody>
+    </table>
+    <p><b>Contexto.</b> En suelos pampeanos (limo-arenosos): punto de marchitez ≈ 0.11 y capacidad de campo / saturación ≈ 0.42 m³/m³. La humedad superficial (0–5 cm) responde rápido a la lluvia y la evaporación. En marzo 2025 el centro-sur registró máximos de 0.46–0.48.</p>
+  </div>
+
+  <!-- 5 AHUM -->
+  <div class="card" id="ahum">
+    <h2 class="sec">🌱 5. Anomalía de humedad del suelo <code>AHum_mean</code> <span class="srcbadge b-smap">SMAP</span></h2>
+    <p><b>Definición.</b> Desvío de la humedad del mes respecto a su valor climatológico normal, como <b>diferencia absoluta</b> en m³/m³ (no estandarizada, porque la humedad varía en un rango acotado).</p>
+    <p><b>Cálculo.</b> Se toma <b>directamente del producto SMAP</b>, mediante su banda dedicada <code>soil_moisture_am_anomaly</code>, integrada al período mensual. No requiere una climatología generada por nosotros.</p>
+    <div class="formula">AHum_mean (m³/m³) = media mensual de soil_moisture_am_anomaly</div>
+    <p><b>Unidad:</b> m³/m³ (diferencia; en el dashboard figura como adimensional).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Déficit</td><td>&lt; −0.05</td><td>Suelo más seco que lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Normal</td><td>−0.05 – 0.05</td><td>Dentro de la variabilidad esperable</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Exceso</td><td>&gt; 0.05</td><td>Suelo más húmedo que lo normal</td></tr>
+      </tbody>
+    </table>
+    <p><b>Interpretación.</b> Positivos = más humedad que la media histórica (recarga/saturación); negativos = déficit edáfico. En marzo 2025 el centro-sur mostró anomalías de 0.1–0.2 (10–20 % más de carga de agua que la media del mes).</p>
+  </div>
+
+  <!-- 6 INF -->
+  <div class="card" id="inf">
+    <h2 class="sec">⬇️ 6. Infiltración media mensual <code>inf_mean</code> <span class="srcbadge b-era5">ERA5-Land</span></h2>
+    <p><b>Definición.</b> Agua que efectivamente permanece en el perfil del suelo (recarga efectiva), estimada por balance hídrico superficial con ERA5-Land.</p>
+    <p><b>Cálculo.</b> Se acumulan las bandas diarias del mes (m → mm, ×1000) y se combinan:</p>
+    <div class="formula">inf = total_precipitation_sum − surface_runoff_sum + total_evaporation_sum
+      <span class="eq">Precipitación − escorrentía superficial − evapotranspiración (el balance descuenta escorrentía y pérdida a la atmósfera)</span>
+    </div>
+    <div class="callout warn"><b>Convención de signo (ERA5).</b> <code>total_evaporation_sum</code> es <b>negativa</b> cuando hay pérdida de agua. Por eso en la implementación se <b>suma</b> (<code>PPT − runoff + ET</code>): sumar un valor negativo descuenta la pérdida. Restarla inflaría la infiltración (relación Inf/PPT &gt; 1).</div>
+    <p><b>Unidad:</b> mm (acumulado mensual).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Déficit</td><td>&lt; 0 mm</td><td>Sin recarga (dominan escorrentía y/o evapotranspiración)</td></tr>
+        <tr><td><span class="sw" style="background:#fdae61"></span>Baja</td><td>0 – 5 mm</td><td>Recarga escasa</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Aceptable</td><td>5 – 10 mm</td><td>Recarga moderada</td></tr>
+        <tr><td><span class="sw" style="background:#74add1"></span>Buena</td><td>10 – 20 mm</td><td>Recarga importante</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Muy buena</td><td>&gt; 20 mm</td><td>Recarga muy alta</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><b>¿Por qué ERA5-Land y no un modelo empírico (Horton)?</b> Los parámetros de Horton (fc, f0, k) dependen del tipo de suelo y de la humedad antecedente, información no disponible a escala de los 527 departamentos. El modelo <b>HTESSEL</b> de ERA5-Land resuelve un esquema de infiltración físicamente basado con 4 capas de suelo, textura (FAO), humedad antecedente horaria y vegetación acoplada, integrando implícitamente la variabilidad edáfica.</div>
+  </div>
+
+  <!-- 7 INFEF -->
+  <div class="card" id="infef">
+    <h2 class="sec">💧 7. Eficiencia de infiltración <code>InfEf_mean</code> <span class="srcbadge b-era5">ERA5-Land</span></h2>
+    <p><b>Definición.</b> Proporción de la lluvia que efectivamente se incorpora al perfil del suelo, tras descontar escorrentía y evapotranspiración.</p>
+    <div class="formula">InfEf_mean = Infiltración acumulada (mm) / Precipitación acumulada (mm)</div>
+    <p><b>Unidad:</b> adimensional (fracción de la lluvia).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#d73027"></span>Déficit</td><td>&lt; 0</td><td>Sin recarga neta</td></tr>
+        <tr><td><span class="sw" style="background:#fdae61"></span>Baja</td><td>0 – 0.07</td><td>Mínima incorporación de agua al suelo</td></tr>
+        <tr><td><span class="sw" style="background:#4dac26"></span>Aceptable</td><td>0.07 – 0.15</td><td>Consistente con la recarga típica de llanuras bonaerenses</td></tr>
+        <tr><td><span class="sw" style="background:#74add1"></span>Buena</td><td>0.15 – 0.22</td><td>Alta capacidad de absorción</td></tr>
+        <tr><td><span class="sw" style="background:#2166ac"></span>Muy buena</td><td>&gt; 0.22</td><td>Sectores permeables / condiciones muy favorables</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <b>¿Por qué el ratio y no la infiltración absoluta?</b> Los mm absolutos están fuertemente correlacionados con la precipitación y varían poco entre departamentos. El ratio Inf/PPT tiene <b>mayor variabilidad espacial</b> (refleja humedad antecedente, pendiente y suelo), es <b>intuitivo</b> ("el 12 % de la lluvia se incorporó al suelo") y es <b>comparable con la literatura</b>: la recarga efectiva al acuífero freático en Buenos Aires se reporta entre <b>7 % y 26 %</b> de la precipitación según zona y método.
+    </div>
+  </div>
+
+  <!-- 8 NDVI -->
+  <div class="card" id="ndvi">
+    <h2 class="sec">🌿 8. NDVI &mdash; Índice de Vegetación <code>ndvi_mean</code> <span class="srcbadge b-modis">MODIS</span></h2>
+    <p><b>Definición.</b> El <b>NDVI</b> (Índice de Vegetación de Diferencia Normalizada) mide el vigor y la densidad de la vegetación verde a partir de la reflectancia en el rojo e infrarrojo cercano. Varía de −1 a 1: valores altos indican vegetación densa y sana; cercanos a 0, suelo desnudo o vegetación escasa; negativos, cuerpos de agua.</p>
+    <p><b>Cálculo.</b> Del producto MODIS <code>MODIS/061/MOD13A1</code> (satélite Terra, compuesto cada 16 días, 500 m) se toma la banda NDVI y se <b>promedia sobre el último mes y medio</b>, reduciéndolo a la media zonal de cada departamento.</p>
+    <div class="formula">ndvi_mean = media del NDVI (MODIS MOD13A1) del último mes y medio</div>
+    <p><b>Unidad:</b> índice adimensional (rango −1 a 1).</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#2b83ba"></span>Con agua</td><td>&lt; 0</td><td>Cuerpos de agua / anegamiento</td></tr>
+        <tr><td><span class="sw" style="background:#c18c4f"></span>Vegetación nula a escasa</td><td>0 – 0.3</td><td>Suelo desnudo o vegetación rala</td></tr>
+        <tr><td><span class="sw" style="background:#c7d76f"></span>Vegetación poco frondosa</td><td>0.3 – 0.6</td><td>Cobertura vegetal moderada</td></tr>
+        <tr><td><span class="sw" style="background:#5ab43c"></span>Vegetación frondosa</td><td>0.6 – 0.75</td><td>Vegetación densa y activa</td></tr>
+        <tr><td><span class="sw" style="background:#1a7832"></span>Muy frondosa</td><td>&gt; 0.75</td><td>Vegetación muy densa / vigor máximo</td></tr>
+      </tbody>
+    </table>
+    <p><b>Interpretación.</b> Refleja el estado de la cobertura vegetal (cultivos, pastizales, bosques) y detecta zonas anegadas (NDVI negativo). Complementa a la humedad del suelo: la vegetación integra la disponibilidad de agua a lo largo del tiempo.</p>
+  </div>
+
+  <!-- 9 ANDVI -->
+  <div class="card" id="andvi">
+    <h2 class="sec">🍃 9. Anomalía de NDVI <code>Andvi_mean</code> <span class="srcbadge b-modis">MODIS</span></h2>
+    <p><b>Definición.</b> Desvío del NDVI del período respecto a su comportamiento normal, <b>estandarizado por el rango de variación histórica</b> (mismo criterio que la anomalía de precipitación).</p>
+    <p><b>Cálculo.</b> Con la serie MODIS del <b>mismo período del año entre 2018 y 2024</b> se estiman la media y el rango (máximo − mínimo) del NDVI. La anomalía sigue la <b>Ecuación 1</b>:</p>
+    <div class="formula">ANDVI = (NDVIo − NDVIm) / Rango
+      <span class="eq">NDVIo = NDVI observado · NDVIm = media histórica (2018–2024) · Rango = máximo − mínimo</span>
+    </div>
+    <div class="callout">La climatología 2018–2024 (media y rango) se calcula sobre el <b>NDVI de MODIS</b>, independiente de la climatología de precipitación (GSMaP, 2000–2023).</div>
+    <p><b>Unidad:</b> adimensional.</p>
+    <table>
+      <thead><tr><th>Categoría</th><th>Rango</th><th>Interpretación</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sw" style="background:#8c510a"></span>Alta disminución</td><td>&lt; −0.7</td><td>Fuerte pérdida de vegetación respecto a lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#d8b365"></span>Disminución</td><td>−0.7 – −0.3</td><td>Vegetación por debajo de lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#b2c4a6"></span>Variación normal</td><td>−0.3 – 0.3</td><td>Dentro de la variabilidad esperable</td></tr>
+        <tr><td><span class="sw" style="background:#78c679"></span>Aumento</td><td>0.3 – 0.7</td><td>Vegetación por encima de lo normal</td></tr>
+        <tr><td><span class="sw" style="background:#1a7832"></span>Alto aumento</td><td>&gt; 0.7</td><td>Fuerte incremento del vigor de la vegetación</td></tr>
+      </tbody>
+    </table>
+    <p><b>Interpretación.</b> El cero es la referencia normal: positivos = vegetación más vigorosa que la media histórica (mejores condiciones hídricas); negativos = pérdida de vegetación (estrés, sequía o cosecha). Al estar estandarizada por el rango, es comparable entre departamentos con distinta cobertura.</p>
+  </div>
+
+  <!-- 10 RESUMEN DEL PERÍODO -->
+  <div class="card" id="resumen">
+    <h2 class="sec">🧮 10. Resumen del período</h2>
+    <p><b>Definición.</b> Consulta del dashboard que, para un departamento seleccionado, <b>agrega las 9 variables sobre todos los meses cargados</b> (por ejemplo un semestre o un año) y devuelve una síntesis del estado hídrico del período. La forma de agregar depende de la naturaleza de cada variable.</p>
+    <table>
+      <thead><tr><th>Variable</th><th>Agregación en el período</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td><code>ppt_mean</code> · Precipitación acumulada</td><td><b>Σ suma</b></td><td>Lámina total de agua caída en el período.</td></tr>
+        <tr><td><code>inf_mean</code> · Infiltración</td><td><b>Σ suma</b></td><td>Recarga efectiva total acumulada del período.</td></tr>
+        <tr><td><code>APPT_mean</code> · Anomalía de precipitación</td><td><b>Σ suma</b></td><td>Índice acumulado de exceso/déficit de lluvia a lo largo del período.</td></tr>
+        <tr><td><code>Tppt_mean</code> · Tasa de precipitación</td><td><b>Media</b></td><td>Intensidad media representativa; no tiene sentido sumar tasas.</td></tr>
+        <tr><td><code>Hum_mean</code> · Humedad del suelo</td><td><b>Media</b></td><td>Estado hídrico promedio del suelo en el período.</td></tr>
+        <tr><td><code>InfEf_mean</code> · Eficiencia de infiltración</td><td><b>Media</b></td><td>Proporción media de la lluvia incorporada al suelo.</td></tr>
+        <tr><td><code>AHum_mean</code> · Anomalía de humedad del suelo</td><td><b>Última estimación</b></td><td>La humedad del suelo es un proceso acumulativo; la anomalía refleja el estado <b>resultante</b> del agua en el suelo superficial, por lo que se toma la medición <b>más reciente</b> del período, no su promedio.</td></tr>
+        <tr><td><code>ndvi_mean</code> · NDVI</td><td><b>Media</b></td><td>Verdor promedio de la vegetación a lo largo del período.</td></tr>
+        <tr><td><code>Andvi_mean</code> · Anomalía de NDVI</td><td><b>Última estimación</b></td><td>Estado más reciente del vigor de la vegetación respecto a lo normal (mismo criterio que la anomalía de humedad).</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><b>Categorías de color.</b> Los umbrales de cada variable están definidos para valores <b>mensuales</b>. En el resumen, las variables con <b>media</b> o <b>última estimación</b> conservan el chip de categoría con su color (misma escala mensual); las variables <b>acumuladas</b> (suma) se muestran con un chip neutro «Σ acumulado» y <b>sin color de categoría</b>, porque el valor sumado no es comparable con los umbrales mensuales.</div>
+  </div>
+
+  <!-- SÍNTESIS -->
+  <div class="card" id="sintesis">
+    <h2 class="sec">Síntesis</h2>
+    <div class="tscroll"><table>
+      <thead><tr><th>#</th><th>Variable</th><th>Fuente / banda</th><th>Agregación</th><th>Unidad</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>ppt_mean</code></td><td>GSMaP · <code>hourlyPrecipRate</code></td><td>suma mensual → <code>ppt</code></td><td>mm</td></tr>
+        <tr><td>2</td><td><code>APPT_mean</code></td><td>GSMaP · climatología 2000–2023</td><td>(PPTo − PPTm)/Rango (Ec. 1)</td><td>adim</td></tr>
+        <tr><td>3</td><td><code>Tppt_mean</code></td><td>GSMaP · serie diaria</td><td>acumulado / días con ppt positiva</td><td>mm/día</td></tr>
+        <tr><td>4</td><td><code>Hum_mean</code></td><td>SMAP · <code>soil_moisture_am</code> (0–5 cm)</td><td>media mensual</td><td>m³/m³</td></tr>
+        <tr><td>5</td><td><code>AHum_mean</code></td><td>SMAP · <code>soil_moisture_am_anomaly</code></td><td>media mensual (banda del producto)</td><td>m³/m³</td></tr>
+        <tr><td>6</td><td><code>inf_mean</code></td><td>ERA5-Land · ppt − esc. sup. + evap.</td><td>balance mensual</td><td>mm</td></tr>
+        <tr><td>7</td><td><code>InfEf_mean</code></td><td>ERA5-Land · inf / ppt</td><td>ratio mensual</td><td>adim</td></tr>
+        <tr><td>8</td><td><code>ndvi_mean</code></td><td>MODIS · <code>MOD13A1</code> (NDVI)</td><td>media del último mes y medio</td><td>índice</td></tr>
+        <tr><td>9</td><td><code>Andvi_mean</code></td><td>MODIS · climatología 2018–2024</td><td>(NDVIo − NDVIm)/Rango (Ec. 1)</td><td>adim</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 class="sub">Referencias</h3>
+    <ul style="margin:6px 0 0 22px;font-size:13px">
+      <li>Drozd, A. A., Castillo, C. y Colombo, S. (2025). <em>Indicadores satelitales para el monitoreo del estado hídrico regional. El caso de Buenos Aires, marzo 2025.</em> LaDAAS–ENVSAT, UNDAV (IDERA).</li>
+      <li>Kubota, T., et al. (2020). <em>Global Satellite Mapping of Precipitation (GSMaP) products in the GPM era.</em> Springer.</li>
+      <li>Reichle, R. H., et al. (2022). <em>SMAP L3/L4 Global 9 km EASE-Grid Soil Moisture, v6/7.</em> NASA NSIDC DAAC.</li>
+      <li>Muñoz-Sabater, J., et al. (2021). <em>ERA5-Land: a state-of-the-art global reanalysis dataset for land applications.</em> ESSD.</li>
+      <li>Didan, K. (2021). <em>MODIS/Terra Vegetation Indices 16-Day L3 Global 500 m SIN Grid (MOD13A1 v061).</em> NASA LP DAAC.</li>
+      <li>Varni, M. y Custodio, E. (2013). Recarga al acuífero Pampeano, Azul (SEDICI-UNLP). Recarga efectiva regional: 7–26 % de la precipitación.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>LaDAAS</b> — Laboratorio de Desarrollos de Aplicaciones Ambientales y Satelitales — UNDAV<br>
+  Programa <b>ENVSAT</b> — Monitoreo Ambiental Satelital
+</div>
+
+</body>
+</html>
