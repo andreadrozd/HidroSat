@@ -19,7 +19,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   flex:0 0 auto;
 }
 .header-logo{height:56px;width:auto;flex-shrink:0}
-.header-emblem{height:52px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.35))}
+.header-emblem{height:52px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.35));cursor:pointer}
 .header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .header-brands{display:inline-flex;align-items:center;gap:10px;padding-left:6px;margin-left:2px;border-left:1px solid rgba(255,255,255,.28)}
 .header-brand-logo{height:30px;width:auto;flex-shrink:0}
@@ -37,7 +37,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 .header-select option{color:#222;background:#fff}
 .header-link{
   background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.35);
-  border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer;text-decoration:none;
+  border-radius:6px;padding:5px 11px;font-size:12px;cursor:pointer;text-decoration:none;font-family:inherit;
   white-space:nowrap;display:inline-flex;align-items:center;gap:5px;transition:background .18s;
 }
 .header-link:hover{background:rgba(255,255,255,.32)}
@@ -314,12 +314,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 <body>
 
 <div class="header">
-  <img id="logo-hidro" class="header-logo header-emblem" alt="HidroSat">
+  <img id="logo-hidro" class="header-logo header-emblem" alt="HidroSat" title="Volver al inicio" onclick="goHome()">
   <div class="header-left">
     <h1>Monitoreo Satelital de Aguas — Argentina</h1>
     <p>Mapas 3D temáticos por departamento | Variables hidroclimáticas | LaDAAS · ENVSAT</p>
   </div>
   <div class="header-right">
+    <button onclick="goHome()" class="header-link" title="Volver a la pantalla de inicio">&#127968; Inicio</button>
     <select id="period-select" class="header-select" onchange="loadPeriod(this.value)"></select>
     <a href="metodologia.html" target="_blank" rel="noopener" class="header-link" title="Ver la metodología de las variables">&#8505;&#65039; Metodología</a>
     <span class="header-hint">Más detalle:</span>
@@ -354,8 +355,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   <div class="home-foot">Autor: A. Drozd &middot; CyanoSat / ENVSAT<br>
     <a href="https://cyanosat.com" target="_blank" rel="noopener">cyanosat.com</a></div>
   <div class="home-brand">
-    <img src="cyanosat_logo.png" alt="CyanoSat">
-    <img src="envsat_fondo_oscuro-removeBackG.png" alt="ENVSAT">
+    <img id="home-logo-cyano" alt="CyanoSat">
+    <img id="home-logo-envsat" alt="ENVSAT">
   </div>
 </div>
 
@@ -817,6 +818,12 @@ function enterHidro() {
 function enterFloods() {
   document.getElementById('home').classList.add('hidden');
   openFloods();
+}
+// Volver a la pantalla de inicio (desde el mapa)
+function goHome() {
+  closeFloods();                 // cierra AppFloods si estuviera abierto
+  toggleSidePanel(false);        // cierra el panel lateral
+  document.getElementById('home').classList.remove('hidden');
 }
 
 // Portada inicial: muestra la animación ~5s y luego entra al portal de inicio
