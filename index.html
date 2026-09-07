@@ -19,7 +19,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   flex:0 0 auto;
 }
 .header-logo{height:56px;width:auto;flex-shrink:0}
-#logo-envsat{height:72px}   /* emblema cuadrado: un poco más alto para igualar visualmente a CyanoSat */
+.header-emblem{height:52px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.35))}
+.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.header-brands{display:inline-flex;align-items:center;gap:10px;padding-left:6px;margin-left:2px;border-left:1px solid rgba(255,255,255,.28)}
+.header-brand-logo{height:30px;width:auto;flex-shrink:0}
+#logo-envsat{height:38px}   /* emblema cuadrado: un poco más alto para igualar visualmente a CyanoSat */
 .header-left h1{font-size:clamp(15px,2.2vw,21px);font-weight:700}
 .header-left p{font-size:clamp(11px,1.2vw,13px);opacity:.85;margin-top:2px}
 .header-badge{
@@ -225,13 +229,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 
 /* Vista inicial (home / selector de apps) */
 #home{position:fixed;inset:0;z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:22px;padding:24px;text-align:center;color:#fff;
-  background:linear-gradient(135deg,#12233a 0%,#1a3a5c 45%,#2d6a9f 100%)}
+  gap:18px;padding:24px;text-align:center;color:#fff;
+  background:radial-gradient(120% 120% at 50% 32%,#181c23 0%,#12151a 55%,#0b0f13 100%)}
 #home.hidden{display:none}
-.home-logos{display:flex;align-items:center;gap:18px}
-.home-logos img{height:66px;width:auto}
-.home-title{font-size:clamp(22px,5vw,34px);font-weight:800;letter-spacing:.3px}
-.home-sub{font-size:clamp(12.5px,2.5vw,15px);opacity:.85;max-width:620px;margin-top:6px;line-height:1.5}
+#home-logo-wrap{width:min(400px,82vw)}
+#home-anim,#home-logo-main{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
+.home-brand{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:12px;opacity:.92}
+.home-brand img{height:40px;width:auto}
 .home-cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:8px}
 .home-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.30);border-radius:16px;
   padding:22px 24px;width:238px;cursor:pointer;transition:transform .15s,background .15s;box-shadow:0 4px 18px rgba(0,0,0,.22)}
@@ -248,9 +252,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   /* Header compacto que entra en el ancho del celular */
   .header{padding:8px 10px;gap:6px}
   .header-logo{height:38px}
-  #logo-envsat{height:50px}
+  .header-emblem{height:36px}
+  .header-brand-logo{height:22px}
+  #logo-envsat{height:28px}
+  .header-brands{padding-left:4px;gap:7px}
   .header-left h1{font-size:15px}
   .header-left p{font-size:10.5px}
+  .header-right{gap:6px}
   .header-select,.header-link,.header-cta{font-size:11px;padding:5px 9px}
   .header-hint{display:none}
 
@@ -297,28 +305,27 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 <body>
 
 <div class="header">
-  <img id="logo-cyano" class="header-logo" alt="CyanoSat">
+  <img id="logo-hidro" class="header-logo header-emblem" alt="HidroSat">
   <div class="header-left">
     <h1>Monitoreo Satelital de Aguas — Argentina</h1>
     <p>Mapas 3D temáticos por departamento | Variables hidroclimáticas | LaDAAS · ENVSAT</p>
   </div>
-  <div style="display:flex;align-items:center;gap:10px">
+  <div class="header-right">
     <select id="period-select" class="header-select" onchange="loadPeriod(this.value)"></select>
     <a href="metodologia.html" target="_blank" rel="noopener" class="header-link" title="Ver la metodología de las variables">&#8505;&#65039; Metodología</a>
     <span class="header-hint">Más detalle:</span>
     <button onclick="openFloods()" class="header-cta" title="Abrir AppFloods">&#127754; AppFloods</button>
+    <span class="header-brands">
+      <img id="logo-cyano" class="header-brand-logo" alt="CyanoSat">
+      <img id="logo-envsat" class="header-brand-logo" alt="ENVSAT">
+    </span>
   </div>
-  <img id="logo-envsat" class="header-logo" alt="ENVSAT">
 </div>
 
 <div id="home">
-  <div class="home-logos">
-    <img id="home-logo-cyano" alt="CyanoSat">
-    <img id="home-logo-envsat" alt="ENVSAT">
-  </div>
-  <div>
-    <div class="home-title">Monitoreo Hídrico — Argentina</div>
-    <div class="home-sub">Monitoreo satelital de aguas, suelo y vegetación por departamento · CyanoSat / ENVSAT</div>
+  <div id="home-logo-wrap">
+    <video id="home-anim" src="Logo_HidroSat_oscuro_animacion.mp4" poster="logo_hidrosat_dark.png" muted autoplay playsinline preload="auto"></video>
+    <img id="home-logo-main" src="logo_hidrosat_dark.png" alt="HidroSat" hidden>
   </div>
   <div class="home-cards">
     <div class="home-card" onclick="enterHidro()">
@@ -334,6 +341,10 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   </div>
   <div class="home-foot">Autor: A. Drozd &middot; CyanoSat / ENVSAT<br>
     <a href="https://cyanosat.com" target="_blank" rel="noopener">cyanosat.com</a></div>
+  <div class="home-brand">
+    <img src="cyanosat_logo.png" alt="CyanoSat">
+    <img src="envsat_fondo_oscuro-removeBackG.png" alt="ENVSAT">
+  </div>
 </div>
 
 <div id="app">
@@ -507,7 +518,11 @@ var AGG = {ppt_mean:'sum', APPT_mean:'sum', Tppt_mean:'mean', Hum_mean:'mean',
 
 // ── Logos (base64) ───────────────────────────────────────────────────────────
 function loadLogos() {
-  // Load logos from data/ directory as base64 text files
+  // Load logos from base64 text files
+  fetch(DATA_DIR + '../emblema_hidrosat_b64.txt').then(r=>r.text()).then(function(b64){
+    var src = 'data:image/png;base64,' + b64.trim();
+    var el = document.getElementById('logo-hidro'); if (el) el.src = src;
+  }).catch(function(){});
   fetch(DATA_DIR + '../cyanosat_b64.txt').then(r=>r.text()).then(function(b64){
     var src = 'data:image/png;base64,' + b64.trim();
     document.getElementById('logo-cyano').src = src;
@@ -790,6 +805,20 @@ function enterHidro() {
 function enterFloods() {
   document.getElementById('home').classList.add('hidden');
   openFloods();
+}
+
+// Intro animada de la portada: reproduce una vez y deja el logo fijo
+function initHomeIntro() {
+  var v = document.getElementById('home-anim');
+  var img = document.getElementById('home-logo-main');
+  if (!v) return;
+  function showStatic() { if (img) img.hidden = false; v.style.display = 'none'; }
+  v.addEventListener('ended', showStatic);
+  v.addEventListener('error', showStatic);
+  try {
+    var p = v.play();
+    if (p && p.catch) p.catch(showStatic);   // autoplay bloqueado -> logo estático
+  } catch (e) { showStatic(); }
 }
 
 // AppFloods en ventana interna (iframe), sin barra de URL
@@ -1195,6 +1224,7 @@ function loadPeriod(file) {
 // ── Init ─────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
   loadLogos();
+  initHomeIntro();
 
   // Populate period selector
   var sel = document.getElementById('period-select');
