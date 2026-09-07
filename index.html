@@ -227,13 +227,22 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 .floods-x:hover{color:#ffd0d0}
 #floods-frame{flex:1 1 auto;border:none;width:100%;background:#eef1f5}
 
+/* Portada inicial (splash con la animación) */
+/* El fondo #232530 + mix-blend-mode:lighten funden el borde del video (que se
+   renderiza más claro que el negro CSS) sin costura, sin depender del color exacto. */
+#splash{position:fixed;inset:0;z-index:300;background:#232530;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:opacity .6s ease}
+#splash.fade{opacity:0}
+#splash.gone{display:none}
+#splash video{width:min(520px,86vw);height:auto;display:block;mix-blend-mode:lighten}
+
 /* Vista inicial (home / selector de apps) */
 #home{position:fixed;inset:0;z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:18px;padding:24px;text-align:center;color:#fff;
   background:radial-gradient(120% 120% at 50% 32%,#181c23 0%,#12151a 55%,#0b0f13 100%)}
 #home.hidden{display:none}
-#home-logo-wrap{width:min(400px,82vw)}
-#home-anim,#home-logo-main{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
+#home-logo-wrap{width:min(300px,64vw)}
+#home-logo-main{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 26px rgba(0,0,0,.45))}
 .home-brand{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:12px;opacity:.92}
 .home-brand img{height:40px;width:auto}
 .home-cards{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:8px}
@@ -322,16 +331,19 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   </div>
 </div>
 
+<div id="splash">
+  <video id="splash-anim" src="Logo_HidroSat_oscuro_animacion.mp4" poster="logo_hidrosat_dark.png" muted autoplay playsinline preload="auto"></video>
+</div>
+
 <div id="home">
   <div id="home-logo-wrap">
-    <video id="home-anim" src="Logo_HidroSat_oscuro_animacion.mp4" poster="logo_hidrosat_dark.png" muted autoplay playsinline preload="auto"></video>
-    <img id="home-logo-main" src="logo_hidrosat_dark.png" alt="HidroSat" hidden>
+    <img id="home-logo-main" src="logo_hidrosat_dark.png" alt="HidroSat">
   </div>
   <div class="home-cards">
     <div class="home-card" onclick="enterHidro()">
       <div class="hc-ic">&#128167;</div>
       <div class="hc-name">App Hidro</div>
-      <div class="hc-desc">Mapa 3D de variables hídricas y de vegetación por departamento.</div>
+      <div class="hc-desc">Resumen mensual de variables hídricas y vegetación por departamento de Argentina.</div>
     </div>
     <div class="home-card" onclick="enterFloods()">
       <div class="hc-ic">&#127754;</div>
@@ -807,18 +819,26 @@ function enterFloods() {
   openFloods();
 }
 
-// Intro animada de la portada: reproduce una vez y deja el logo fijo
-function initHomeIntro() {
-  var v = document.getElementById('home-anim');
-  var img = document.getElementById('home-logo-main');
-  if (!v) return;
-  function showStatic() { if (img) img.hidden = false; v.style.display = 'none'; }
-  v.addEventListener('ended', showStatic);
-  v.addEventListener('error', showStatic);
-  try {
-    var p = v.play();
-    if (p && p.catch) p.catch(showStatic);   // autoplay bloqueado -> logo estático
-  } catch (e) { showStatic(); }
+// Portada inicial: muestra la animación ~5s y luego entra al portal de inicio
+function initSplash() {
+  var s = document.getElementById('splash');
+  var v = document.getElementById('splash-anim');
+  if (!s) return;
+  var done = false;
+  function finish() {
+    if (done) return; done = true;
+    s.classList.add('fade');
+    setTimeout(function(){ s.classList.add('gone'); }, 650);
+  }
+  var t = setTimeout(finish, 5000);              // portada de 5 segundos
+  s.addEventListener('click', function(){ clearTimeout(t); finish(); });  // tocar = saltar
+  if (v) {
+    v.addEventListener('error', function(){ clearTimeout(t); finish(); });
+    try {
+      var p = v.play();
+      if (p && p.catch) p.catch(function(){});   // autoplay bloqueado: igual entra por el timer
+    } catch (e) {}
+  }
 }
 
 // AppFloods en ventana interna (iframe), sin barra de URL
@@ -1224,7 +1244,7 @@ function loadPeriod(file) {
 // ── Init ─────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
   loadLogos();
-  initHomeIntro();
+  initSplash();
 
   // Populate period selector
   var sel = document.getElementById('period-select');
