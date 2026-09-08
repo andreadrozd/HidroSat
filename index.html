@@ -1304,7 +1304,10 @@ function renderResumen(in1) {
 // Carga la serie temporal compacta (sin geometría). Escala a 12+ meses sin peso.
 // Si falta el archivo, cae al método viejo (descarga los GeoJSON completos).
 function loadAllMonths() {
-  fetch(DATA_DIR + 'series_hidro.json')
+  // Sello de versión = mes más nuevo (PERIODS[0]); renueva la caché al agregar un mes.
+  var vm = (PERIODS[0] && PERIODS[0].file.match(/(\d{6})/));
+  var ver = vm ? vm[1] : '1';
+  fetch(DATA_DIR + 'series_hidro.json?v=' + ver)
     .then(function(r){ if (!r.ok) throw new Error('no series'); return r.json(); })
     .then(function(s){
       MONTHS = s.meses.map(function(lbl){
