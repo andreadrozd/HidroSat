@@ -133,12 +133,22 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 /* Leyenda (overlay abajo-izquierda) */
 #legend-ov{position:absolute;right:12px;bottom:12px;z-index:40;background:rgba(255,255,255,.95);
   border-radius:11px;box-shadow:0 2px 12px rgba(0,0,0,.2);padding:10px 15px;max-width:min(560px,66%)}
-.lg-title{font-size:15px;font-weight:700;color:#1a3a5c;margin-bottom:7px}
+#legend-ov.min{display:none}
+.lg-title{font-size:15px;font-weight:700;color:#1a3a5c;margin-bottom:7px;padding-right:22px}
 .lg-unit{font-weight:400;color:#66707d}
 .lg-items{display:flex;flex-wrap:wrap;gap:6px}
 .lg-item{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#333;background:#f0f2f5;padding:4px 9px;border-radius:14px}
 .lg-sw{width:15px;height:15px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
 .lg-rng{font-weight:400;color:#66707d}
+.lg-close{position:absolute;top:6px;right:8px;background:transparent;border:none;color:#8a94a0;
+  font-size:20px;line-height:1;cursor:pointer;padding:0 3px}
+.lg-close:hover{color:#1a3a5c}
+/* Botón para reabrir la leyenda minimizada */
+#legend-btn{position:absolute;right:12px;bottom:12px;z-index:40;display:none;align-items:center;gap:7px;
+  background:rgba(255,255,255,.95);border:none;border-radius:11px;box-shadow:0 2px 12px rgba(0,0,0,.2);
+  padding:9px 14px;font-family:inherit;font-size:13px;font-weight:700;color:#1a3a5c;cursor:pointer}
+#legend-btn.show{display:inline-flex}
+#legend-btn:hover{background:#fff}
 
 /* Panel lateral izquierdo (se abre con ☰) */
 #side-panel{position:absolute;top:0;left:0;height:100%;width:40%;max-width:520px;min-width:320px;z-index:60;background:#fff;
@@ -354,6 +364,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   #var-list{gap:7px}
   #search-inp{width:100%;height:46px;font-size:15px}
   #legend-ov{left:10px;right:10px;bottom:10px;max-width:none}
+  #legend-btn{right:10px;bottom:10px}
   .lg-title{font-size:16px}
   .lg-item{font-size:14px}
 
@@ -487,6 +498,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   </div>
 
   <div id="legend-ov"></div>
+  <button id="legend-btn" onclick="toggleLegend(true)" title="Mostrar leyenda">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <rect x="1" y="2" width="5" height="4" rx="1" fill="#2d6a9f"/><rect x="1" y="9" width="5" height="4" rx="1" fill="#4caf50"/>
+      <line x1="8" y1="4" x2="15" y2="4" stroke="#66707d" stroke-width="1.7"/><line x1="8" y1="11" x2="15" y2="11" stroke="#66707d" stroke-width="1.7"/>
+    </svg>Leyenda</button>
 
   <div id="side-panel">
     <div class="sp-head"><span id="sp-title">Consultas</span><button class="sp-x" onclick="toggleSidePanel(false)" title="Cerrar">&times;</button></div>
@@ -538,6 +554,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 var DATA_DIR = 'data/';
 
 var PERIODS = [
+  {file: 'Arg_Hidro_202608.geojson', label: 'Agosto 2026'},
   {file: 'Arg_Hidro_202607.geojson', label: 'Julio 2026'},
   {file: 'Arg_Hidro_202606.geojson', label: 'Junio 2026'},
   {file: 'Arg_Hidro_202605.geojson', label: 'Mayo 2026'},
@@ -716,8 +733,18 @@ function renderLegend(vid) {
     return '<span class="lg-item"><span class="lg-sw" style="background:rgb('+t.rgb.join(',')+')"></span>' +
       t.cat + (t.range ? ' <span class="lg-rng">('+t.range+')</span>' : '') + '</span>';
   }).join('');
-  el.innerHTML = '<div class="lg-title">' + v.icon + ' ' + v.label + ' <span class="lg-unit">(' + v.unit + ')</span></div>' +
+  el.innerHTML = '<button class="lg-close" onclick="toggleLegend(false)" title="Minimizar leyenda">&times;</button>' +
+    '<div class="lg-title">' + v.icon + ' ' + v.label + ' <span class="lg-unit">(' + v.unit + ')</span></div>' +
     '<div class="lg-items">' + chips + '</div>';
+}
+
+// Minimizar / mostrar la leyenda (el estado se mantiene al cambiar de variable)
+function toggleLegend(open) {
+  var ov = document.getElementById('legend-ov');
+  var btn = document.getElementById('legend-btn');
+  if (!ov || !btn) return;
+  ov.classList.toggle('min', !open);
+  btn.classList.toggle('show', !open);
 }
 
 // ── Deck.gl map ──────────────────────────────────────────────────────────────
