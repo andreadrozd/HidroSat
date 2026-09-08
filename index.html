@@ -8,6 +8,33 @@
 <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
 <link  href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet"/>
 <script src="https://unpkg.com/deck.gl@9.0.36/dist.min.js"></script>
+
+<!-- ── Firebase (login de usuarios) ─────────────────────────────────────────── -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* ⚠️ PEGÁ ACÁ tu firebaseConfig de la consola (Proyecto → ícono </> Web).
+   No es secreto: es seguro que esté en el código. */
+var firebaseConfig = {
+  apiKey: "AIzaSyC-aXYpBL0XahxzhGI-dXzVPTDbvHtKneI",
+  authDomain: "hidrosat-572a0.firebaseapp.com",
+  projectId: "hidrosat-572a0",
+  storageBucket: "hidrosat-572a0.firebasestorage.app",
+  messagingSenderId: "752015165182",
+  appId: "1:752015165182:web:f3e35800086d91bd5807af",
+  measurementId: "G-BK3RFZJ8V9"
+};
+var FB_READY = false, fbAuth = null, fbDB = null;
+try {
+  if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "PEGAR_AQUI") {
+    firebase.initializeApp(firebaseConfig);
+    fbAuth = firebase.auth();
+    fbDB = firebase.firestore();
+    FB_READY = true;
+  }
+} catch (e) { console.warn("Firebase no inicializado:", e); }
+</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -256,6 +283,54 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 .home-foot a{color:#bfe3ff;text-decoration:underline;font-weight:600}
 .home-foot a:hover{color:#fff}
 
+/* Barra de usuario en el portal */
+.home-user{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:#cdd6e0}
+.home-user.hidden{display:none}
+.home-logout{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#fff;
+  border-radius:7px;padding:6px 11px;font-size:12px;font-family:inherit;cursor:pointer}
+.home-logout:hover{background:rgba(255,255,255,.22)}
+
+/* Pantalla de login / registro */
+#auth{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(120% 120% at 50% 30%,#181c23 0%,#12151a 55%,#0b0f13 100%);overflow:auto}
+#auth.hidden{display:none}
+.auth-card{width:min(400px,94vw);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:26px 24px;text-align:center;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.auth-logo{width:min(200px,58vw);height:auto;display:block;margin:0 auto 16px}
+.auth-tabs{display:flex;gap:6px;background:rgba(255,255,255,.07);border-radius:10px;padding:4px;margin-bottom:16px}
+.auth-tab{flex:1;padding:9px;border:none;border-radius:8px;background:transparent;color:#cdd6e0;font-family:inherit;
+  font-size:14px;font-weight:600;cursor:pointer;transition:background .15s,color .15s}
+.auth-tab.active{background:#2d6a9f;color:#fff}
+.af-row{margin-bottom:10px}
+.af-row input{width:100%;padding:11px 13px;border-radius:9px;border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-family:inherit}
+.af-row input::placeholder{color:#9fb0c0}
+.signup-only{display:none}
+#auth.mode-signup .signup-only{display:block}
+.af-consent{display:flex;gap:8px;align-items:flex-start;text-align:left;font-size:11.5px;color:#c3ccd6;line-height:1.5;margin:6px 0 14px}
+.af-consent input{margin-top:2px;flex-shrink:0}
+.af-consent a{color:#7cc4ff}
+.af-btn{width:100%;padding:12px;border:none;border-radius:9px;background:linear-gradient(135deg,#2d6a9f,#1a3a5c);
+  color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:filter .15s}
+.af-btn:hover{filter:brightness(1.1)}
+.af-sep{display:flex;align-items:center;gap:10px;margin:14px 0;color:#8595a5;font-size:12px}
+.af-sep::before,.af-sep::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.15)}
+.af-google{width:100%;padding:11px;border:1px solid rgba(255,255,255,.25);border-radius:9px;background:#fff;
+  color:#1f2937;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:background .15s}
+.af-google:hover{background:#f1f3f5}
+.af-google .g-ic{font-weight:800;color:#4285F4;font-size:16px}
+.af-error{color:#ff9a9a;font-size:12.5px;margin-top:12px;min-height:16px}
+.auth-foot{margin-top:16px;font-size:11px;color:#8595a5;letter-spacing:.5px}
+.af-busy{opacity:.55;pointer-events:none}
+
+/* Modal de privacidad */
+.priv-modal{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.6)}
+.priv-modal.open{display:flex}
+.priv-box{max-width:440px;background:#fff;color:#222;border-radius:14px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.priv-box h3{margin-bottom:10px;color:#1a3a5c}
+.priv-box p{font-size:13.5px;line-height:1.6}
+.priv-close{margin-top:16px;padding:9px 18px;border:none;border-radius:8px;background:#2d6a9f;color:#fff;font-weight:600;font-family:inherit;cursor:pointer}
+
 /* ── MODO CELULAR ─────────────────────────────────────────────────────────── */
 @media(max-width:760px){
   /* Header compacto que entra en el ancho del celular */
@@ -336,7 +411,42 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
   <video id="splash-anim" src="Logo_HidroSat_oscuro_animacion.mp4" poster="logo_hidrosat_dark.png" muted autoplay playsinline preload="auto"></video>
 </div>
 
+<div id="auth">
+  <div class="auth-card">
+    <img class="auth-logo" src="logo_hidrosat_dark.png" alt="HidroSat">
+    <div class="auth-tabs">
+      <button id="tab-login" class="auth-tab active" onclick="authTab('login')">Ingresar</button>
+      <button id="tab-signup" class="auth-tab" onclick="authTab('signup')">Crear cuenta</button>
+    </div>
+    <div id="auth-form">
+      <div class="af-row signup-only"><input id="af-nombre" type="text" placeholder="Nombre y apellido" autocomplete="name"></div>
+      <div class="af-row signup-only"><input id="af-inst" type="text" placeholder="Institución / organismo (opcional)" autocomplete="organization"></div>
+      <div class="af-row"><input id="af-email" type="email" placeholder="Email" autocomplete="email"></div>
+      <div class="af-row"><input id="af-pass" type="password" placeholder="Contraseña" autocomplete="current-password"></div>
+      <label class="af-consent"><input id="af-consent" type="checkbox">
+        <span>Acepto que mis datos (nombre, email, institución) se usen para gestionar mi acceso y recibir novedades de HidroSat. <a href="#" onclick="showPriv(event)">Ver privacidad</a></span></label>
+      <button id="af-submit" class="af-btn" onclick="authSubmit()">Ingresar</button>
+      <div class="af-sep"><span>o</span></div>
+      <button class="af-google" onclick="authGoogle()"><span class="g-ic">G</span> Continuar con Google</button>
+      <div id="af-error" class="af-error"></div>
+    </div>
+    <div class="auth-foot">CyanoSat · ENVSAT</div>
+  </div>
+</div>
+
+<div id="priv-modal" class="priv-modal">
+  <div class="priv-box">
+    <h3>Privacidad de datos</h3>
+    <p>Los datos que ingresás (nombre, email, institución) se usan únicamente para gestionar tu acceso a HidroSat y enviarte novedades, cursos y actualizaciones del programa CyanoSat / ENVSAT. No se comparten con terceros. Podés pedir la baja o eliminación de tus datos escribiendo a <b>contacto@cyanosat.com</b>. (Ley 25.326 de Protección de Datos Personales, Argentina.)</p>
+    <button onclick="closePriv()" class="priv-close">Entendido</button>
+  </div>
+</div>
+
 <div id="home">
+  <div id="home-user" class="home-user hidden">
+    <span id="home-user-name"></span>
+    <button onclick="logout()" class="home-logout">Cerrar sesión</button>
+  </div>
   <div id="home-logo-wrap">
     <img id="home-logo-main" src="logo_hidrosat_dark.png" alt="HidroSat">
   </div>
@@ -826,6 +936,126 @@ function goHome() {
   document.getElementById('home').classList.remove('hidden');
 }
 
+// ── Autenticación de usuarios (Firebase) ─────────────────────────────────────
+var pendingProfile = null;   // datos del formulario a guardar al confirmarse el login
+
+function authTab(mode){
+  var a=document.getElementById('auth');
+  a.classList.toggle('mode-signup', mode==='signup');
+  document.getElementById('tab-login').classList.toggle('active', mode!=='signup');
+  document.getElementById('tab-signup').classList.toggle('active', mode==='signup');
+  document.getElementById('af-submit').textContent = (mode==='signup') ? 'Crear cuenta' : 'Ingresar';
+  document.getElementById('af-pass').setAttribute('autocomplete', mode==='signup' ? 'new-password' : 'current-password');
+  authErr('');
+}
+function authMode(){ return document.getElementById('auth').classList.contains('mode-signup') ? 'signup' : 'login'; }
+function authErr(msg){ document.getElementById('af-error').textContent = msg || ''; }
+function authBusy(b){ document.getElementById('auth-form').classList.toggle('af-busy', !!b); }
+
+var AUTH_ERRORS = {
+  'auth/invalid-email':'Email inválido.',
+  'auth/user-not-found':'No existe una cuenta con ese email.',
+  'auth/wrong-password':'Contraseña incorrecta.',
+  'auth/invalid-credential':'Email o contraseña incorrectos.',
+  'auth/email-already-in-use':'Ya existe una cuenta con ese email. Probá "Ingresar".',
+  'auth/weak-password':'La contraseña debe tener al menos 6 caracteres.',
+  'auth/popup-closed-by-user':'Se cerró la ventana de Google sin completar el ingreso.',
+  'auth/popup-blocked':'El navegador bloqueó la ventana de Google. Probá con email y contraseña.',
+  'auth/network-request-failed':'Error de red. Revisá tu conexión.'
+};
+function mapAuthErr(e){ return AUTH_ERRORS[e && e.code] || (e && e.message) || 'Ocurrió un error. Probá de nuevo.'; }
+
+function authSubmit(){
+  if(!FB_READY){ authErr('Falta configurar Firebase (avisá al administrador).'); return; }
+  var email=document.getElementById('af-email').value.trim();
+  var pass=document.getElementById('af-pass').value;
+  if(!email || !pass){ authErr('Completá email y contraseña.'); return; }
+  if(authMode()==='signup'){
+    if(!document.getElementById('af-consent').checked){ authErr('Tenés que aceptar el uso de datos para continuar.'); return; }
+    var nombre=document.getElementById('af-nombre').value.trim();
+    var inst=document.getElementById('af-inst').value.trim();
+    if(!nombre){ authErr('Ingresá tu nombre.'); return; }
+    authBusy(true); authErr('');
+    pendingProfile={nombre:nombre, institucion:inst, metodo:'email', consent:true};
+    fbAuth.createUserWithEmailAndPassword(email,pass)
+      .then(function(cred){ if(cred.user) return cred.user.updateProfile({displayName:nombre}); })  // guarda el nombre en el perfil
+      .catch(function(e){ pendingProfile=null; authBusy(false); authErr(mapAuthErr(e)); });
+  } else {
+    authBusy(true); authErr('');
+    fbAuth.signInWithEmailAndPassword(email,pass)
+      .catch(function(e){ authBusy(false); authErr(mapAuthErr(e)); });
+  }
+}
+function authGoogle(){
+  if(!FB_READY){ authErr('Falta configurar Firebase (avisá al administrador).'); return; }
+  if(!document.getElementById('af-consent').checked){ authErr('Tenés que aceptar el uso de datos para continuar.'); return; }
+  authBusy(true); authErr('');
+  var prov=new firebase.auth.GoogleAuthProvider();
+  fbAuth.signInWithPopup(prov)
+    .then(function(cred){
+      pendingProfile={nombre:(cred.user && cred.user.displayName)||'', metodo:'google', consent:true};
+      // el listener onAuthStateChanged completa el guardado
+    })
+    .catch(function(e){ authBusy(false); authErr(mapAuthErr(e)); });
+}
+
+// Guarda/actualiza el perfil y cuenta el ingreso (no atómico: suficiente para 1 cuenta/persona)
+function registerLogin(user, extra){
+  if(!fbDB) return Promise.resolve();
+  var ref=fbDB.collection('usuarios').doc(user.uid);
+  return ref.get().then(function(doc){
+    var prev = doc.exists ? doc.data() : {};
+    var data = {
+      email: user.email || '',
+      ultimoIngreso: firebase.firestore.FieldValue.serverTimestamp(),
+      ingresos: ((prev.ingresos||0) + 1)
+    };
+    if(extra && extra.nombre) data.nombre = extra.nombre;
+    else if(!prev.nombre && user.displayName) data.nombre = user.displayName;
+    if(extra && extra.institucion !== undefined && extra.institucion !== '') data.institucion = extra.institucion;
+    if(extra && extra.metodo) data.metodo = extra.metodo;
+    if(extra && extra.consent) data.consentimiento = true;
+    if(!prev.creado) data.creado = firebase.firestore.FieldValue.serverTimestamp();
+    return ref.set(data, {merge:true});
+  });
+}
+
+function onLoggedIn(user){
+  document.getElementById('auth').classList.add('hidden');
+  var name = (pendingProfile && pendingProfile.nombre) || user.displayName || (user.email||'').split('@')[0];
+  var bar=document.getElementById('home-user');
+  if(bar){
+    bar.classList.remove('hidden');
+    document.getElementById('home-user-name').textContent = 'Hola, ' + name;
+  }
+  registerLogin(user, pendingProfile || {}).catch(function(e){ console.warn('perfil:', e); });
+  pendingProfile = null;
+  authBusy(false);
+}
+function showLoggedOut(){
+  document.getElementById('auth').classList.remove('hidden');
+  var bar=document.getElementById('home-user'); if(bar) bar.classList.add('hidden');
+  var p=document.getElementById('af-pass'); if(p) p.value='';
+  authBusy(false);
+}
+function logout(){
+  if(FB_READY && fbAuth) fbAuth.signOut();   // dispara showLoggedOut vía listener
+}
+function showPriv(e){ if(e) e.preventDefault(); document.getElementById('priv-modal').classList.add('open'); }
+function closePriv(){ document.getElementById('priv-modal').classList.remove('open'); }
+
+function initAuth(){
+  if(FB_READY){
+    fbAuth.onAuthStateChanged(function(user){
+      if(user) onLoggedIn(user);
+      else     showLoggedOut();
+    });
+  } else {
+    // Sin configuración de Firebase: la app queda abierta (el login se activa al pegar la config)
+    document.getElementById('auth').classList.add('hidden');
+  }
+}
+
 // Portada inicial: muestra la animación ~5s y luego entra al portal de inicio
 function initSplash() {
   var s = document.getElementById('splash');
@@ -1252,6 +1482,7 @@ function loadPeriod(file) {
 window.addEventListener('DOMContentLoaded', function() {
   loadLogos();
   initSplash();
+  initAuth();
 
   // Populate period selector
   var sel = document.getElementById('period-select');
