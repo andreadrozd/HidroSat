@@ -428,7 +428,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#eef1f5;color:#222;displ
 </div>
 
 <div id="splash">
-  <video id="splash-anim" src="Logo_HidroSat_oscuro_animacion.mp4" poster="logo_hidrosat_dark.png" muted autoplay playsinline preload="auto"></video>
+  <video id="splash-anim" src="Logo_HidroSat_oscuro_animacion.mp4" muted autoplay playsinline preload="auto"></video>
 </div>
 
 <div id="auth">
@@ -1103,14 +1103,15 @@ function initSplash() {
     s.classList.add('fade');
     setTimeout(function(){ s.classList.add('gone'); }, 650);
   }
-  var t = setTimeout(finish, 5000);              // portada de 5 segundos
+  var t = setTimeout(finish, 3000);              // portada de 3 segundos
   s.addEventListener('click', function(){ clearTimeout(t); finish(); });  // tocar = saltar
+  function skipRapido(){ clearTimeout(t); setTimeout(finish, 350); }       // sin video visible: no quedarse en negro
   if (v) {
-    v.addEventListener('error', function(){ clearTimeout(t); finish(); });
+    v.addEventListener('error', skipRapido);
     try {
       var p = v.play();
-      if (p && p.catch) p.catch(function(){});   // autoplay bloqueado: igual entra por el timer
-    } catch (e) {}
+      if (p && p.catch) p.catch(skipRapido);     // autoplay bloqueado: saltear rápido
+    } catch (e) { skipRapido(); }
   }
 }
 
