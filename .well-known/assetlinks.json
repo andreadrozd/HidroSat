@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.cyanosat.hidrosat",
+    "sha256_cert_fingerprints": ["79:08:3D:95:B2:16:36:06:10:E2:3E:CE:B1:E0:E8:04:6B:51:71:81:4A:DE:EC:FA:5E:8F:85:F2:1B:E2:9A:8B"]
+  }
+}]
