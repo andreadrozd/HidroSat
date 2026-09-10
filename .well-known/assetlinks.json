@@ -3,6 +3,9 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.cyanosat.hidrosat",
-    "sha256_cert_fingerprints": ["79:08:3D:95:B2:16:36:06:10:E2:3E:CE:B1:E0:E8:04:6B:51:71:81:4A:DE:EC:FA:5E:8F:85:F2:1B:E2:9A:8B"]
+    "sha256_cert_fingerprints": [
+      "79:08:3D:95:B2:16:36:06:10:E2:3E:CE:B1:E0:E8:04:6B:51:71:81:4A:DE:EC:FA:5E:8F:85:F2:1B:E2:9A:8B",
+      "32:BF:F6:6A:34:E9:35:AF:AD:E5:BE:00:F0:3E:6B:42:9A:7F:1C:69:65:78:6F:7E:5B:98:73:3B:20:3B:9D:33"
+    ]
   }
 }]
