@@ -1,9 +1,9 @@
 /* Service worker de HidroSat.
    Estrategia network-first: siempre intenta la red (datos y login frescos),
    y solo cae a la caché si no hay conexión. Cachea únicamente el "shell"
-   liviano (html, íconos, manifest) — NO los GeoJSON pesados ni Firebase. */
-const CACHE = 'hidrosat-shell-v1';
-const SHELL = ['./', './index.html', './manifest.webmanifest',
+   liviano (html, íconos, manifest) — NO los datos de data/ ni Firebase. */
+const CACHE = 'hidrosat-shell-v2';
+const SHELL = ['./', './index.html', './hidro.html', './metodologia.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
