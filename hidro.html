@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Hidro — HidroSat | LaDAAS · ENVSAT</title>
+<meta name="theme-color" content="#0F1B24">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet"/>
+<script src="https://unpkg.com/deck.gl@9.0.36/dist.min.js"></script>
+<style>
+:root{
+  --ink:#0F1B24; --ink2:#15242F; --ink3:#1D2F3B; --line-d:#2C3E4B; --txt-d:#E6EEF0; --mut-d:#9DB0BA; --mut-d2:#C3D2D9;
+  --map:#13232E; --grid:#1B2E3B;
+  --bg:#F3F5F4; --card:#FFFFFF; --line:#DCE2E0; --line2:#EEF1F0; --txt:#14202A; --mut:#5A6A75; --mut2:#3E4E59;
+  --teal:#1D7C7A; --teal-l:#7FD3CC; --link:#1D6F6D;
+  --sans:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);background:var(--ink);color:var(--txt);display:flex;flex-direction:column;overflow:hidden}
+button,select,input{font-family:inherit}
+button{cursor:pointer}
+a{color:var(--link)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ico{width:16px;height:16px;flex-shrink:0}
+
+/* ── Header ─────────────────────────────────────────────── */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:10px 20px;background:var(--ink);border-bottom:1px solid #22333F;color:var(--txt-d);flex:0 0 auto}
+.top .logo-c{height:30px;width:auto}
+.top .logo-e{height:40px;width:40px;object-fit:contain}
+.brand{display:flex;flex-direction:column;gap:1px;padding-left:14px;border-left:1px solid var(--line-d)}
+.brand b{font-size:16px;font-weight:600}
+.brand span{font-size:12px;color:var(--mut-d)}
+.spacer{flex:1 1 auto}
+.nav{display:flex;gap:4px;flex-wrap:wrap}
+.nav a,.nav button{padding:9px 16px;border-radius:6px;border:0;background:transparent;color:var(--mut-d2);text-decoration:none;font-size:15px;font-weight:500;letter-spacing:.01em}
+.nav a:hover,.nav button:hover{background:var(--ink2);color:#fff}
+.nav .on{background:var(--ink3);color:#fff;font-weight:600}
+.period{display:flex;align-items:center;gap:8px;height:38px;padding:0 10px;border-radius:6px;border:1px solid #344856;background:var(--ink2);color:var(--txt-d);font-size:13px}
+.period select{background:transparent;color:var(--txt-d);border:0;font-size:13px;font-weight:600;font-family:var(--mono);outline:none;cursor:pointer}
+.period select option{color:var(--txt);background:#fff}
+.btn-teal{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:6px;background:var(--teal);color:#fff;text-decoration:none;font-size:13px;font-weight:600;border:0}
+.btn-teal:hover{background:#176664;color:#fff}
+
+/* ── Vistas ─────────────────────────────────────────────── */
+#views{flex:1 1 auto;min-height:0;position:relative}
+.view{display:none;position:absolute;inset:0}
+.view.active{display:flex}
+.view.page{background:var(--bg);overflow-y:auto}
+.view.page.active{display:block}
+.page-in{max-width:1240px;margin:0 auto;padding:24px 24px 48px;display:flex;flex-direction:column;gap:24px}
+
+/* ── Rail de variables ──────────────────────────────────── */
+#rail{flex:0 0 292px;background:var(--bg);border-right:1px solid #D5DCDA;padding:16px;display:flex;flex-direction:column;gap:18px;overflow-y:auto}
+.fld-lbl{font-size:12px;font-weight:600;color:var(--mut2);margin-bottom:6px;display:block}
+.search{position:relative}
+.search-box{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:1px solid #C5CFD3;border-radius:8px;background:#fff}
+.search-box:focus-within{border-color:var(--teal)}
+.search-box input{flex:1;border:0;outline:none;font-size:14px;background:transparent;color:var(--txt);min-width:0}
+.sug{position:absolute;top:48px;left:0;right:0;background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.18);max-height:320px;overflow-y:auto;display:none;z-index:80}
+.sug button{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;padding:10px 12px;border:0;border-bottom:1px solid var(--line2);background:#fff;font-size:14px;color:var(--txt)}
+.sug button:hover,.sug button:focus{background:#EEF5F4;outline:none}
+.sug small{color:var(--mut);font-size:12px}
+.sug .empty{padding:10px 12px;font-size:13px;color:var(--mut);font-style:italic}
+.groups{display:flex;flex-direction:column;gap:18px}
+.grp{display:flex;flex-direction:column;gap:4px}
+.grp-t{font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--mut);padding:0 8px 4px}
+.vbtn{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;padding:0 10px;border:0;border-radius:6px;background:transparent;color:var(--txt);font-size:14px;text-align:left}
+.vbtn:hover{background:#E4E9E7}
+.vbtn .u{font-family:var(--mono);font-size:12px;color:var(--mut)}
+.vbtn.on{background:var(--txt);color:#fff;font-weight:600}
+.vbtn.on .u{color:#9FD9D3}
+.dist{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding:14px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.dist-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dist-h b{font-size:13px;font-weight:600}
+.dist-h span{font-size:11px;color:var(--mut)}
+.stack{display:flex;height:10px;border-radius:3px;overflow:hidden;gap:2px}
+.stack.lg{height:14px}
+.stack div{min-width:2px}
+.dist-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;font-size:12px;color:var(--mut2)}
+.dist-g div{display:flex;justify-content:space-between;gap:6px;align-items:center}
+.dist-g b{font-family:var(--mono);color:var(--txt);font-weight:600}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+
+/* ── Mapa ───────────────────────────────────────────────── */
+#mapwrap{flex:999 1 560px;min-width:0;position:relative;overflow:hidden;background-color:var(--map);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px}
+#map{position:absolute;inset:0}
+.ctrl{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:8px;z-index:20}
+.seg{display:flex;padding:3px;border-radius:8px;background:var(--ink);border:1px solid var(--line-d)}
+.seg button{height:36px;min-width:44px;padding:0 12px;border:0;border-radius:6px;background:transparent;color:var(--mut-d2);font-size:13px}
+.seg button.on{background:var(--txt-d);color:var(--ink);font-weight:600}
+.zoom{display:flex;flex-direction:column;width:44px;border-radius:8px;overflow:hidden;background:var(--ink);border:1px solid var(--line-d)}
+.zoom button{height:44px;border:0;border-bottom:1px solid var(--line-d);background:transparent;color:var(--txt-d);display:flex;align-items:center;justify-content:center}
+.zoom button:last-child{border-bottom:0}
+.zoom button:hover,.seg button:not(.on):hover{background:var(--ink3)}
+.zoom button.on{color:var(--teal-l)}
+.zoom button[aria-busy="true"] svg{animation:geoPulse 1s ease-in-out infinite}
+@keyframes geoPulse{50%{opacity:.35}}
+#toast{top:60px}
+.loading{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:25;padding:8px 14px;border-radius:999px;background:var(--ink);border:1px solid var(--line-d);color:var(--txt-d);font-size:12px;display:none}
+.loading.on{display:block}
+.attr{position:absolute;top:16px;right:16px;font-size:11px;color:#8FA6B2;z-index:20}
+.bottom{position:absolute;left:16px;right:16px;bottom:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;z-index:20;pointer-events:none}
+.bottom>*{pointer-events:auto}
+.legend{flex:1 1 420px;display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-radius:10px;background:#F7F9F8;box-shadow:0 6px 24px rgba(0,0,0,.28)}
+.legend-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.legend-h b{font-size:14px;font-weight:600}
+.legend-h b span{font-weight:400;color:var(--mut)}
+.legend-h a{font-size:12px}
+.legend-g{display:grid;gap:3px}
+.legend-g>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.legend-g i{display:block;height:12px;border-radius:2px}
+.legend-g b{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.legend-g small{font-family:var(--mono);font-size:11px;color:var(--mut)}
+.timeline{flex:1 1 380px;display:flex;flex-direction:column;gap:8px;padding:12px 14px;border-radius:10px;background:var(--ink);border:1px solid var(--line-d);color:var(--txt-d)}
+.tl-h{display:flex;align-items:center;gap:10px}
+.tl-h b{font-size:13px;font-weight:600}
+.tl-h span{margin-left:auto;font-size:12px;color:var(--mut-d);font-family:var(--mono)}
+.play{width:36px;height:36px;border-radius:50%;border:1px solid #3A5262;background:var(--ink2);color:var(--txt-d);display:flex;align-items:center;justify-content:center}
+.play:hover{background:var(--ink3)}
+.months{display:grid;gap:3px}
+.months button{height:32px;border:0;border-radius:4px;background:var(--ink3);color:var(--mut-d2);font-size:11px;font-family:var(--mono)}
+.months button:hover{background:#28404F}
+.months button.on{background:var(--teal-l);color:var(--ink);font-weight:600}
+#hover{position:absolute;pointer-events:none;display:none;z-index:30;background:var(--ink);color:var(--txt-d);border:1px solid var(--line-d);padding:8px 10px;border-radius:6px;font-size:12px;line-height:1.5;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+#hover b{font-size:13px}
+#hover .v{font-family:var(--mono);font-weight:600}
+
+/* ── Panel de detalle ───────────────────────────────────── */
+#detail{flex:1 1 340px;max-width:380px;background:#fff;border-left:1px solid #D5DCDA;display:flex;flex-direction:column;overflow-y:auto}
+.d-empty{margin:auto;padding:32px 28px;text-align:center;color:var(--mut);font-size:14px;line-height:1.5;display:flex;flex-direction:column;align-items:center;gap:10px}
+.d-head{padding:18px 20px 14px;border-bottom:1px solid #E3E8E6;display:flex;flex-direction:column;gap:4px}
+.d-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mut)}
+.x{width:36px;height:36px;border:0;border-radius:6px;background:transparent;color:var(--mut2);display:flex;align-items:center;justify-content:center}
+.x:hover{background:var(--bg)}
+.d-name{font-size:24px;font-weight:600;letter-spacing:-.2px}
+.d-sub{font-size:13px;color:var(--mut2)}
+.d-main{padding:16px 20px;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid #E3E8E6}
+.d-main-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.d-main-h b{font-size:13px;font-weight:600}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.big{display:flex;align-items:baseline;gap:6px}
+.big .mono{font-size:34px;font-weight:600;letter-spacing:-.5px}
+.big span:last-child{font-size:14px;color:var(--mut)}
+.d-sec{padding:14px 20px 6px;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--mut)}
+.d-list{display:flex;flex-direction:column;padding:0 20px}
+.d-row{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line2);border-left:0;border-right:0;border-top:0;background:transparent;text-align:left;font-size:13px;color:var(--txt);width:100%}
+.d-row:hover{background:#F7F9F8}
+.d-row:last-child{border-bottom:0}
+.d-row .l{flex:1}
+.d-row .val{width:92px;text-align:right;font-family:var(--mono);font-weight:500}
+.d-row.on .l{font-weight:600}
+.d-foot{padding:16px 20px 20px;margin-top:auto}
+.btn-dark{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:8px;background:var(--txt);color:#fff;text-decoration:none;font-size:14px;font-weight:600;border:0;width:100%}
+.btn-dark:hover{background:#24333F}
+
+/* ── Gráficos de barras (HTML) ──────────────────────────── */
+.bc{position:relative;border-bottom:1px solid #9AA8AE}
+.bc .bars{position:absolute;top:0;bottom:0;left:0;display:grid;gap:8px}
+.bc .bar{position:relative}
+.bc .bar i{position:absolute;left:0;right:0;border-radius:3px 3px 0 0}
+.bc .bar i.neg{border-radius:0 0 3px 3px}
+.bc .zero{position:absolute;left:0;border-top:1px solid #6F7E86}
+.bc .cut{position:absolute;left:0;right:0;border-top:1px dashed #A9B4B8}
+.bc .cut span{position:absolute;right:0;top:-14px;font-family:var(--mono);font-size:10px;color:var(--mut2);background:rgba(255,255,255,.85);padding:0 2px}
+.bc-x{display:grid;gap:8px;font-family:var(--mono);font-size:11px;color:var(--mut);text-align:center}
+.bc-x .on{color:var(--txt);font-weight:600}
+
+/* ── Páginas: ficha y panorama ──────────────────────────── */
+.p-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.p-head h1{font-size:36px;font-weight:600;letter-spacing:-.5px}
+.p-kick{font-size:13px;color:var(--mut);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.p-sub{font-size:14px;color:var(--mut2)}
+.p-act{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn-out{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 14px;border:1px solid #C5CFD3;border-radius:8px;background:#fff;color:var(--txt);font-size:14px;text-decoration:none}
+.btn-out:hover{background:#F7F9F8}
+.p-act .btn-teal{height:44px;font-size:14px;padding:0 16px}
+.sel{height:44px;padding:0 12px;border:1px solid #C5CFD3;border-radius:8px;background:#fff;font-size:14px;color:var(--txt);max-width:100%}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:12px}
+.card{display:flex;flex-direction:column;gap:8px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.card .t{font-size:13px;color:var(--mut2)}
+.card .n{display:flex;align-items:baseline;gap:6px}
+.card .n .mono{font-size:28px;font-weight:600}
+.card .n span:last-child{font-size:13px;color:var(--mut)}
+.card .s{font-size:12px;color:var(--mut)}
+.card .chip{align-self:flex-start;font-size:12px}
+.card.kpi{border-top-width:4px}
+.box{display:flex;flex-direction:column;gap:14px;padding:20px;background:#fff;border:1px solid var(--line);border-radius:10px;min-width:0}
+.box-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.box-h h2{font-size:16px;font-weight:600}
+.box-h span{font-family:var(--mono);font-size:12px;color:var(--mut)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(480px,100%),1fr));gap:16px}
+.scroll-x{overflow-x:auto}
+table.mx{width:100%;min-width:900px;border-collapse:separate;border-spacing:3px;font-size:13px}
+table.mx th{font-weight:500}
+table.mx thead th{font-family:var(--mono);font-size:11px;color:var(--mut);padding:4px}
+table.mx thead th.now{color:var(--txt);font-weight:600}
+table.mx tbody th{text-align:left;padding:0 8px;font-size:13px;white-space:nowrap}
+table.mx td{height:36px;border-radius:3px;text-align:center;font-family:var(--mono);font-size:12px;padding:0 4px}
+table.mx td.now{font-weight:600;box-shadow:inset 0 0 0 2px var(--txt)}
+table.mx td.res{background:#F3F5F4;font-weight:600}
+table.mx td.res small{display:block;font-size:10px;font-weight:400;color:var(--mut)}
+.leg-line{display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-size:12px;color:var(--mut2)}
+.leg-line>span{display:flex;align-items:center;gap:6px}
+.leg-line>b{color:var(--txt);font-weight:600}
+.note{font-size:12px;color:var(--mut)}
+.split{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.split>.main{flex:999 1 560px;min-width:0}
+.split>.side{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.rk{display:grid;grid-template-columns:180px minmax(0,1fr) 64px;gap:12px;align-items:center;min-height:24px}
+.rk .nm{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .tr{height:12px;background:var(--line2);border-radius:2px}
+.rk .tr i{display:block;height:12px;border-radius:2px}
+.rk .v{font-family:var(--mono);font-size:12px;text-align:right;font-weight:500}
+.rk-list{display:flex;flex-direction:column;gap:4px}
+.top-row{display:flex;align-items:center;gap:10px;min-height:44px;border-bottom:1px solid var(--line2);border-left:0;border-right:0;border-top:0;background:transparent;width:100%;text-align:left;color:var(--txt)}
+.top-row:hover{background:#F7F9F8}
+.top-row:last-child{border-bottom:0}
+.top-row .i{width:22px;font-family:var(--mono);font-size:12px;color:var(--mut)}
+.top-row .nm{flex:1;display:flex;flex-direction:column}
+.top-row .nm b{font-size:14px;font-weight:500}
+.top-row .nm small{font-size:12px;color:var(--mut)}
+.top-row .v{font-family:var(--mono);font-size:14px;font-weight:600}
+
+.notes{display:flex;flex-direction:column;gap:8px;padding:14px 18px;background:#fff;border:1px solid var(--line);border-radius:10px;font-size:13px;line-height:1.5;color:var(--mut2)}
+.notes b{color:var(--txt);font-weight:600}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:8px 20px;background:var(--ink);border-top:1px solid #22333F;font-size:11px;color:#8FA6B2;flex:0 0 auto}
+
+/* ── Tablet ─────────────────────────────────────────────── */
+@media (max-width:1180px){
+  #detail{max-width:none;flex-basis:300px}
+  #rail{flex-basis:248px}
+}
+/* ── Celular ────────────────────────────────────────────── */
+@media (max-width:760px){
+  .top{padding:8px 12px;gap:8px}
+  .top .logo-c,.top .logo-e,.brand span,.top .btn-teal .t,.period>span{display:none}
+  .brand{flex:1 1 100%}
+  .period{flex:1 1 auto}
+  .period select{flex:1}
+  .brand{border-left:0;padding-left:0}
+  .brand b{font-size:15px}
+  .nav{order:5;width:100%}
+  .nav a,.nav button{flex:1;text-align:center;font-size:16px;min-height:44px;display:flex;align-items:center;justify-content:center}
+  #view-mapa{flex-direction:column}
+  #rail{flex:0 0 auto;border-right:0;border-bottom:1px solid #D5DCDA;padding:10px 12px;gap:8px;overflow:visible}
+  #rail .fld-lbl,.grp-t,.dist{display:none}
+  #rail .groups{display:flex;flex-direction:row;gap:6px;overflow-x:auto;padding-bottom:2px}
+  .foot{display:none}
+  .grp{flex-direction:row;gap:6px}
+  .vbtn{flex:0 0 auto;min-height:38px;border-radius:999px;border:1px solid #C5CFD3;white-space:nowrap}
+  .vbtn .u{display:none}
+  #mapwrap{flex:1 1 auto;min-height:0}
+  .bottom{left:10px;right:10px;bottom:10px;gap:8px}
+  .legend{padding:10px 12px;flex-basis:100%}
+  .legend-h a{display:none}
+  .timeline{flex-basis:100%;padding:8px 10px}
+  .ctrl{top:10px;left:10px}
+  .attr{display:none}
+  #detail{position:fixed;left:0;right:0;bottom:0;max-height:62vh;max-width:none;border-left:0;border-radius:16px 16px 0 0;
+    box-shadow:0 -8px 24px rgba(0,0,0,.3);z-index:90;transform:translateY(105%);transition:transform .25s ease}
+  #detail.open{transform:translateY(0)}
+  .p-head h1{font-size:26px}
+  .page-in{padding:16px 14px 40px}
+  .rk{grid-template-columns:110px minmax(0,1fr) 56px}
+  .p-act{width:100%}
+  .p-act .sel{flex:1 1 100%;min-width:0;width:100%}
+  .p-act .btn-out{flex:1 1 auto;justify-content:center}
+}
+@media print{
+  body{overflow:visible;height:auto;background:#fff}
+  .top,.foot,#view-mapa,#view-panorama,.no-print{display:none!important}
+  #views,.view.page{position:static;overflow:visible}
+  #view-ficha{display:block!important}
+}
+.d-row .val{width:auto;min-width:96px;white-space:nowrap}
+/* ── Modo integrado en HidroSat (embed): sin marca repetida, encabezado compacto ── */
+.embed .top .logo-c,.embed .top .logo-e,.embed .brand{display:none}
+.embed .top{padding:6px 10px;gap:8px}
+.embed .foot{display:none}
+@media (max-width:760px){
+  .embed .top .btn-teal{height:38px;padding:0 12px}
+  .embed .nav a,.embed .nav button{padding:10px 6px;font-size:16px}
+  .embed #rail{padding:8px 10px}
+}
+.leg-act{display:flex;align-items:center;gap:10px;margin-left:auto}
+.leg-toggle{width:30px;height:30px;border:1px solid #C5CFD3;border-radius:6px;background:#fff;color:var(--mut2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.leg-toggle:hover{background:#EEF1F0}
+.leg-strip{display:none;gap:2px;align-items:center}
+.leg-strip i{display:block;width:22px;height:10px;border-radius:2px}
+.legend.min{flex:0 1 auto;padding:8px 14px 8px 10px;gap:0}
+.legend-h{justify-content:flex-start!important;align-items:center!important;gap:10px!important}
+.legend.min .legend-g,.legend.min .note,.legend.min .legend-h a,.legend.min .legend-h b span{display:none}
+.legend.min .leg-strip{display:flex}
+.legend.min .legend-h{flex-wrap:nowrap;align-items:center;gap:12px}
+.legend.min .legend-h b{font-size:13px;white-space:nowrap}
+.ptag{font-family:var(--mono);font-size:11px;color:var(--mut);margin-left:4px;font-weight:400}
+.medline{font-size:13px;color:var(--mut2)}
+.medline b{font-family:var(--mono);color:var(--txt)}
+.bc .bar i.med{border-radius:0;position:absolute;left:-3px;right:-3px;border-top:2px solid #14202A;opacity:.8}
+.bc .band{position:absolute;left:0;right:0;border-top:1px dashed #A9B4B8}
+.bc .band span{position:absolute;right:0;top:-14px;font-family:var(--mono);font-size:10px;color:var(--mut2);background:rgba(255,255,255,.85);padding:0 2px}
+table.mx td small{display:block;font-size:10px;opacity:.85;font-weight:400}
+
+/* ── Ficha del departamento (panel lateral): textos más grandes ── */
+#detail .d-top{font-size:13px}
+#detail .d-sub{font-size:14px}
+#detail .d-main-h b{font-size:15px}
+#detail .chip{font-size:12.5px;padding:4px 10px}
+#detail .big span:last-child{font-size:16px}
+#detail .medline{font-size:14.5px}
+#detail .note{font-size:13px}
+#detail .bc-x{font-size:12.5px}
+#detail .d-sec{font-size:12.5px}
+#detail .d-row{font-size:15px;min-height:48px}
+#detail .d-row .val{width:auto;min-width:120px;white-space:nowrap}
+#detail .d-row .sw{width:12px;height:12px}
+#detail .ptag{font-size:13px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img id="logo-cyano" class="logo-c" alt="CyanoSat">
+  <div class="brand">
+    <b>Monitor Hídrico Satelital · Argentina</b>
+    <span>527 departamentos · ERA5-Land y MODIS · anomalías en percentiles 2001–2025</span>
+  </div>
+  <div class="spacer"></div>
+  <nav class="nav" aria-label="Secciones">
+    <button id="nav-mapa" class="on" onclick="setView('mapa')">Mapa</button>
+    <button id="nav-panorama" onclick="setView('panorama')">Panorama</button>
+    <a href="metodologia.html" target="_blank" rel="noopener">Metodología</a>
+  </nav>
+  <label class="period" for="period-select">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+    <span>Período</span>
+    <select id="period-select" onchange="loadMonth(+this.value)"></select>
+  </label>
+  <a id="appfloods-link" class="btn-teal" target="_blank" rel="noopener"><span class="t">Abrir</span> AppFloods
+    <svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></a>
+  <img id="logo-envsat" class="logo-e" alt="ENVSAT">
+</header>
+
+<div id="views">
+
+  <!-- ═══════════ VISTA MAPA ═══════════ -->
+  <section id="view-mapa" class="view active">
+    <aside id="rail" aria-label="Variables">
+      <div class="search">
+        <label class="fld-lbl" for="search-inp">Buscar departamento</label>
+        <div class="search-box">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#5A6A75" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="search-inp" type="text" placeholder="Ej.: La Plata, Federación…" autocomplete="off">
+        </div>
+        <div id="search-sug" class="sug" role="listbox"></div>
+      </div>
+      <div class="groups" id="var-groups"></div>
+      <div class="dist" id="rail-dist"></div>
+    </aside>
+
+    <main id="mapwrap" aria-label="Mapa">
+      <div id="map"></div>
+      <div id="hover"></div>
+      <div id="loading" class="loading on">Cargando datos…</div>
+      <div id="toast" class="loading" role="status" aria-live="polite"></div>
+      <div class="ctrl">
+        <div class="seg" role="group" aria-label="Modo de vista">
+          <button id="b2d" onclick="set3D(false)">2D</button>
+          <button id="b3d" class="on" onclick="set3D(true)">3D</button>
+        </div>
+        <div class="zoom">
+          <button aria-label="Acercar" onclick="zoomBy(1)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+          <button aria-label="Alejar" onclick="zoomBy(-1)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+          <button aria-label="Restablecer vista" onclick="resetView()"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 6l2.5 6h-5L12 6z" fill="currentColor"/></svg></button>
+          <button id="geo-btn" aria-label="Ir a mi ubicación" title="Ir a mi ubicación y seleccionar mi departamento" onclick="locateMe()"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></button>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="legend" id="legend"></div>
+        <div class="timeline">
+          <div class="tl-h">
+            <button id="play-btn" class="play" aria-label="Reproducir serie" onclick="togglePlay()"></button>
+            <b>Serie <span id="tl-year"></span></b>
+            <span id="tl-n"></span>
+          </div>
+          <div class="months" id="months" role="group" aria-label="Mes"></div>
+        </div>
+      </div>
+    </main>
+
+    <aside id="detail" aria-label="Departamento seleccionado"></aside>
+  </section>
+
+  <!-- ═══════════ VISTA PANORAMA ═══════════ -->
+  <section id="view-panorama" class="view page">
+    <div class="page-in">
+      <div class="p-head">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="p-kick" id="pn-kick"></div>
+          <h1 id="pn-title"></h1>
+        </div>
+        <div class="p-act">
+          <label class="fld-lbl" for="pn-var" style="margin:0">Variable</label>
+          <select id="pn-var" class="sel" onchange="selectVar(this.value)"></select>
+          <label class="fld-lbl" for="pn-prov" style="margin:0">Ámbito</label>
+          <select id="pn-prov" class="sel" onchange="S.prov=this.value;renderPanorama()"></select>
+          <button class="btn-out" onclick="downloadPanoramaCSV()">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Exportar CSV</button>
+        </div>
+      </div>
+      <div class="cards" id="pn-cards"></div>
+      <div class="split">
+        <section class="box main">
+          <div class="box-h"><h2 id="pn-rk-title"></h2><span id="pn-rk-sub"></span></div>
+          <div class="rk-list" id="pn-rk"></div>
+        </section>
+        <div class="side">
+          <section class="box" style="gap:6px"><div class="box-h" style="margin-bottom:6px"><h2>10 percentiles más altos</h2></div><div id="pn-top"></div></section>
+          <section class="box" style="gap:6px"><div class="box-h" style="margin-bottom:6px"><h2>10 percentiles más bajos</h2></div><div id="pn-bot"></div></section>
+          <section class="box"><div class="box-h"><h2>Departamentos por categoría</h2></div><div id="pn-dist"></div></section>
+        </div>
+      </div>
+      <div id="pn-notes"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ VISTA FICHA ═══════════ -->
+  <section id="view-ficha" class="view page">
+    <div class="page-in" id="ficha"></div>
+  </section>
+</div>
+
+<footer class="foot">
+  <span>LaDAAS — Laboratorio de Desarrollos de Aplicaciones Ambientales y Satelitales · UNDAV</span>
+  <span>ENVSAT · Monitoreo Ambiental Satelital</span>
+</footer>
+
+<script>
+// ═════════════════════════════════════════════════════════════════════════════
+// Configuración
+// ═════════════════════════════════════════════════════════════════════════════
+var DATA_DIR = 'data/';
+var PREFIJO = 'Hidro_Arg_';               // archivos mensuales: data/Hidro_Arg_AAAAMM.csv
+var INICIO = {anio: 2026, mes: 1};        // primer mes a buscar; la app descubre sola los CSV que existan
+var APPFLOODS_URL = 'https://cyanosat.envsat.com/monitoreo-hidrico-app-floods/';
+var BASE_TXT = '2001–2025';
+
+var MESES_ES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+// Categorías por percentil (mismos cortes que el script de GEE)
+var CATS = [
+  {cat:'Muy bajo', range:'< p10'},
+  {cat:'Bajo',     range:'p10 – p30'},
+  {cat:'Normal',   range:'p30 – p70'},
+  {cat:'Alto',     range:'p70 – p90'},
+  {cat:'Muy alto', range:'> p90'}
+];
+function catIndex(p){ return p < 10 ? 0 : p < 30 ? 1 : p <= 70 ? 2 : p <= 90 ? 3 : 4; }
+
+// Paletas (de "muy bajo" a "muy alto"); varían en luminosidad para leerse también con daltonismo
+var PAL = {
+  agua: [[140,81,10],[216,179,101],[224,214,186],[107,174,214],[33,102,172]],   // seco → húmedo
+  temp: [[33,102,172],[146,197,222],[224,214,186],[244,165,130],[178,24,43]],   // frío → cálido
+  veg:  [[140,81,10],[216,179,101],[224,214,186],[166,217,106],[26,150,65]]     // menor → mayor productividad
+};
+var ND = [190,198,202];
+
+var GROUPS = [
+  {label:'Precipitación y temperatura', vars:['ppt','t2m']},
+  {label:'Suelo',                       vars:['sm28','sm289']},
+  {label:'Vegetación',                  vars:['npp']}
+];
+// agg: cómo se resume el período en la ficha ('sum' acumulado, 'mean' media, 'last' último mes)
+var VARS = {
+  ppt:   {label:'Precipitación total',               short:'Precipitación',      unit:'mm',     dec:1, pal:'agua', agg:'sum',  meto:'ppt'},
+  t2m:   {label:'Temperatura media a 2 m',           short:'Temperatura a 2 m',  unit:'°C',     dec:1, pal:'temp', agg:'mean', meto:'t2m'},
+  sm28:  {label:'Humedad del suelo 7–28 cm',         short:'Humedad 7–28 cm',    unit:'m³/m³',  dec:3, pal:'agua', agg:'mean', meto:'sm28'},
+  sm289: {label:'Humedad del suelo 100–289 cm',      short:'Humedad 100–289 cm', unit:'m³/m³',  dec:3, pal:'agua', agg:'last', meto:'sm289'},
+  npp:   {label:'Productividad (fotosíntesis neta)', short:'Productividad',      unit:'gC/m²',  dec:1, pal:'veg',  agg:'sum',  meto:'npp'}
+};
+var VAR_IDS = Object.keys(VARS);
+
+// Lectura de cada categoría: siempre relativa al valor normal del mes (mediana 2001–2025)
+var WORDS      = ['Muy por debajo', 'Por debajo', 'Normal', 'Por encima', 'Muy por encima'];
+var WORDS_LONG = ['Muy por debajo de lo normal', 'Por debajo de lo normal', 'Normal', 'Por encima de lo normal', 'Muy por encima de lo normal'];
+
+var MAX_ELEVATION = 80000;
+
+// Modo integrado: dentro de la app HidroSat (iframe) o con ?embed=1
+var EMBED = /[?&]embed=1/.test(location.search) || window.self !== window.top;
+function parentApp(){ try { return (window.parent && window.parent !== window && window.parent.openFloods) ? window.parent : null; } catch (e) { return null; } }
+// En modo integrado: AppFloods se abre en la ventana de HidroSat y la metodología dentro de la misma app
+document.addEventListener('click', function(e){
+  if (!EMBED) return;
+  var a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+  var href = a.getAttribute('href');
+  if (href === APPFLOODS_URL || a.id === 'appfloods-link') {
+    var p = parentApp(); if (p) { e.preventDefault(); p.openFloods(); }
+  } else if (href.indexOf('metodologia.html') === 0) {
+    e.preventDefault(); location.href = href;
+  }
+});
+var VIEW0 = {longitude:-64.5, latitude:-40.0, zoom:3.7, pitch:45, bearing:-12};
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Estado
+// ═════════════════════════════════════════════════════════════════════════════
+var S = {
+  vid:'ppt', months:[], mIdx:-1, geo:null, feat:{}, names:{},
+  sel:null, view:'mapa', mode3d:true, vs:Object.assign({}, VIEW0),
+  prov:'', playTimer:null, userPos:null,
+  legendMin: (function(){ try { var v = localStorage.getItem('legendMin'); if (v !== null) return v === '1'; } catch(e){} return window.matchMedia('(max-width:760px)').matches; })()
+};
+var deckgl = null;
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Utilidades
+// ═════════════════════════════════════════════════════════════════════════════
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function num(x){ if (x === '' || x == null) return NaN; var v = parseFloat(x); return isNaN(v) ? NaN : v; }
+function fmt(v, dec){ return isNaN(v) ? 's/d' : v.toLocaleString('es-AR', {minimumFractionDigits:dec, maximumFractionDigits:dec}).replace('-', '−'); }
+function fmtU(v, d){ return isNaN(v) ? 's/d' : fmt(v, d.dec) + ' ' + d.unit; }
+function rgb(a){ return 'rgb(' + a.join(',') + ')'; }
+function textOn(a){ var L = (0.299*a[0] + 0.587*a[1] + 0.114*a[2]) / 255; return L > 0.55 ? '#14202A' : '#FFFFFF'; }
+function sinTilde(s){ return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+function isMobile(){ return window.matchMedia('(max-width:760px)').matches; }
+function cur(){ return S.months[S.mIdx]; }
+function curLabel(){ return cur() ? cur().label : ''; }
+function row(in1, m){ m = m || cur(); return m && m.rows[in1] || null; }
+function val(in1, vid, m){ var r = row(in1, m); return r ? num(r[vid]) : NaN; }
+function pct(in1, vid, m){ var r = row(in1, m); return r ? num(r[vid + '_p']) : NaN; }
+function med(in1, vid, m){ var r = row(in1, m); return r ? num(r[vid + '_med']) : NaN; }
+function catOf(p, vid){
+  if (isNaN(p)) return {i:-1, cat:'Sin datos', word:'Sin datos', rgb:ND};
+  var i = catIndex(p), d = VARS[vid];
+  return {i:i, cat:CATS[i].cat, word:WORDS_LONG[i], short:WORDS[i], rgb:PAL[d.pal][i], range:CATS[i].range};
+}
+function chip(c, p){
+  return '<span class="chip" style="background:' + rgb(c.rgb) + ';color:' + textOn(c.rgb) + '">' + esc(c.word) +
+    (isNaN(p) ? '' : ' · p' + Math.round(p)) + '</span>';
+}
+function nameOf(in1){ var n = S.names[in1]; return n ? n.n : in1; }
+function provOf(in1){ var n = S.names[in1]; return n ? n.p : ''; }
+function shortMonth(m){ var s = MESES_ES[m.mes - 1].substring(0, 3).toUpperCase(); return S.multiYear ? s + '·' + String(m.anio).slice(-2) : s; }
+function ICON(name){
+  var P = {
+    play:'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>',
+    pause:'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
+    close:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    arrow:'<svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+    back:'<svg class="ico" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>',
+    dl:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
+    print:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-7h16v7h-2M8 14h8v7H8z"/></svg>',
+    map:'<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>'
+  };
+  return P[name] || '';
+}
+function downloadText(name, text){
+  var blob = new Blob(['﻿' + text], {type:'text/csv;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+function csvCell(s){ s = String(s == null ? '' : s); return /[",;\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+
+// CSV simple con soporte de comillas
+function parseCSV(text){
+  text = text.replace(/^﻿/, '');
+  var rows = [], rowA = [], f = '', q = false;
+  for (var i = 0; i < text.length; i++) {
+    var c = text[i];
+    if (q) {
+      if (c === '"') { if (text[i+1] === '"') { f += '"'; i++; } else q = false; }
+      else f += c;
+    } else if (c === '"') q = true;
+    else if (c === ',') { rowA.push(f); f = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i+1] === '\n') i++;
+      rowA.push(f); f = ''; if (rowA.length > 1 || rowA[0] !== '') rows.push(rowA); rowA = [];
+    } else f += c;
+  }
+  if (f !== '' || rowA.length) { rowA.push(f); rows.push(rowA); }
+  var head = rows.shift() || [];
+  return rows.map(function(r){ var o = {}; head.forEach(function(h, k){ o[h.trim()] = (r[k] || '').trim(); }); return o; });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Logos
+// ═════════════════════════════════════════════════════════════════════════════
+function loadLogo(imgId, b64file, pngFile){
+  fetch(b64file).then(function(r){ if (!r.ok) throw 0; return r.text(); })
+    .then(function(b64){ $(imgId).src = 'data:image/png;base64,' + b64.trim(); })
+    .catch(function(){ $(imgId).src = pngFile; });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Carga de datos
+// ═════════════════════════════════════════════════════════════════════════════
+function candidatos(){
+  var out = [], hoy = new Date(), y = INICIO.anio, m = INICIO.mes;
+  var limY = hoy.getFullYear(), limM = hoy.getMonth() + 1;
+  while (y < limY || (y === limY && m <= limM)) {
+    out.push({anio:y, mes:m, key: y + ('0' + m).slice(-2)});
+    m++; if (m > 12) { m = 1; y++; }
+  }
+  return out;
+}
+function loadAll(){
+  var geoP = fetch(DATA_DIR + 'departamentos.geojson').then(function(r){ return r.json(); });
+  var namesP = fetch(DATA_DIR + 'departamentos_in1_nombres.csv').then(function(r){ return r.ok ? r.text() : ''; }).catch(function(){ return ''; });
+  var monthsP = Promise.all(candidatos().map(function(c){
+    return fetch(DATA_DIR + PREFIJO + c.key + '.csv', {cache:'no-cache'})
+      .then(function(r){ if (!r.ok) return null; return r.text(); })
+      .then(function(t){
+        if (!t || t.trim().charAt(0) === '<') return null;          // 404 servido como HTML
+        var rows = {};
+        parseCSV(t).forEach(function(o){ if (o.in1) rows[o.in1.padStart(5, '0')] = o; });
+        return {anio:c.anio, mes:c.mes, key:c.key, label: MESES_ES[c.mes - 1] + ' ' + c.anio, rows:rows, n:Object.keys(rows).length};
+      }).catch(function(){ return null; });
+  }));
+  return Promise.all([geoP, namesP, monthsP]).then(function(res){
+    S.geo = res[0];
+    S.geo.features.forEach(function(f){ S.feat[f.properties.in1] = f; });
+    if (res[1]) parseCSV(res[1]).forEach(function(o){
+      if (o.in1) S.names[o.in1.padStart(5, '0')] = {n:o.depto || o.depto_sin_tilde, p:o.provincia || o.prov_sin_tilde};
+    });
+    S.months = res[2].filter(function(m){ return m && m.n > 0; });
+    // Completa nombres faltantes con los del CSV mensual
+    S.months.forEach(function(m){ for (var k in m.rows) if (!S.names[k]) S.names[k] = {n:m.rows[k].departamento, p:m.rows[k].provincia}; });
+    var years = {}; S.months.forEach(function(m){ years[m.anio] = 1; });
+    S.multiYear = Object.keys(years).length > 1;
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Rail: variables + distribución nacional
+// ═════════════════════════════════════════════════════════════════════════════
+function buildVarRail(){
+  $('var-groups').innerHTML = GROUPS.map(function(g){
+    return '<div class="grp"><div class="grp-t">' + g.label + '</div>' + g.vars.map(function(vid){
+      var v = VARS[vid];
+      return '<button class="vbtn" data-vid="' + vid + '" title="' + esc(v.label) + '" onclick="selectVar(\'' + vid + '\')">' +
+        '<span>' + esc(v.short) + '</span><span class="u">' + esc(v.unit) + '</span></button>';
+    }).join('') + '</div>';
+  }).join('');
+}
+function catCounts(ids, vid, m){
+  var counts = [0,0,0,0,0], nd = 0;
+  ids.forEach(function(in1){ var p = pct(in1, vid, m); if (isNaN(p)) nd++; else counts[catIndex(p)]++; });
+  return {counts:counts, nd:nd, total:ids.length};
+}
+function allIds(){ return Object.keys(S.feat); }
+function stackHTML(cc, vid, cls){
+  var pal = PAL[VARS[vid].pal], valid = (cc.total - cc.nd) || 1;
+  return '<div class="stack ' + (cls || '') + '">' + cc.counts.map(function(n, i){
+    if (!n) return '';
+    return '<div title="' + esc(WORDS_LONG[i]) + ': ' + n + '" style="width:' + (n / valid * 100).toFixed(2) + '%;background:' + rgb(pal[i]) + '"></div>';
+  }).join('') + '</div>';
+}
+function distGrid(cc, vid, big){
+  var d = VARS[vid], pal = PAL[d.pal];
+  return '<div class="dist-g"' + (big ? ' style="font-size:13px;gap:8px 16px"' : '') + '>' + cc.counts.map(function(n, i){
+    return '<div><span style="display:flex;align-items:center;gap:6px;min-width:0"><i class="sw" style="background:' + rgb(pal[i]) + '"></i>' +
+      '<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="' + esc(WORDS_LONG[i]) + '">' + esc(WORDS[i]) + '</span></span><b>' + n + '</b></div>';
+  }).join('') + (cc.nd ? '<div><span>Sin datos</span><b>' + cc.nd + '</b></div>' : '') + '</div>';
+}
+function renderRailDist(){
+  if (!cur()) return;
+  var cc = catCounts(allIds(), S.vid);
+  $('rail-dist').innerHTML =
+    '<div class="dist-h"><b>Distribución nacional</b><span class="mono">n = ' + cc.total + '</span></div>' +
+    stackHTML(cc, S.vid) + distGrid(cc, S.vid).replace('class="dist-g"', 'class="dist-g" style="grid-template-columns:1fr"');
+}
+function selectVar(vid){
+  S.vid = vid;
+  document.querySelectorAll('.vbtn').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-vid') === vid); });
+  if ($('pn-var').value !== vid) $('pn-var').value = vid;
+  updateMap(); renderLegend(); renderRailDist(); renderDetail();
+  if (S.view === 'panorama') renderPanorama();
+  if (S.view === 'ficha') renderFicha();
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Leyenda y línea de tiempo
+// ═════════════════════════════════════════════════════════════════════════════
+function renderLegend(){
+  var d = VARS[S.vid], pal = PAL[d.pal], el = $('legend');
+  el.classList.toggle('min', S.legendMin);
+  var chev = S.legendMin
+    ? '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>'
+    : '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+  el.innerHTML =
+    '<div class="legend-h">' +
+    '<button class="leg-toggle" onclick="toggleLegend()" aria-expanded="' + (!S.legendMin) + '" aria-label="' + (S.legendMin ? 'Expandir leyenda' : 'Minimizar leyenda') + '" title="' + (S.legendMin ? 'Expandir leyenda' : 'Minimizar leyenda') + '">' + chev + '</button>' +
+    '<b>' + esc(d.label) + ' <span>· respecto de lo normal del mes · ' + esc(curLabel().toLowerCase()) + '</span></b>' +
+    '<span class="leg-strip" aria-hidden="true">' + pal.map(function(c){ return '<i style="background:' + rgb(c) + '"></i>'; }).join('') + '</span>' +
+    '<span class="leg-act"><a href="metodologia.html#' + d.meto + '" target="_blank" rel="noopener">Cómo se calcula</a></span></div>' +
+    '<div class="legend-g" style="grid-template-columns:repeat(5,minmax(0,1fr))">' +
+    CATS.map(function(c, i){
+      return '<div><i style="background:' + rgb(pal[i]) + '"></i><b title="' + esc(WORDS_LONG[i]) + '">' + esc(WORDS[i]) + '</b><small>' + esc(c.range) + '</small></div>';
+    }).join('') + '</div>' +
+    '<div class="note" style="font-size:12px">Normal = mediana del mismo mes en ' + BASE_TXT + ' (p = percentil). Estimaciones más precisas en <a href="' + APPFLOODS_URL + '" target="_blank" rel="noopener">AppFloods</a>.</div>';
+}
+function toggleLegend(){
+  S.legendMin = !S.legendMin;
+  try { localStorage.setItem('legendMin', S.legendMin ? '1' : '0'); } catch(e){}
+  renderLegend();
+}
+function buildTimeline(){
+  $('months').style.gridTemplateColumns = 'repeat(' + S.months.length + ',minmax(0,1fr))';
+  $('months').innerHTML = S.months.map(function(m, i){
+    return '<button data-idx="' + i + '" title="' + esc(m.label) + '" onclick="stopPlay();loadMonth(' + i + ')">' + shortMonth(m) + '</button>';
+  }).join('');
+  var years = {}; S.months.forEach(function(m){ years[m.anio] = 1; });
+  $('tl-year').textContent = Object.keys(years).join('–');
+  $('tl-n').textContent = S.months.length + (S.months.length === 1 ? ' mes' : ' meses');
+  $('play-btn').innerHTML = ICON('play');
+  $('period-select').innerHTML = S.months.map(function(m, i){ return '<option value="' + i + '">' + esc(m.label) + '</option>'; }).reverse().join('');
+}
+function updateTimeline(){
+  document.querySelectorAll('#months button').forEach(function(b){ b.classList.toggle('on', +b.getAttribute('data-idx') === S.mIdx); });
+  $('period-select').value = S.mIdx;
+}
+function togglePlay(){
+  if (S.playTimer) { stopPlay(); return; }
+  var pos = S.mIdx >= S.months.length - 1 ? -1 : S.mIdx;
+  $('play-btn').innerHTML = ICON('pause'); $('play-btn').setAttribute('aria-label', 'Pausar serie');
+  function step(){ pos++; if (pos >= S.months.length) { stopPlay(); return; } loadMonth(pos); }
+  step(); S.playTimer = setInterval(step, 1800);
+}
+function stopPlay(){
+  if (S.playTimer) clearInterval(S.playTimer);
+  S.playTimer = null;
+  $('play-btn').innerHTML = ICON('play'); $('play-btn').setAttribute('aria-label', 'Reproducir serie');
+}
+function loadMonth(i){
+  S.mIdx = i; updateTimeline();
+  updateMap(); renderLegend(); renderRailDist(); renderDetail();
+  if (S.view === 'panorama') renderPanorama();
+  if (S.view === 'ficha') renderFicha();
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Mapa (deck.gl + Argenmap)
+// ═════════════════════════════════════════════════════════════════════════════
+function initMap(){
+  deckgl = new deck.DeckGL({
+    container: 'map',
+    mapLib: maplibregl,
+    mapStyle: {
+      version: 8,
+      sources: { argenmap: {
+        type:'raster', tileSize:256, scheme:'tms', attribution:'© IGN Argentina — Argenmap',
+        tiles:['https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/capabaseargenmap@EPSG:3857@png/{z}/{x}/{y}.png'] } },
+      layers: [{id:'argenmap', type:'raster', source:'argenmap'}]
+    },
+    initialViewState: VIEW0,
+    controller: true,
+    layers: [],
+    onViewStateChange: function(e){ S.vs = e.viewState; return e.viewState; },
+    getCursor: function(st){ return st.isDragging ? 'grabbing' : (st.isHovering ? 'pointer' : 'grab'); },
+    // Luz cenital: el techo de cada departamento conserva el color exacto de la leyenda
+    // (ambiente 0.75 + difusa 0.25 = 1.0) y solo los laterales se oscurecen para dar relieve.
+    effects: [new deck.LightingEffect({
+      ambientLight: new deck.AmbientLight({color:[255,255,255], intensity:1.0}),
+      dirLight: new deck.DirectionalLight({color:[255,255,255], intensity:1.0, direction:[0,0,-1]})
+    })]
+  });
+}
+function elevOf(in1){ var p = pct(in1, S.vid); return isNaN(p) ? 0.02 : Math.max(0.04, p / 100); }
+function updateMap(){
+  if (!deckgl || !S.geo || !cur()) return;
+  var vid = S.vid, key = vid + '|' + S.mIdx + '|' + S.mode3d;
+  var layers = [new deck.GeoJsonLayer({
+    id:'deptos', data:S.geo,
+    extruded:S.mode3d, filled:true, stroked:!S.mode3d, wireframe:S.mode3d,
+    elevationScale: MAX_ELEVATION,
+    getElevation: function(f){ return elevOf(f.properties.in1); },
+    getFillColor: function(f){ return catOf(pct(f.properties.in1, vid), vid).rgb.concat(255); },
+    getLineColor: S.mode3d ? function(f){ return catOf(pct(f.properties.in1, vid), vid).rgb; } : [15,27,36,110],
+    getLineWidth: 60, lineWidthMinPixels: 0.4,
+    pickable:true, autoHighlight:true, highlightColor:[255,255,255,80],
+    material: {ambient:0.75, diffuse:0.25, shininess:0, specularColor:[0,0,0]},
+    updateTriggers: {getElevation:key, getFillColor:key, getLineColor:key},
+    onHover: onHover,
+    onClick: function(info){ if (info.object) selectDept(info.object.properties.in1, false); }
+  })];
+  if (S.sel && S.feat[S.sel]) {
+    var f = S.feat[S.sel];
+    layers.push(new deck.GeoJsonLayer({
+      id:'sel', data:[f], pickable:false,
+      extruded:S.mode3d, filled:S.mode3d, stroked:true, wireframe:S.mode3d,
+      elevationScale: MAX_ELEVATION,
+      getElevation: function(){ return elevOf(S.sel) + 0.015; },
+      getFillColor:[255,255,255,70], getLineColor:[255,255,255,255], getLineWidth:2, lineWidthUnits:'pixels',
+      updateTriggers:{getElevation:key}
+    }));
+  }
+  if (S.userPos) {
+    var ud = deptAt(S.userPos[0], S.userPos[1]);
+    var z = (S.mode3d && ud) ? elevOf(ud.properties.in1) * MAX_ELEVATION + 2500 : 0;
+    layers.push(new deck.ScatterplotLayer({
+      id:'user-pos', data:[{p:[S.userPos[0], S.userPos[1], z]}], pickable:false,
+      getPosition: function(d){ return d.p; },
+      radiusUnits:'pixels', getRadius:8, stroked:true, filled:true,
+      getFillColor:[29,124,122,255], getLineColor:[255,255,255,255], lineWidthUnits:'pixels', getLineWidth:3,
+      updateTriggers:{getPosition: key + '|' + S.userPos.join(',')}
+    }));
+  }
+  deckgl.setProps({layers:layers});
+}
+function onHover(info){
+  var el = $('hover');
+  if (!info.object || isMobile()) { el.style.display = 'none'; return; }
+  var in1 = info.object.properties.in1, d = VARS[S.vid], p = pct(in1, S.vid), c = catOf(p, S.vid);
+  el.innerHTML = '<b>' + esc(nameOf(in1)) + '</b> <span style="opacity:.75">' + esc(provOf(in1)) + '</span><br>' +
+    esc(d.short) + ': <span class="v">' + fmtU(val(in1, S.vid), d) + '</span><br>' +
+    'Normal del mes: <span class="v">' + fmtU(med(in1, S.vid), d) + '</span><br>' +
+    '<span style="display:inline-flex;align-items:center;gap:6px"><i class="sw" style="background:' + rgb(c.rgb) + '"></i>' + esc(c.word) + (isNaN(p) ? '' : ' · percentil ' + Math.round(p)) + '</span>';
+  el.style.display = 'block';
+  var W = $('mapwrap').clientWidth;
+  el.style.left = Math.min(info.x + 14, W - 270) + 'px';
+  el.style.top = (info.y + 14) + 'px';
+}
+function setViewState(patch, fly){
+  if (!deckgl) return;
+  var base = {longitude:S.vs.longitude, latitude:S.vs.latitude, zoom:S.vs.zoom, pitch:S.vs.pitch, bearing:S.vs.bearing};
+  var vs = Object.assign(base, patch, {transitionDuration: patch.transitionDuration || 500});
+  if (fly && deck.FlyToInterpolator) vs.transitionInterpolator = new deck.FlyToInterpolator();
+  deckgl.setProps({initialViewState:vs});
+}
+function zoomBy(d){ setViewState({zoom: Math.max(2, Math.min(14, S.vs.zoom + d)), transitionDuration:300}); }
+function resetView(){ setViewState(Object.assign({}, VIEW0, {pitch: S.mode3d ? 45 : 0, bearing: S.mode3d ? -12 : 0, transitionDuration:800}), true); }
+function set3D(on){
+  S.mode3d = on;
+  $('b3d').classList.toggle('on', on); $('b2d').classList.toggle('on', !on);
+  setViewState({pitch: on ? 45 : 0, bearing: on ? -12 : 0, transitionDuration:600});
+  updateMap();
+}
+function bbox(feat){
+  var b = [Infinity, Infinity, -Infinity, -Infinity];
+  (function scan(c){
+    if (typeof c[0] === 'number') { b[0]=Math.min(b[0],c[0]); b[1]=Math.min(b[1],c[1]); b[2]=Math.max(b[2],c[0]); b[3]=Math.max(b[3],c[1]); }
+    else for (var i = 0; i < c.length; i++) scan(c[i]);
+  })(feat.geometry.coordinates);
+  return b;
+}
+function zoomToDept(in1){
+  var f = S.feat[in1]; if (!f) return;
+  var b = f._bb || (f._bb = bbox(f)), maxd = Math.max(b[2]-b[0], b[3]-b[1], 1e-4);
+  setViewState({longitude:(b[0]+b[2])/2, latitude:(b[1]+b[3])/2, zoom: Math.max(4.2, Math.min(9, Math.log2(360/maxd) - 1.2)), transitionDuration:900}, true);
+}
+function fixMapSize(){
+  var tries = 0, iv = setInterval(function(){
+    window.dispatchEvent(new Event('resize'));
+    var c = document.querySelector('#map .maplibregl-canvas');
+    if ((c && c.width > 300) || ++tries >= 8) clearInterval(iv);
+  }, 200);
+}
+
+// ── Geolocalización ──────────────────────────────────────────────────────────
+function toast(msg, ms){
+  var t = $('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toast._t); if (ms) toast._t = setTimeout(function(){ t.classList.remove('on'); }, ms);
+}
+function ringContains(ring, x, y){
+  var inside = false;
+  for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    var xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+    if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) inside = !inside;
+  }
+  return inside;
+}
+function polyContains(poly, x, y){
+  if (!ringContains(poly[0], x, y)) return false;
+  for (var k = 1; k < poly.length; k++) if (ringContains(poly[k], x, y)) return false;
+  return true;
+}
+function deptAt(lon, lat){
+  if (!S.geo) return null;
+  for (var i = 0; i < S.geo.features.length; i++) {
+    var f = S.geo.features[i], g = f.geometry; if (!g) continue;
+    var b = f._bb || (f._bb = bbox(f));
+    if (lon < b[0] || lon > b[2] || lat < b[1] || lat > b[3]) continue;
+    var polys = g.type === 'Polygon' ? [g.coordinates] : (g.type === 'MultiPolygon' ? g.coordinates : []);
+    for (var k = 0; k < polys.length; k++) if (polyContains(polys[k], lon, lat)) return f;
+  }
+  return null;
+}
+function locateMe(){
+  var btn = $('geo-btn');
+  if (!navigator.geolocation) { toast('Tu navegador no permite geolocalización', 4000); return; }
+  if (!window.isSecureContext) { toast('La ubicación solo funciona en https o localhost', 5000); return; }
+  btn.setAttribute('aria-busy', 'true'); toast('Buscando tu ubicación…');
+  navigator.geolocation.getCurrentPosition(function(pos){
+    btn.removeAttribute('aria-busy'); btn.classList.add('on');
+    var lon = pos.coords.longitude, lat = pos.coords.latitude;
+    S.userPos = [lon, lat];
+    var f = deptAt(lon, lat);
+    if (f) {
+      var in1 = f.properties.in1;
+      $('search-inp').value = nameOf(in1);
+      if (S.view !== 'mapa') setView('mapa');
+      selectDept(in1, true);
+      toast('Estás en ' + nameOf(in1) + ', ' + provOf(in1), 3500);
+    } else {
+      updateMap();
+      setViewState({longitude:lon, latitude:lat, zoom:7, transitionDuration:900}, true);
+      toast('Tu ubicación está fuera de los departamentos del mapa', 4500);
+    }
+  }, function(err){
+    btn.removeAttribute('aria-busy');
+    toast(err.code === 1 ? 'Permiso de ubicación denegado. Habilitalo en el candado de la barra de direcciones.'
+        : err.code === 3 ? 'La ubicación tardó demasiado. Probá de nuevo.' : 'No se pudo obtener tu ubicación.', 5000);
+  }, {enableHighAccuracy:false, timeout:15000, maximumAge:300000});
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Búsqueda y selección
+// ═════════════════════════════════════════════════════════════════════════════
+function initSearch(){
+  var inp = $('search-inp'), sug = $('search-sug');
+  inp.addEventListener('input', function(){
+    var q = sinTilde(inp.value.trim());
+    if (!q) { sug.style.display = 'none'; return; }
+    var m = allIds().filter(function(k){ return sinTilde(nameOf(k)).indexOf(q) >= 0; })
+      .sort(function(a, b){ return nameOf(a).localeCompare(nameOf(b)); }).slice(0, 10);
+    sug.innerHTML = m.length ? m.map(function(k){
+      return '<button role="option" onclick="pickDept(\'' + k + '\')"><span>' + esc(nameOf(k)) + '</span><small>' + esc(provOf(k)) + '</small></button>';
+    }).join('') : '<div class="empty">Sin resultados</div>';
+    sug.style.display = 'block';
+  });
+  inp.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') { var b = sug.querySelector('button'); if (b) b.click(); }
+    if (e.key === 'Escape') sug.style.display = 'none';
+  });
+  document.addEventListener('click', function(e){ if (!e.target.closest('.search')) sug.style.display = 'none'; });
+}
+function pickDept(in1){
+  $('search-sug').style.display = 'none';
+  $('search-inp').value = nameOf(in1);
+  if (S.view !== 'mapa') setView('mapa');
+  selectDept(in1, true);
+}
+function selectDept(in1, zoom){
+  S.sel = in1; updateMap(); renderDetail();
+  if (zoom) zoomToDept(in1);
+  if (isMobile()) $('detail').classList.add('open');
+}
+function clearDept(){ S.sel = null; updateMap(); renderDetail(); $('detail').classList.remove('open'); }
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Gráfico de barras HTML
+// ═════════════════════════════════════════════════════════════════════════════
+// series: [{label, v, med, color}] · o: {height, domain:[lo,hi], bands:[{v,label}], curIdx, gap, initials, showMed}
+function barChart(series, o){
+  o = o || {};
+  var H = o.height || 180, padR = o.bands ? 56 : 0, n = series.length;
+  var vals = []; series.forEach(function(s){ if (!isNaN(s.v)) vals.push(s.v); if (o.showMed && !isNaN(s.med)) vals.push(s.med); });
+  var lo, hi;
+  if (o.domain) { lo = o.domain[0]; hi = o.domain[1]; }
+  else { lo = Math.min.apply(null, [0].concat(vals)); hi = Math.max.apply(null, [0].concat(vals)); var pad = (hi - lo) * 0.08; hi += pad; if (lo < 0) lo -= pad; }
+  if (hi === lo) hi = lo + 1;
+  function y(v){ return (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo) * H; }
+  var y0 = y(Math.max(lo, 0)), gap = o.gap || 8;
+  var html = '<div class="bc" style="height:' + H + 'px">';
+  (o.bands || []).forEach(function(b){ html += '<div class="band" style="bottom:' + y(b.v).toFixed(1) + 'px"><span>' + esc(b.label) + '</span></div>'; });
+  html += '<div class="bars" style="right:' + padR + 'px;grid-template-columns:repeat(' + n + ',minmax(0,1fr));gap:' + gap + 'px">';
+  series.forEach(function(s, i){
+    if (isNaN(s.v)) { html += '<div class="bar" title="' + esc(s.label) + ': sin dato"></div>'; return; }
+    var top = Math.max(y(s.v), y0), bot = Math.min(y(s.v), y0), h = Math.max(1.5, top - bot);
+    html += '<div class="bar" title="' + esc(s.title || s.label) + '"><i class="' + (s.v < 0 ? 'neg' : '') + '" style="bottom:' + bot.toFixed(1) + 'px;height:' + h.toFixed(1) + 'px;background:' + s.color + '"></i>' +
+      (o.showMed && !isNaN(s.med) ? '<i class="med" style="bottom:' + y(s.med).toFixed(1) + 'px;height:0;background:none"></i>' : '') + '</div>';
+  });
+  html += '</div>';
+  if (lo < 0) html += '<div class="zero" style="right:' + padR + 'px;bottom:' + y0.toFixed(1) + 'px"></div>';
+  html += '</div><div class="bc-x" style="margin-right:' + padR + 'px;grid-template-columns:repeat(' + n + ',minmax(0,1fr));gap:' + gap + 'px">' +
+    series.map(function(s, i){ return '<span class="' + (i === o.curIdx ? 'on' : '') + '">' + (o.initials ? s.label.charAt(0) : s.short) + '</span>'; }).join('') + '</div>';
+  return html;
+}
+function seriesOf(in1, vid, mono){
+  return S.months.map(function(m, i){
+    var v = val(in1, vid, m), p = pct(in1, vid, m), md = med(in1, vid, m), c = catOf(p, vid), d = VARS[vid];
+    return {label:m.label, short:shortMonth(m), v:v, med:md, p:p,
+      color: mono ? (i === S.mIdx ? '#1D7C7A' : '#B9C4C8') : rgb(c.rgb),
+      title: m.label + ': ' + fmtU(v, d) + (isNaN(p) ? '' : ' · p' + Math.round(p)) + (isNaN(md) ? '' : ' · normal ' + fmtU(md, d))};
+  });
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Panel de detalle
+// ═════════════════════════════════════════════════════════════════════════════
+function renderDetail(){
+  var el = $('detail');
+  if (!S.sel || !S.feat[S.sel] || !cur()) {
+    el.innerHTML = '<div class="d-empty">' + ICON('map') +
+      '<b style="color:#14202A;font-size:15px">Elegí un departamento</b>' +
+      '<span>Hacé clic sobre el mapa, buscalo por nombre o usá el botón de ubicación para ver cómo está el mes respecto de lo normal.</span></div>';
+    return;
+  }
+  var in1 = S.sel, d = VARS[S.vid], v = val(in1, S.vid), p = pct(in1, S.vid), md = med(in1, S.vid), c = catOf(p, S.vid);
+  el.innerHTML =
+    '<div class="d-head"><div class="d-top"><span>' + esc(provOf(in1)) + ' · <span class="mono">' + esc(in1) + '</span></span>' +
+      '<button class="x" aria-label="Cerrar ficha" onclick="clearDept()">' + ICON('close') + '</button></div>' +
+      '<div class="d-name">' + esc(nameOf(in1)) + '</div><div class="d-sub">' + esc(curLabel()) + '</div></div>' +
+    '<div class="d-main"><div class="d-main-h"><b>' + esc(d.label) + '</b>' + chip(c, p) + '</div>' +
+      '<div class="big"><span class="mono">' + fmt(v, d.dec) + '</span><span>' + esc(d.unit) + '</span></div>' +
+      '<div class="medline">Normal del mes (mediana ' + BASE_TXT + '): <b>' + fmtU(md, d) + '</b></div>' +
+      barChart(seriesOf(in1, S.vid, true), {height:64, curIdx:S.mIdx, gap:4, initials:!S.multiYear, showMed:true}) +
+      '<div class="note">Barras: valor de cada mes · línea: valor normal del mes</div>' +
+    '</div>' +
+    '<div class="d-sec">Todas las variables</div><div class="d-list">' +
+    VAR_IDS.map(function(vid){
+      var dd = VARS[vid], pp = pct(in1, vid), cc = catOf(pp, vid);
+      return '<button class="d-row' + (vid === S.vid ? ' on' : '') + '" onclick="selectVar(\'' + vid + '\')" title="Ver ' + esc(dd.label) + ' en el mapa">' +
+        '<span class="l">' + esc(dd.short) + '</span><i class="sw" style="background:' + rgb(cc.rgb) + '" title="' + esc(cc.word) + '"></i>' +
+        '<span class="val">' + fmtU(val(in1, vid), dd) + '<span class="ptag">' + (isNaN(pp) ? '' : 'p' + Math.round(pp)) + '</span></span></button>';
+    }).join('') + '</div>' +
+    '<div class="d-foot"><button class="btn-dark" onclick="openFicha()">Ver ficha completa ' + ICON('arrow') + '</button></div>';
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Vistas
+// ═════════════════════════════════════════════════════════════════════════════
+function setView(v){
+  S.view = v;
+  ['mapa','panorama','ficha'].forEach(function(k){ $('view-' + k).classList.toggle('active', k === v); });
+  $('nav-mapa').classList.toggle('on', v === 'mapa' || v === 'ficha');
+  $('nav-panorama').classList.toggle('on', v === 'panorama');
+  if (v === 'mapa') fixMapSize(); else { stopPlay(); $('detail').classList.remove('open'); }
+  if (v === 'panorama') renderPanorama();
+  if (v === 'ficha') renderFicha();
+}
+function openFicha(){ if (S.sel) { setView('ficha'); $('view-ficha').scrollTop = 0; } }
+
+function notesHTML(){
+  return '<div class="notes"><p><b>Cómo leer los percentiles.</b> Cada valor se compara con el mismo mes de los 25 años ' + BASE_TXT +
+    ': el percentil indica qué porcentaje de esos años tuvo un valor menor. Percentil 50 = valor normal (mediana); menos de 10 o más de 90 = situación poco frecuente.</p>' +
+    '<p><b>Nota sobre las anomalías.</b> Las estimaciones son satelitales, basadas en la respuesta radiométrica e integradas con datos topográficos y edafológicos, aunque no están calibradas localmente. Para un mayor nivel de detalle y precisión, consultá <a href="' + APPFLOODS_URL + '" target="_blank" rel="noopener">AppFloods</a>.</p>' +
+    '<p><b>Datos provisorios.</b> Los últimos meses pueden actualizarse cuando ERA5-Land y MODIS completan su publicación.</p></div>';
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Ficha de departamento
+// ═════════════════════════════════════════════════════════════════════════════
+function aggregate(in1, vid){
+  var vals = S.months.map(function(m){ return val(in1, vid, m); }).filter(function(v){ return !isNaN(v); });
+  if (!vals.length) return NaN;
+  var a = VARS[vid].agg;
+  if (a === 'sum') return vals.reduce(function(x, y){ return x + y; }, 0);
+  if (a === 'last') return vals[vals.length - 1];
+  return vals.reduce(function(x, y){ return x + y; }, 0) / vals.length;
+}
+function legendItem(c, t){ return '<span><i class="sw" style="width:12px;height:12px;background:' + rgb(c) + '"></i>' + esc(t) + '</span>'; }
+function renderFicha(){
+  var el = $('ficha');
+  if (!S.sel || !S.feat[S.sel]) { el.innerHTML = '<div class="note">Elegí un departamento en el mapa.</div>'; return; }
+  var in1 = S.sel, name = nameOf(in1), d = VARS[S.vid];
+  var per = S.months.length ? (S.months[0].label.toLowerCase() + ' – ' + S.months[S.months.length - 1].label.toLowerCase()) : '';
+  var html =
+    '<div class="p-head"><div style="display:flex;flex-direction:column;gap:6px">' +
+      '<nav class="p-kick no-print" aria-label="Ruta"><a href="#" onclick="setView(\'mapa\');return false" style="display:inline-flex;align-items:center;gap:4px">' + ICON('back') + 'Mapa</a><span>/</span><span>' + esc(provOf(in1)) + '</span><span>/</span><span style="color:#14202A">' + esc(name) + '</span></nav>' +
+      '<h1>' + esc(name) + '</h1>' +
+      '<div class="p-sub">' + esc(provOf(in1)) + ' · código INDEC <span class="mono">' + esc(in1) + '</span> · ' + esc(curLabel()) + (per ? ' · serie ' + esc(per) : '') + '</div></div>' +
+      '<div class="p-act no-print">' +
+        '<button class="btn-out" onclick="downloadDeptCSV()">' + ICON('dl') + 'Descargar CSV</button>' +
+        '<button class="btn-out" onclick="window.print()">' + ICON('print') + 'Imprimir / PDF</button>' +
+        '<a class="btn-teal" href="' + APPFLOODS_URL + '" target="_blank" rel="noopener">Analizar en AppFloods</a>' +
+      '</div></div>';
+
+  html += '<section class="cards">' + VAR_IDS.map(function(vid){
+    var dd = VARS[vid], v = val(in1, vid), p = pct(in1, vid), md = med(in1, vid), c = catOf(p, vid);
+    return '<div class="card"><div class="t">' + esc(dd.label) + '</div>' +
+      '<div class="n"><span class="mono">' + fmt(v, dd.dec) + '</span><span>' + esc(dd.unit) + '</span></div>' + chip(c, p) +
+      '<div class="s">Normal del mes: ' + fmtU(md, dd) + '</div></div>';
+  }).join('') + '</section>';
+
+  var ser = seriesOf(in1, S.vid, false);
+  html += '<section class="two">' +
+    '<div class="box"><div class="box-h"><h2>' + esc(d.label) + '</h2><span>' + esc(d.unit) + ' · línea = valor normal del mes</span></div>' +
+      barChart(ser, {height:180, curIdx:S.mIdx, showMed:true}) + '</div>' +
+    '<div class="box"><div class="box-h"><h2>Percentil respecto de ' + BASE_TXT + '</h2><span>0–100 · 50 = normal</span></div>' +
+      barChart(ser.map(function(s){ return Object.assign({}, s, {v:s.p}); }), {height:180, curIdx:S.mIdx, domain:[0,100],
+        bands:[{v:90,label:'p90'},{v:70,label:'p70'},{v:50,label:'p50'},{v:30,label:'p30'},{v:10,label:'p10'}]}) + '</div>' +
+    '</section>';
+
+  var aggLbl = {sum:'Σ acumulado', mean:'media', last:'último mes'};
+  html += '<section class="box"><div class="box-h"><h2>Estado mensual por variable</h2><span>valor y percentil · clic en una fila para verla en el mapa</span></div>' +
+    '<div class="scroll-x"><table class="mx"><thead><tr><th scope="col" style="text-align:left;font-family:var(--sans);font-size:12px">Variable</th>' +
+    S.months.map(function(m, i){ return '<th scope="col" class="' + (i === S.mIdx ? 'now' : '') + '">' + shortMonth(m) + '</th>'; }).join('') +
+    '<th scope="col">RESUMEN</th></tr></thead><tbody>' +
+    VAR_IDS.map(function(vid){
+      var dd = VARS[vid], ag = aggregate(in1, vid);
+      return '<tr style="cursor:pointer" onclick="selectVar(\'' + vid + '\')"><th scope="row">' + esc(dd.short) + ' <span class="mono" style="color:#5A6A75;font-size:11px">' + esc(dd.unit) + '</span></th>' +
+        S.months.map(function(m, i){
+          var v = val(in1, vid, m), p = pct(in1, vid, m), c = catOf(p, vid);
+          return '<td class="' + (i === S.mIdx ? 'now' : '') + '" title="' + esc(m.label + ' · ' + c.word) + '" style="background:' + rgb(c.rgb) + ';color:' + textOn(c.rgb) + '">' +
+            fmt(v, Math.min(dd.dec, 2)) + '<small>' + (isNaN(p) ? '' : 'p' + Math.round(p)) + '</small></td>';
+        }).join('') +
+        '<td class="res">' + fmt(ag, Math.min(dd.dec, 2)) + '<small>' + aggLbl[dd.agg] + '</small></td></tr>';
+    }).join('') + '</tbody></table></div>' +
+    '<div class="leg-line"><b>Agua y suelo</b>' + PAL.agua.map(function(c, i){ return legendItem(c, WORDS_LONG[i]); }).join('') + '</div>' +
+    '<div class="leg-line"><b>Temperatura</b>' + PAL.temp.map(function(c, i){ return legendItem(c, WORDS_LONG[i]); }).join('') + '</div>' +
+    '<div class="leg-line"><b>Productividad</b>' + PAL.veg.map(function(c, i){ return legendItem(c, WORDS_LONG[i]); }).join('') + '</div>' +
+    '<div class="note">Cada celda muestra el valor del mes y su percentil (p). El resumen suma la precipitación y la productividad, promedia la temperatura y la humedad 7–28 cm, y toma el último mes de la humedad profunda.</div></section>' +
+    notesHTML();
+  el.innerHTML = html;
+}
+function downloadDeptCSV(){
+  if (!S.sel) return;
+  var cols = []; VAR_IDS.forEach(function(v){ cols.push(v, v + '_p', v + '_med'); });
+  var rows = [['mes'].concat(cols).join(',')];
+  S.months.forEach(function(m){
+    var r = row(S.sel, m) || {};
+    rows.push([csvCell(m.label)].concat(cols.map(function(c){ return r[c] == null ? '' : r[c]; })).join(','));
+  });
+  downloadText('serie_' + S.sel + '_' + sinTilde(nameOf(S.sel)).replace(/\W+/g, '_') + '.csv', rows.join('\n'));
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Panorama
+// ═════════════════════════════════════════════════════════════════════════════
+function populateProvinces(){
+  var map = {};
+  allIds().forEach(function(k){ var cp = k.substring(0, 2); if (!map[cp]) map[cp] = provOf(k) || cp; });
+  var arr = Object.keys(map).map(function(k){ return {k:k, n:map[k]}; }).sort(function(a, b){ return a.n.localeCompare(b.n); });
+  $('pn-prov').innerHTML = '<option value="">Todo el país</option>' + arr.map(function(o){ return '<option value="' + o.k + '">' + esc(o.n) + '</option>'; }).join('');
+  $('pn-prov').value = S.prov;
+}
+function panoramaData(){
+  var vid = S.vid;
+  var ids = allIds().filter(function(k){ return !S.prov || k.substring(0, 2) === S.prov; });
+  var deps = ids.map(function(k){ return {in1:k, n:nameOf(k), prov:provOf(k), v:val(k, vid), p:pct(k, vid), med:med(k, vid)}; })
+    .filter(function(x){ return !isNaN(x.p); }).sort(function(a, b){ return b.p - a.p; });
+  var rank;
+  if (S.prov) rank = deps.map(function(x){ return {n:x.n, p:x.p, in1:x.in1}; });
+  else {
+    var acc = {};
+    deps.forEach(function(x){ (acc[x.prov] = acc[x.prov] || []).push(x.p); });
+    rank = Object.keys(acc).map(function(k){ var a = acc[k]; return {n:k, p:a.reduce(function(s, y){ return s + y; }, 0) / a.length}; })
+      .sort(function(a, b){ return b.p - a.p; });
+  }
+  return {ids:ids, deps:deps, rank:rank, cc:catCounts(ids, vid)};
+}
+function renderPanorama(){
+  if (!cur()) return;
+  var D = panoramaData(), d = VARS[S.vid], pal = PAL[d.pal], cc = D.cc, valid = (cc.total - cc.nd) || 1;
+  var amb = S.prov ? $('pn-prov').selectedOptions[0].textContent : 'Argentina';
+  $('pn-kick').textContent = 'Boletín mensual · ' + amb + ' · ' + cc.total + ' departamentos · referencia ' + BASE_TXT;
+  $('pn-title').textContent = 'Panorama hídrico — ' + curLabel().toLowerCase();
+  $('pn-cards').innerHTML = CATS.map(function(c, i){
+    var n = cc.counts[i];
+    return '<div class="card kpi" style="border-top-color:' + rgb(pal[i]) + '"><div class="t">' + esc(WORDS_LONG[i]) + '</div>' +
+      '<div class="n"><span class="mono">' + n + '</span><span>deptos · ' + Math.round(n / valid * 100) + ' %</span></div>' +
+      '<div class="s">' + esc(c.range) + '</div></div>';
+  }).join('');
+  $('pn-rk-title').textContent = S.prov ? (d.label + ' · percentil por departamento') : (d.label + ' · percentil medio por provincia');
+  $('pn-rk-sub').textContent = '0–100 · 50 = normal';
+  $('pn-rk').innerHTML = D.rank.length ? D.rank.map(function(r){
+    var c = catOf(r.p, S.vid);
+    return '<div class="rk"' + (r.in1 ? ' style="cursor:pointer" onclick="pickDept(\'' + r.in1 + '\')"' : '') + '><div class="nm" title="' + esc(r.n) + '">' + esc(r.n) + '</div>' +
+      '<div class="tr"><i style="width:' + Math.max(1, r.p).toFixed(1) + '%;background:' + rgb(c.rgb) + '"></i></div>' +
+      '<div class="v">p' + Math.round(r.p) + '</div></div>';
+  }).join('') : '<div class="note">Sin datos.</div>';
+  function topList(list){
+    return list.map(function(x, i){
+      return '<button class="top-row" onclick="pickDept(\'' + x.in1 + '\')"><span class="i">' + (i + 1) + '</span>' +
+        '<span class="nm"><b>' + esc(x.n) + '</b><small>' + esc(x.prov) + ' · ' + fmtU(x.v, d) + '</small></span><span class="v">p' + Math.round(x.p) + '</span></button>';
+    }).join('') || '<div class="note">Sin datos.</div>';
+  }
+  $('pn-top').innerHTML = topList(D.deps.slice(0, 10));
+  $('pn-bot').innerHTML = topList(D.deps.slice(-10).reverse());
+  $('pn-dist').innerHTML = stackHTML(cc, S.vid, 'lg') + distGrid(cc, S.vid, true);
+  $('pn-notes').innerHTML = notesHTML();
+}
+function downloadPanoramaCSV(){
+  if (!cur()) return;
+  var D = panoramaData(), vid = S.vid;
+  var rows = ['in1,departamento,provincia,' + vid + ',' + vid + '_p,' + vid + '_med,categoria'];
+  D.deps.forEach(function(x){ rows.push([x.in1, csvCell(x.n), csvCell(x.prov), x.v, x.p, x.med, csvCell(catOf(x.p, vid).word)].join(',')); });
+  downloadText('panorama_' + vid + '_' + cur().key + (S.prov ? '_' + S.prov : '') + '.csv', rows.join('\n'));
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Inicio
+// ═════════════════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', function(){
+  if (EMBED) document.body.classList.add('embed');
+  loadLogo('logo-cyano', 'cyanosat_b64.txt', 'FullLogo_Transparent_NoBuffer.png');
+  loadLogo('logo-envsat', 'envsat_b64.txt', 'envsat_fondo_oscuro-removeBackG.png');
+  $('appfloods-link').href = APPFLOODS_URL;
+  $('pn-var').innerHTML = GROUPS.map(function(g){
+    return '<optgroup label="' + g.label + '">' + g.vars.map(function(v){ return '<option value="' + v + '">' + esc(VARS[v].label) + ' (' + esc(VARS[v].unit) + ')</option>'; }).join('') + '</optgroup>';
+  }).join('');
+  buildVarRail(); initSearch(); initMap(); renderDetail();
+  document.querySelectorAll('.vbtn').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-vid') === S.vid); });
+  loadAll().then(function(){
+    $('loading').classList.remove('on');
+    if (!S.months.length) { $('loading').textContent = 'No se encontraron archivos ' + PREFIJO + 'AAAAMM.csv en data/'; $('loading').classList.add('on'); return; }
+    buildTimeline(); populateProvinces();
+    loadMonth(S.months.length - 1);
+    fixMapSize();
+  }).catch(function(e){
+    $('loading').textContent = 'No se pudieron cargar los datos'; console.error(e);
+  });
+});
+window.addEventListener('resize', function(){ if (deckgl) deckgl.redraw(true); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && S.view === 'ficha') setView('mapa'); });
+</script>
+</body>
+</html>
