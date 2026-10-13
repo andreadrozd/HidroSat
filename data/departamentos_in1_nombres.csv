@@ -1,0 +1,530 @@
+﻿in1,depto,depto_sin_tilde,provincia,prov_sin_tilde,cod_prov
+02007,Comuna 1,Comuna 1,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02014,Comuna 2,Comuna 2,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02021,Comuna 3,Comuna 3,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02028,Comuna 4,Comuna 4,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02035,Comuna 5,Comuna 5,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02042,Comuna 6,Comuna 6,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02049,Comuna 7,Comuna 7,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02056,Comuna 8,Comuna 8,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02063,Comuna 9,Comuna 9,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02070,Comuna 10,Comuna 10,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02077,Comuna 11,Comuna 11,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02084,Comuna 12,Comuna 12,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02091,Comuna 13,Comuna 13,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02098,Comuna 14,Comuna 14,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+02105,Comuna 15,Comuna 15,Ciudad Autónoma de Buenos Aires,Ciudad Autonoma de Buenos Aires,02
+06007,Adolfo Alsina,Adolfo Alsina,Buenos Aires,Buenos Aires,06
+06014,Adolfo Gonzales Chaves,Adolfo Gonzales Chaves,Buenos Aires,Buenos Aires,06
+06021,Alberti,Alberti,Buenos Aires,Buenos Aires,06
+06028,Almirante Brown,Almirante Brown,Buenos Aires,Buenos Aires,06
+06035,Avellaneda,Avellaneda,Buenos Aires,Buenos Aires,06
+06042,Ayacucho,Ayacucho,Buenos Aires,Buenos Aires,06
+06049,Azul,Azul,Buenos Aires,Buenos Aires,06
+06056,Bahía Blanca,Bahia Blanca,Buenos Aires,Buenos Aires,06
+06063,Balcarce,Balcarce,Buenos Aires,Buenos Aires,06
+06070,Baradero,Baradero,Buenos Aires,Buenos Aires,06
+06077,Arrecifes,Arrecifes,Buenos Aires,Buenos Aires,06
+06084,Benito Juárez,Benito Juarez,Buenos Aires,Buenos Aires,06
+06091,Berazategui,Berazategui,Buenos Aires,Buenos Aires,06
+06098,Berisso,Berisso,Buenos Aires,Buenos Aires,06
+06105,Bolívar,Bolivar,Buenos Aires,Buenos Aires,06
+06112,Bragado,Bragado,Buenos Aires,Buenos Aires,06
+06119,Brandsen,Brandsen,Buenos Aires,Buenos Aires,06
+06126,Campana,Campana,Buenos Aires,Buenos Aires,06
+06134,Cañuelas,Canuelas,Buenos Aires,Buenos Aires,06
+06140,Capitán Sarmiento,Capitan Sarmiento,Buenos Aires,Buenos Aires,06
+06147,Carlos Casares,Carlos Casares,Buenos Aires,Buenos Aires,06
+06154,Carlos Tejedor,Carlos Tejedor,Buenos Aires,Buenos Aires,06
+06161,Carmen de Areco,Carmen de Areco,Buenos Aires,Buenos Aires,06
+06168,Castelli,Castelli,Buenos Aires,Buenos Aires,06
+06175,Colón,Colon,Buenos Aires,Buenos Aires,06
+06182,Coronel de Marina Leonardo Rosales,Coronel de Marina Leonardo Rosales,Buenos Aires,Buenos Aires,06
+06189,Coronel Dorrego,Coronel Dorrego,Buenos Aires,Buenos Aires,06
+06196,Coronel Pringles,Coronel Pringles,Buenos Aires,Buenos Aires,06
+06203,Coronel Suárez,Coronel Suarez,Buenos Aires,Buenos Aires,06
+06210,Chacabuco,Chacabuco,Buenos Aires,Buenos Aires,06
+06218,Chascomús,Chascomus,Buenos Aires,Buenos Aires,06
+06224,Chivilcoy,Chivilcoy,Buenos Aires,Buenos Aires,06
+06231,Daireaux,Daireaux,Buenos Aires,Buenos Aires,06
+06238,Dolores,Dolores,Buenos Aires,Buenos Aires,06
+06245,Ensenada,Ensenada,Buenos Aires,Buenos Aires,06
+06252,Escobar,Escobar,Buenos Aires,Buenos Aires,06
+06260,Esteban Echeverría,Esteban Echeverria,Buenos Aires,Buenos Aires,06
+06266,Exaltación de la Cruz,Exaltacion de la Cruz,Buenos Aires,Buenos Aires,06
+06270,Ezeiza,Ezeiza,Buenos Aires,Buenos Aires,06
+06274,Florencio Varela,Florencio Varela,Buenos Aires,Buenos Aires,06
+06277,Florentino Ameghino,Florentino Ameghino,Buenos Aires,Buenos Aires,06
+06280,General Alvarado,General Alvarado,Buenos Aires,Buenos Aires,06
+06287,General Alvear,General Alvear,Buenos Aires,Buenos Aires,06
+06294,General Arenales,General Arenales,Buenos Aires,Buenos Aires,06
+06301,General Belgrano,General Belgrano,Buenos Aires,Buenos Aires,06
+06308,General Guido,General Guido,Buenos Aires,Buenos Aires,06
+06315,General Juan Madariaga,General Juan Madariaga,Buenos Aires,Buenos Aires,06
+06322,General La Madrid,General La Madrid,Buenos Aires,Buenos Aires,06
+06329,General Las Heras,General Las Heras,Buenos Aires,Buenos Aires,06
+06336,General Lavalle,General Lavalle,Buenos Aires,Buenos Aires,06
+06343,General Paz,General Paz,Buenos Aires,Buenos Aires,06
+06351,General Pinto,General Pinto,Buenos Aires,Buenos Aires,06
+06357,General Pueyrredón,General Pueyrredon,Buenos Aires,Buenos Aires,06
+06364,General Rodríguez,General Rodriguez,Buenos Aires,Buenos Aires,06
+06371,General San Martín,General San Martin,Buenos Aires,Buenos Aires,06
+06385,General Viamonte,General Viamonte,Buenos Aires,Buenos Aires,06
+06392,General Villegas,General Villegas,Buenos Aires,Buenos Aires,06
+06399,Guaminí,Guamini,Buenos Aires,Buenos Aires,06
+06406,Hipólito Yrigoyen,Hipolito Yrigoyen,Buenos Aires,Buenos Aires,06
+06408,Hurlingham,Hurlingham,Buenos Aires,Buenos Aires,06
+06410,Ituzaingó,Ituzaingo,Buenos Aires,Buenos Aires,06
+06412,José C. Paz,Jose C. Paz,Buenos Aires,Buenos Aires,06
+06413,Junín,Junin,Buenos Aires,Buenos Aires,06
+06420,La Costa,La Costa,Buenos Aires,Buenos Aires,06
+06427,La Matanza,La Matanza,Buenos Aires,Buenos Aires,06
+06434,Lanús,Lanus,Buenos Aires,Buenos Aires,06
+06441,La Plata,La Plata,Buenos Aires,Buenos Aires,06
+06448,Laprida,Laprida,Buenos Aires,Buenos Aires,06
+06455,Las Flores,Las Flores,Buenos Aires,Buenos Aires,06
+06462,Leandro N. Alem,Leandro N. Alem,Buenos Aires,Buenos Aires,06
+06466,Lezama,Lezama,Buenos Aires,Buenos Aires,06
+06469,Lincoln,Lincoln,Buenos Aires,Buenos Aires,06
+06476,Lobería,Loberia,Buenos Aires,Buenos Aires,06
+06483,Lobos,Lobos,Buenos Aires,Buenos Aires,06
+06490,Lomas de Zamora,Lomas de Zamora,Buenos Aires,Buenos Aires,06
+06497,Luján,Lujan,Buenos Aires,Buenos Aires,06
+06505,Magdalena,Magdalena,Buenos Aires,Buenos Aires,06
+06511,Maipú,Maipu,Buenos Aires,Buenos Aires,06
+06515,Malvinas Argentinas,Malvinas Argentinas,Buenos Aires,Buenos Aires,06
+06518,Mar Chiquita,Mar Chiquita,Buenos Aires,Buenos Aires,06
+06525,Marcos Paz,Marcos Paz,Buenos Aires,Buenos Aires,06
+06532,Mercedes,Mercedes,Buenos Aires,Buenos Aires,06
+06539,Merlo,Merlo,Buenos Aires,Buenos Aires,06
+06547,Monte,Monte,Buenos Aires,Buenos Aires,06
+06553,Monte Hermoso,Monte Hermoso,Buenos Aires,Buenos Aires,06
+06560,Moreno,Moreno,Buenos Aires,Buenos Aires,06
+06568,Morón,Moron,Buenos Aires,Buenos Aires,06
+06574,Navarro,Navarro,Buenos Aires,Buenos Aires,06
+06581,Necochea,Necochea,Buenos Aires,Buenos Aires,06
+06588,9 de Julio,9 de Julio,Buenos Aires,Buenos Aires,06
+06595,Olavarría,Olavarria,Buenos Aires,Buenos Aires,06
+06602,Patagones,Patagones,Buenos Aires,Buenos Aires,06
+06609,Pehuajó,Pehuajo,Buenos Aires,Buenos Aires,06
+06616,Pellegrini,Pellegrini,Buenos Aires,Buenos Aires,06
+06623,Pergamino,Pergamino,Buenos Aires,Buenos Aires,06
+06630,Pila,Pila,Buenos Aires,Buenos Aires,06
+06638,Pilar,Pilar,Buenos Aires,Buenos Aires,06
+06644,Pinamar,Pinamar,Buenos Aires,Buenos Aires,06
+06648,Presidente Perón,Presidente Peron,Buenos Aires,Buenos Aires,06
+06651,Puán,Puan,Buenos Aires,Buenos Aires,06
+06655,Punta Indio,Punta Indio,Buenos Aires,Buenos Aires,06
+06658,Quilmes,Quilmes,Buenos Aires,Buenos Aires,06
+06665,Ramallo,Ramallo,Buenos Aires,Buenos Aires,06
+06672,Rauch,Rauch,Buenos Aires,Buenos Aires,06
+06679,Rivadavia,Rivadavia,Buenos Aires,Buenos Aires,06
+06686,Rojas,Rojas,Buenos Aires,Buenos Aires,06
+06693,Roque Pérez,Roque Perez,Buenos Aires,Buenos Aires,06
+06700,Saavedra,Saavedra,Buenos Aires,Buenos Aires,06
+06707,Saladillo,Saladillo,Buenos Aires,Buenos Aires,06
+06714,Salto,Salto,Buenos Aires,Buenos Aires,06
+06721,Salliqueló,Salliquelo,Buenos Aires,Buenos Aires,06
+06728,San Andrés de Giles,San Andres de Giles,Buenos Aires,Buenos Aires,06
+06735,San Antonio de Areco,San Antonio de Areco,Buenos Aires,Buenos Aires,06
+06742,San Cayetano,San Cayetano,Buenos Aires,Buenos Aires,06
+06749,San Fernando,San Fernando,Buenos Aires,Buenos Aires,06
+06756,San Isidro,San Isidro,Buenos Aires,Buenos Aires,06
+06760,San Miguel,San Miguel,Buenos Aires,Buenos Aires,06
+06763,San Nicolás,San Nicolas,Buenos Aires,Buenos Aires,06
+06770,San Pedro,San Pedro,Buenos Aires,Buenos Aires,06
+06778,San Vicente,San Vicente,Buenos Aires,Buenos Aires,06
+06784,Suipacha,Suipacha,Buenos Aires,Buenos Aires,06
+06791,Tandil,Tandil,Buenos Aires,Buenos Aires,06
+06798,Tapalqué,Tapalque,Buenos Aires,Buenos Aires,06
+06805,Tigre,Tigre,Buenos Aires,Buenos Aires,06
+06812,Tordillo,Tordillo,Buenos Aires,Buenos Aires,06
+06819,Tornquist,Tornquist,Buenos Aires,Buenos Aires,06
+06826,Trenque Lauquen,Trenque Lauquen,Buenos Aires,Buenos Aires,06
+06833,Tres Arroyos,Tres Arroyos,Buenos Aires,Buenos Aires,06
+06840,Tres de Febrero,Tres de Febrero,Buenos Aires,Buenos Aires,06
+06847,Tres Lomas,Tres Lomas,Buenos Aires,Buenos Aires,06
+06854,25 de Mayo,25 de Mayo,Buenos Aires,Buenos Aires,06
+06861,Vicente López,Vicente Lopez,Buenos Aires,Buenos Aires,06
+06868,Villa Gesell,Villa Gesell,Buenos Aires,Buenos Aires,06
+06875,Villarino,Villarino,Buenos Aires,Buenos Aires,06
+06882,Zárate,Zarate,Buenos Aires,Buenos Aires,06
+10007,Ambato,Ambato,Catamarca,Catamarca,10
+10014,Ancasti,Ancasti,Catamarca,Catamarca,10
+10021,Andalgalá,Andalgala,Catamarca,Catamarca,10
+10028,Antofagasta de la Sierra,Antofagasta de la Sierra,Catamarca,Catamarca,10
+10035,Belén,Belen,Catamarca,Catamarca,10
+10042,Capayán,Capayan,Catamarca,Catamarca,10
+10049,Capital,Capital,Catamarca,Catamarca,10
+10056,El Alto,El Alto,Catamarca,Catamarca,10
+10063,Fray Mamerto Esquiú,Fray Mamerto Esquiu,Catamarca,Catamarca,10
+10070,La Paz,La Paz,Catamarca,Catamarca,10
+10077,Paclín,Paclin,Catamarca,Catamarca,10
+10084,Pomán,Poman,Catamarca,Catamarca,10
+10091,Santa María,Santa Maria,Catamarca,Catamarca,10
+10098,Santa Rosa,Santa Rosa,Catamarca,Catamarca,10
+10105,Tinogasta,Tinogasta,Catamarca,Catamarca,10
+10112,Valle Viejo,Valle Viejo,Catamarca,Catamarca,10
+14007,Calamuchita,Calamuchita,Córdoba,Cordoba,14
+14014,Capital,Capital,Córdoba,Cordoba,14
+14021,Colón,Colon,Córdoba,Cordoba,14
+14028,Cruz del Eje,Cruz del Eje,Córdoba,Cordoba,14
+14035,General Roca,General Roca,Córdoba,Cordoba,14
+14042,General San Martín,General San Martin,Córdoba,Cordoba,14
+14049,Ischilín,Ischilin,Córdoba,Cordoba,14
+14056,Juárez Celman,Juarez Celman,Córdoba,Cordoba,14
+14063,Marcos Juárez,Marcos Juarez,Córdoba,Cordoba,14
+14070,Minas,Minas,Córdoba,Cordoba,14
+14077,Pocho,Pocho,Córdoba,Cordoba,14
+14084,Presidente Roque Sáenz Peña,Presidente Roque Saenz Pena,Córdoba,Cordoba,14
+14091,Punilla,Punilla,Córdoba,Cordoba,14
+14098,Río Cuarto,Rio Cuarto,Córdoba,Cordoba,14
+14105,Río Primero,Rio Primero,Córdoba,Cordoba,14
+14112,Río Seco,Rio Seco,Córdoba,Cordoba,14
+14119,Río Segundo,Rio Segundo,Córdoba,Cordoba,14
+14126,San Alberto,San Alberto,Córdoba,Cordoba,14
+14133,San Javier,San Javier,Córdoba,Cordoba,14
+14140,San Justo,San Justo,Córdoba,Cordoba,14
+14147,Santa María,Santa Maria,Córdoba,Cordoba,14
+14154,Sobremonte,Sobremonte,Córdoba,Cordoba,14
+14161,Tercero Arriba,Tercero Arriba,Córdoba,Cordoba,14
+14168,Totoral,Totoral,Córdoba,Cordoba,14
+14175,Tulumba,Tulumba,Córdoba,Cordoba,14
+14182,Unión,Union,Córdoba,Cordoba,14
+18007,Bella Vista,Bella Vista,Corrientes,Corrientes,18
+18014,Berón de Astrada,Beron de Astrada,Corrientes,Corrientes,18
+18021,Capital,Capital,Corrientes,Corrientes,18
+18028,Concepción,Concepcion,Corrientes,Corrientes,18
+18035,Curuzú Cuatiá,Curuzu Cuatia,Corrientes,Corrientes,18
+18042,Empedrado,Empedrado,Corrientes,Corrientes,18
+18049,Esquina,Esquina,Corrientes,Corrientes,18
+18056,General Alvear,General Alvear,Corrientes,Corrientes,18
+18063,General Paz,General Paz,Corrientes,Corrientes,18
+18070,Goya,Goya,Corrientes,Corrientes,18
+18077,Itatí,Itati,Corrientes,Corrientes,18
+18084,Ituzaingó,Ituzaingo,Corrientes,Corrientes,18
+18091,Lavalle,Lavalle,Corrientes,Corrientes,18
+18098,Mburucuyá,Mburucuya,Corrientes,Corrientes,18
+18105,Mercedes,Mercedes,Corrientes,Corrientes,18
+18112,Monte Caseros,Monte Caseros,Corrientes,Corrientes,18
+18119,Paso de los Libres,Paso de los Libres,Corrientes,Corrientes,18
+18126,Saladas,Saladas,Corrientes,Corrientes,18
+18133,San Cosme,San Cosme,Corrientes,Corrientes,18
+18140,San Luis del Palmar,San Luis del Palmar,Corrientes,Corrientes,18
+18147,San Martín,San Martin,Corrientes,Corrientes,18
+18154,San Miguel,San Miguel,Corrientes,Corrientes,18
+18161,San Roque,San Roque,Corrientes,Corrientes,18
+18168,Santo Tomé,Santo Tome,Corrientes,Corrientes,18
+18175,Sauce,Sauce,Corrientes,Corrientes,18
+22007,Almirante Brown,Almirante Brown,Chaco,Chaco,22
+22014,Bermejo,Bermejo,Chaco,Chaco,22
+22021,Comandante Fernández,Comandante Fernandez,Chaco,Chaco,22
+22028,Chacabuco,Chacabuco,Chaco,Chaco,22
+22036,12 de Octubre,12 de Octubre,Chaco,Chaco,22
+22039,2 de Abril,2 de Abril,Chaco,Chaco,22
+22043,Fray Justo Santa María de Oro,Fray Justo Santa Maria de Oro,Chaco,Chaco,22
+22049,General Belgrano,General Belgrano,Chaco,Chaco,22
+22056,General Donovan,General Donovan,Chaco,Chaco,22
+22063,General Güemes,General Guemes,Chaco,Chaco,22
+22070,Independencia,Independencia,Chaco,Chaco,22
+22077,Libertad,Libertad,Chaco,Chaco,22
+22084,Libertador General San Martín,Libertador General San Martin,Chaco,Chaco,22
+22091,Maipú,Maipu,Chaco,Chaco,22
+22098,Mayor Luis J. Fontana,Mayor Luis J. Fontana,Chaco,Chaco,22
+22105,9 de Julio,9 de Julio,Chaco,Chaco,22
+22112,O'Higgins,O'Higgins,Chaco,Chaco,22
+22119,Presidencia de la Plaza,Presidencia de la Plaza,Chaco,Chaco,22
+22126,1° de Mayo,1° de Mayo,Chaco,Chaco,22
+22133,Quitilipi,Quitilipi,Chaco,Chaco,22
+22140,San Fernando,San Fernando,Chaco,Chaco,22
+22147,San Lorenzo,San Lorenzo,Chaco,Chaco,22
+22154,Sargento Cabral,Sargento Cabral,Chaco,Chaco,22
+22161,Tapenagá,Tapenaga,Chaco,Chaco,22
+22168,25 de Mayo,25 de Mayo,Chaco,Chaco,22
+26007,Biedma,Biedma,Chubut,Chubut,26
+26014,Cushamen,Cushamen,Chubut,Chubut,26
+26021,Escalante,Escalante,Chubut,Chubut,26
+26028,Florentino Ameghino,Florentino Ameghino,Chubut,Chubut,26
+26035,Futaleufú,Futaleufu,Chubut,Chubut,26
+26042,Gaiman,Gaiman,Chubut,Chubut,26
+26049,Gastre,Gastre,Chubut,Chubut,26
+26056,Languiñeo,Languineo,Chubut,Chubut,26
+26063,Mártires,Martires,Chubut,Chubut,26
+26070,Paso de Indios,Paso de Indios,Chubut,Chubut,26
+26077,Rawson,Rawson,Chubut,Chubut,26
+26084,Río Senguer,Rio Senguer,Chubut,Chubut,26
+26091,Sarmiento,Sarmiento,Chubut,Chubut,26
+26098,Tehuelches,Tehuelches,Chubut,Chubut,26
+26105,Telsen,Telsen,Chubut,Chubut,26
+30008,Colón,Colon,Entre Ríos,Entre Rios,30
+30015,Concordia,Concordia,Entre Ríos,Entre Rios,30
+30021,Diamante,Diamante,Entre Ríos,Entre Rios,30
+30028,Federación,Federacion,Entre Ríos,Entre Rios,30
+30035,Federal,Federal,Entre Ríos,Entre Rios,30
+30042,Feliciano,Feliciano,Entre Ríos,Entre Rios,30
+30049,Gualeguay,Gualeguay,Entre Ríos,Entre Rios,30
+30056,Gualeguaychú,Gualeguaychu,Entre Ríos,Entre Rios,30
+30063,Islas del Ibicuy,Islas del Ibicuy,Entre Ríos,Entre Rios,30
+30070,La Paz,La Paz,Entre Ríos,Entre Rios,30
+30077,Nogoyá,Nogoya,Entre Ríos,Entre Rios,30
+30084,Paraná,Parana,Entre Ríos,Entre Rios,30
+30088,San Salvador,San Salvador,Entre Ríos,Entre Rios,30
+30091,Tala,Tala,Entre Ríos,Entre Rios,30
+30098,Uruguay,Uruguay,Entre Ríos,Entre Rios,30
+30105,Victoria,Victoria,Entre Ríos,Entre Rios,30
+30113,Villaguay,Villaguay,Entre Ríos,Entre Rios,30
+34007,Bermejo,Bermejo,Formosa,Formosa,34
+34014,Formosa,Formosa,Formosa,Formosa,34
+34021,Laishi,Laishi,Formosa,Formosa,34
+34028,Matacos,Matacos,Formosa,Formosa,34
+34035,Patiño,Patino,Formosa,Formosa,34
+34042,Pilagás,Pilagas,Formosa,Formosa,34
+34049,Pilcomayo,Pilcomayo,Formosa,Formosa,34
+34056,Pirané,Pirane,Formosa,Formosa,34
+34063,Ramón Lista,Ramon Lista,Formosa,Formosa,34
+38007,Cochinoca,Cochinoca,Jujuy,Jujuy,38
+38014,El Carmen,El Carmen,Jujuy,Jujuy,38
+38021,Dr. Manuel Belgrano,Dr. Manuel Belgrano,Jujuy,Jujuy,38
+38028,Humahuaca,Humahuaca,Jujuy,Jujuy,38
+38035,Ledesma,Ledesma,Jujuy,Jujuy,38
+38042,Palpalá,Palpala,Jujuy,Jujuy,38
+38049,Rinconada,Rinconada,Jujuy,Jujuy,38
+38056,San Antonio,San Antonio,Jujuy,Jujuy,38
+38063,San Pedro,San Pedro,Jujuy,Jujuy,38
+38070,Santa Bárbara,Santa Barbara,Jujuy,Jujuy,38
+38077,Santa Catalina,Santa Catalina,Jujuy,Jujuy,38
+38084,Susques,Susques,Jujuy,Jujuy,38
+38094,Tilcara,Tilcara,Jujuy,Jujuy,38
+38098,Tumbaya,Tumbaya,Jujuy,Jujuy,38
+38105,Valle Grande,Valle Grande,Jujuy,Jujuy,38
+38112,Yavi,Yavi,Jujuy,Jujuy,38
+42007,Atreucó,Atreuco,La Pampa,La Pampa,42
+42014,Caleu Caleu,Caleu Caleu,La Pampa,La Pampa,42
+42021,Capital,Capital,La Pampa,La Pampa,42
+42028,Catriló,Catrilo,La Pampa,La Pampa,42
+42035,Conhelo,Conhelo,La Pampa,La Pampa,42
+42042,Curacó,Curaco,La Pampa,La Pampa,42
+42049,Chalileo,Chalileo,La Pampa,La Pampa,42
+42056,Chapaleufú,Chapaleufu,La Pampa,La Pampa,42
+42063,Chical Co,Chical Co,La Pampa,La Pampa,42
+42070,Guatraché,Guatrache,La Pampa,La Pampa,42
+42077,Hucal,Hucal,La Pampa,La Pampa,42
+42084,Lihuel Calel,Lihuel Calel,La Pampa,La Pampa,42
+42091,Limay Mahuida,Limay Mahuida,La Pampa,La Pampa,42
+42098,Loventué,Loventue,La Pampa,La Pampa,42
+42105,Maracó,Maraco,La Pampa,La Pampa,42
+42112,Puelén,Puelen,La Pampa,La Pampa,42
+42119,Quemú Quemú,Quemu Quemu,La Pampa,La Pampa,42
+42126,Rancul,Rancul,La Pampa,La Pampa,42
+42133,Realicó,Realico,La Pampa,La Pampa,42
+42140,Toay,Toay,La Pampa,La Pampa,42
+42147,Trenel,Trenel,La Pampa,La Pampa,42
+42154,Utracán,Utracan,La Pampa,La Pampa,42
+46007,Arauco,Arauco,La Rioja,La Rioja,46
+46014,Capital,Capital,La Rioja,La Rioja,46
+46021,Castro Barros,Castro Barros,La Rioja,La Rioja,46
+46028,General Felipe Varela,General Felipe Varela,La Rioja,La Rioja,46
+46035,Chamical,Chamical,La Rioja,La Rioja,46
+46042,Chilecito,Chilecito,La Rioja,La Rioja,46
+46049,Famatina,Famatina,La Rioja,La Rioja,46
+46056,Ángel Vicente Peñaloza,Angel Vicente Penaloza,La Rioja,La Rioja,46
+46063,General Belgrano,General Belgrano,La Rioja,La Rioja,46
+46070,General Juan Facundo Quiroga,General Juan Facundo Quiroga,La Rioja,La Rioja,46
+46077,General Lamadrid,General Lamadrid,La Rioja,La Rioja,46
+46084,General Ortiz de Ocampo,General Ortiz de Ocampo,La Rioja,La Rioja,46
+46091,General San Martín,General San Martin,La Rioja,La Rioja,46
+46098,Vinchina,Vinchina,La Rioja,La Rioja,46
+46105,Independencia,Independencia,La Rioja,La Rioja,46
+46112,Rosario Vera Peñaloza,Rosario Vera Penaloza,La Rioja,La Rioja,46
+46119,San Blas de Los Sauces,San Blas de Los Sauces,La Rioja,La Rioja,46
+46126,Sanagasta,Sanagasta,La Rioja,La Rioja,46
+50007,Capital,Capital,Mendoza,Mendoza,50
+50014,General Alvear,General Alvear,Mendoza,Mendoza,50
+50021,Godoy Cruz,Godoy Cruz,Mendoza,Mendoza,50
+50028,Guaymallén,Guaymallen,Mendoza,Mendoza,50
+50035,Junín,Junin,Mendoza,Mendoza,50
+50042,La Paz,La Paz,Mendoza,Mendoza,50
+50049,Las Heras,Las Heras,Mendoza,Mendoza,50
+50056,Lavalle,Lavalle,Mendoza,Mendoza,50
+50063,Luján de Cuyo,Lujan de Cuyo,Mendoza,Mendoza,50
+50070,Maipú,Maipu,Mendoza,Mendoza,50
+50077,Malargüe,Malargue,Mendoza,Mendoza,50
+50084,Rivadavia,Rivadavia,Mendoza,Mendoza,50
+50091,San Carlos,San Carlos,Mendoza,Mendoza,50
+50098,San Martín,San Martin,Mendoza,Mendoza,50
+50105,San Rafael,San Rafael,Mendoza,Mendoza,50
+50112,Santa Rosa,Santa Rosa,Mendoza,Mendoza,50
+50119,Tunuyán,Tunuyan,Mendoza,Mendoza,50
+50126,Tupungato,Tupungato,Mendoza,Mendoza,50
+54007,Apóstoles,Apostoles,Misiones,Misiones,54
+54014,Cainguás,Cainguas,Misiones,Misiones,54
+54021,Candelaria,Candelaria,Misiones,Misiones,54
+54028,Capital,Capital,Misiones,Misiones,54
+54035,Concepción,Concepcion,Misiones,Misiones,54
+54042,Eldorado,Eldorado,Misiones,Misiones,54
+54049,General Manuel Belgrano,General Manuel Belgrano,Misiones,Misiones,54
+54056,Guaraní,Guarani,Misiones,Misiones,54
+54063,Iguazú,Iguazu,Misiones,Misiones,54
+54070,Leandro N. Alem,Leandro N. Alem,Misiones,Misiones,54
+54077,Libertador General San Martín,Libertador General San Martin,Misiones,Misiones,54
+54084,Montecarlo,Montecarlo,Misiones,Misiones,54
+54091,Oberá,Obera,Misiones,Misiones,54
+54098,San Ignacio,San Ignacio,Misiones,Misiones,54
+54105,San Javier,San Javier,Misiones,Misiones,54
+54112,San Pedro,San Pedro,Misiones,Misiones,54
+54119,25 de Mayo,25 de Mayo,Misiones,Misiones,54
+58007,Aluminé,Alumine,Neuquén,Neuquen,58
+58014,Añelo,Anelo,Neuquén,Neuquen,58
+58021,Catán Lil,Catan Lil,Neuquén,Neuquen,58
+58028,Collón Curá,Collon Cura,Neuquén,Neuquen,58
+58035,Confluencia,Confluencia,Neuquén,Neuquen,58
+58042,Chos Malal,Chos Malal,Neuquén,Neuquen,58
+58049,Huiliches,Huiliches,Neuquén,Neuquen,58
+58056,Lácar,Lacar,Neuquén,Neuquen,58
+58063,Loncopué,Loncopue,Neuquén,Neuquen,58
+58070,Los Lagos,Los Lagos,Neuquén,Neuquen,58
+58077,Minas,Minas,Neuquén,Neuquen,58
+58084,Ñorquín,Norquin,Neuquén,Neuquen,58
+58091,Pehuenches,Pehuenches,Neuquén,Neuquen,58
+58098,Picún Leufú,Picun Leufu,Neuquén,Neuquen,58
+58105,Picunches,Picunches,Neuquén,Neuquen,58
+58112,Zapala,Zapala,Neuquén,Neuquen,58
+62007,Adolfo Alsina,Adolfo Alsina,Río Negro,Rio Negro,62
+62014,Avellaneda,Avellaneda,Río Negro,Rio Negro,62
+62021,Bariloche,Bariloche,Río Negro,Rio Negro,62
+62028,Conesa,Conesa,Río Negro,Rio Negro,62
+62035,El Cuy,El Cuy,Río Negro,Rio Negro,62
+62042,General Roca,General Roca,Río Negro,Rio Negro,62
+62049,9 de Julio,9 de Julio,Río Negro,Rio Negro,62
+62056,Ñorquinco,Norquinco,Río Negro,Rio Negro,62
+62063,Pichi Mahuida,Pichi Mahuida,Río Negro,Rio Negro,62
+62070,Pilcaniyeu,Pilcaniyeu,Río Negro,Rio Negro,62
+62077,San Antonio,San Antonio,Río Negro,Rio Negro,62
+62084,Valcheta,Valcheta,Río Negro,Rio Negro,62
+62091,25 de Mayo,25 de Mayo,Río Negro,Rio Negro,62
+66007,Anta,Anta,Salta,Salta,66
+66014,Cachi,Cachi,Salta,Salta,66
+66021,Cafayate,Cafayate,Salta,Salta,66
+66028,Capital,Capital,Salta,Salta,66
+66035,Cerrillos,Cerrillos,Salta,Salta,66
+66042,Chicoana,Chicoana,Salta,Salta,66
+66049,General Güemes,General Guemes,Salta,Salta,66
+66056,General José de San Martín,General Jose de San Martin,Salta,Salta,66
+66063,Guachipas,Guachipas,Salta,Salta,66
+66070,Iruya,Iruya,Salta,Salta,66
+66077,La Caldera,La Caldera,Salta,Salta,66
+66084,La Candelaria,La Candelaria,Salta,Salta,66
+66091,La Poma,La Poma,Salta,Salta,66
+66098,La Viña,La Vina,Salta,Salta,66
+66105,Los Andes,Los Andes,Salta,Salta,66
+66112,Metán,Metan,Salta,Salta,66
+66119,Molinos,Molinos,Salta,Salta,66
+66126,Orán,Oran,Salta,Salta,66
+66133,Rivadavia,Rivadavia,Salta,Salta,66
+66140,Rosario de la Frontera,Rosario de la Frontera,Salta,Salta,66
+66147,Rosario de Lerma,Rosario de Lerma,Salta,Salta,66
+66154,San Carlos,San Carlos,Salta,Salta,66
+66161,Santa Victoria,Santa Victoria,Salta,Salta,66
+70007,Albardón,Albardon,San Juan,San Juan,70
+70014,Angaco,Angaco,San Juan,San Juan,70
+70021,Calingasta,Calingasta,San Juan,San Juan,70
+70028,Capital,Capital,San Juan,San Juan,70
+70035,Caucete,Caucete,San Juan,San Juan,70
+70042,Chimbas,Chimbas,San Juan,San Juan,70
+70049,Iglesia,Iglesia,San Juan,San Juan,70
+70056,Jáchal,Jachal,San Juan,San Juan,70
+70063,9 de Julio,9 de Julio,San Juan,San Juan,70
+70070,Pocito,Pocito,San Juan,San Juan,70
+70077,Rawson,Rawson,San Juan,San Juan,70
+70084,Rivadavia,Rivadavia,San Juan,San Juan,70
+70091,San Martín,San Martin,San Juan,San Juan,70
+70098,Santa Lucía,Santa Lucia,San Juan,San Juan,70
+70105,Sarmiento,Sarmiento,San Juan,San Juan,70
+70112,Ullum,Ullum,San Juan,San Juan,70
+70119,Valle Fértil,Valle Fertil,San Juan,San Juan,70
+70126,25 de Mayo,25 de Mayo,San Juan,San Juan,70
+70133,Zonda,Zonda,San Juan,San Juan,70
+74007,Ayacucho,Ayacucho,San Luis,San Luis,74
+74014,Belgrano,Belgrano,San Luis,San Luis,74
+74021,Coronel Pringles,Coronel Pringles,San Luis,San Luis,74
+74028,Chacabuco,Chacabuco,San Luis,San Luis,74
+74035,General Pedernera,General Pedernera,San Luis,San Luis,74
+74042,Gobernador Dupuy,Gobernador Dupuy,San Luis,San Luis,74
+74049,Junín,Junin,San Luis,San Luis,74
+74056,Juan Martín de Pueyrredón,Juan Martin de Pueyrredon,San Luis,San Luis,74
+74063,Libertador General San Martín,Libertador General San Martin,San Luis,San Luis,74
+78007,Corpen Aike,Corpen Aike,Santa Cruz,Santa Cruz,78
+78014,Deseado,Deseado,Santa Cruz,Santa Cruz,78
+78021,Güer Aike,Guer Aike,Santa Cruz,Santa Cruz,78
+78028,Lago Argentino,Lago Argentino,Santa Cruz,Santa Cruz,78
+78035,Lago Buenos Aires,Lago Buenos Aires,Santa Cruz,Santa Cruz,78
+78042,Magallanes,Magallanes,Santa Cruz,Santa Cruz,78
+78049,Río Chico,Rio Chico,Santa Cruz,Santa Cruz,78
+82007,Belgrano,Belgrano,Santa Fe,Santa Fe,82
+82014,Caseros,Caseros,Santa Fe,Santa Fe,82
+82021,Castellanos,Castellanos,Santa Fe,Santa Fe,82
+82028,Constitución,Constitucion,Santa Fe,Santa Fe,82
+82035,Garay,Garay,Santa Fe,Santa Fe,82
+82042,General López,General Lopez,Santa Fe,Santa Fe,82
+82049,General Obligado,General Obligado,Santa Fe,Santa Fe,82
+82056,Iriondo,Iriondo,Santa Fe,Santa Fe,82
+82063,La Capital,La Capital,Santa Fe,Santa Fe,82
+82070,Las Colonias,Las Colonias,Santa Fe,Santa Fe,82
+82077,9 de Julio,9 de Julio,Santa Fe,Santa Fe,82
+82084,Rosario,Rosario,Santa Fe,Santa Fe,82
+82091,San Cristóbal,San Cristobal,Santa Fe,Santa Fe,82
+82098,San Javier,San Javier,Santa Fe,Santa Fe,82
+82105,San Jerónimo,San Jeronimo,Santa Fe,Santa Fe,82
+82112,San Justo,San Justo,Santa Fe,Santa Fe,82
+82119,San Lorenzo,San Lorenzo,Santa Fe,Santa Fe,82
+82126,San Martín,San Martin,Santa Fe,Santa Fe,82
+82133,Vera,Vera,Santa Fe,Santa Fe,82
+86007,Aguirre,Aguirre,Santiago del Estero,Santiago del Estero,86
+86014,Alberdi,Alberdi,Santiago del Estero,Santiago del Estero,86
+86021,Atamisqui,Atamisqui,Santiago del Estero,Santiago del Estero,86
+86028,Avellaneda,Avellaneda,Santiago del Estero,Santiago del Estero,86
+86035,Banda,Banda,Santiago del Estero,Santiago del Estero,86
+86042,Belgrano,Belgrano,Santiago del Estero,Santiago del Estero,86
+86049,Capital,Capital,Santiago del Estero,Santiago del Estero,86
+86056,Copo,Copo,Santiago del Estero,Santiago del Estero,86
+86063,Choya,Choya,Santiago del Estero,Santiago del Estero,86
+86070,Figueroa,Figueroa,Santiago del Estero,Santiago del Estero,86
+86077,General Taboada,General Taboada,Santiago del Estero,Santiago del Estero,86
+86084,Guasayán,Guasayan,Santiago del Estero,Santiago del Estero,86
+86091,Jiménez,Jimenez,Santiago del Estero,Santiago del Estero,86
+86098,Juan Felipe Ibarra,Juan Felipe Ibarra,Santiago del Estero,Santiago del Estero,86
+86105,Loreto,Loreto,Santiago del Estero,Santiago del Estero,86
+86112,Mitre,Mitre,Santiago del Estero,Santiago del Estero,86
+86119,Moreno,Moreno,Santiago del Estero,Santiago del Estero,86
+86126,Ojo de Agua,Ojo de Agua,Santiago del Estero,Santiago del Estero,86
+86133,Pellegrini,Pellegrini,Santiago del Estero,Santiago del Estero,86
+86140,Quebrachos,Quebrachos,Santiago del Estero,Santiago del Estero,86
+86147,Río Hondo,Rio Hondo,Santiago del Estero,Santiago del Estero,86
+86154,Rivadavia,Rivadavia,Santiago del Estero,Santiago del Estero,86
+86161,Robles,Robles,Santiago del Estero,Santiago del Estero,86
+86168,Salavina,Salavina,Santiago del Estero,Santiago del Estero,86
+86175,San Martín,San Martin,Santiago del Estero,Santiago del Estero,86
+86182,Sarmiento,Sarmiento,Santiago del Estero,Santiago del Estero,86
+86189,Silípica,Silipica,Santiago del Estero,Santiago del Estero,86
+90007,Burruyacú,Burruyacu,Tucumán,Tucuman,90
+90014,Cruz Alta,Cruz Alta,Tucumán,Tucuman,90
+90021,Chicligasta,Chicligasta,Tucumán,Tucuman,90
+90028,Famaillá,Famailla,Tucumán,Tucuman,90
+90035,Graneros,Graneros,Tucumán,Tucuman,90
+90042,Juan Bautista Alberdi,Juan Bautista Alberdi,Tucumán,Tucuman,90
+90049,La Cocha,La Cocha,Tucumán,Tucuman,90
+90056,Leales,Leales,Tucumán,Tucuman,90
+90063,Lules,Lules,Tucumán,Tucuman,90
+90070,Monteros,Monteros,Tucumán,Tucuman,90
+90077,Río Chico,Rio Chico,Tucumán,Tucuman,90
+90084,Capital,Capital,Tucumán,Tucuman,90
+90091,Simoca,Simoca,Tucumán,Tucuman,90
+90098,Tafí del Valle,Tafi del Valle,Tucumán,Tucuman,90
+90105,Tafí Viejo,Tafi Viejo,Tucumán,Tucuman,90
+90112,Trancas,Trancas,Tucumán,Tucuman,90
+90119,Yerba Buena,Yerba Buena,Tucumán,Tucuman,90
+94008,Río Grande,Rio Grande,"Tierra del Fuego, Antártida e Islas del Atlántico Sur","Tierra del Fuego, Antartida e Islas del Atlantico Sur",94
+94011,Tolhuin,Tolhuin,"Tierra del Fuego, Antártida e Islas del Atlántico Sur","Tierra del Fuego, Antartida e Islas del Atlantico Sur",94
+94015,Ushuaia,Ushuaia,"Tierra del Fuego, Antártida e Islas del Atlántico Sur","Tierra del Fuego, Antartida e Islas del Atlantico Sur",94
+94021,Islas del Atlántico Sur,Islas del Atlantico Sur,"Tierra del Fuego, Antártida e Islas del Atlántico Sur","Tierra del Fuego, Antartida e Islas del Atlantico Sur",94
+94028,Antártida Argentina,Antartida Argentina,"Tierra del Fuego, Antártida e Islas del Atlántico Sur","Tierra del Fuego, Antartida e Islas del Atlantico Sur",94

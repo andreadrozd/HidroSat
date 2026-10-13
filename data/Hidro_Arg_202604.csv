@@ -1,0 +1,528 @@
+in1,departamento,provincia,anio,mes,ppt,ppt_p,ppt_med,ppt_cat,t2m,t2m_p,t2m_med,t2m_cat,sm28,sm28_p,sm28_med,sm28_cat,sm289,sm289_p,sm289_med,sm289_cat,npp,npp_p,npp_med,npp_cat
+02042,Comuna 6,Ciudad Autónoma de Buenos Aires,2026,4,109.9,80.0,80.9,Alto,18.2,72.0,17.64,Alto,0.385,80.0,0.33,Alto,0.32,4.0,0.369,Muy bajo,,,,Sin datos
+02007,Comuna 1,Ciudad Autónoma de Buenos Aires,2026,4,111.4,80.0,80.9,Alto,18.3,72.0,17.8,Alto,0.41,80.0,0.351,Alto,0.39,20.0,0.415,Bajo,89.1,40.0,91.5,Normal
+02028,Comuna 4,Ciudad Autónoma de Buenos Aires,2026,4,102.1,80.0,75.1,Alto,18.09,72.0,17.6,Alto,0.438,88.0,0.365,Alto,0.406,16.0,0.438,Bajo,81.4,0.0,86.6,Muy bajo
+02035,Comuna 5,Ciudad Autónoma de Buenos Aires,2026,4,109.3,80.0,79.6,Alto,18.25,72.0,17.75,Alto,0.416,80.0,0.354,Alto,0.393,16.0,0.42,Bajo,,,,Sin datos
+02049,Comuna 7,Ciudad Autónoma de Buenos Aires,2026,4,100.3,80.0,77.6,Alto,17.97,72.0,17.47,Alto,0.427,88.0,0.354,Alto,0.377,12.0,0.414,Bajo,,,,Sin datos
+02070,Comuna 10,Ciudad Autónoma de Buenos Aires,2026,4,104.0,80.0,80.3,Alto,18.05,72.0,17.52,Alto,0.405,80.0,0.339,Alto,0.341,4.0,0.386,Muy bajo,,,,Sin datos
+02077,Comuna 11,Ciudad Autónoma de Buenos Aires,2026,4,109.4,80.0,80.9,Alto,18.17,84.0,17.6,Alto,0.378,80.0,0.323,Alto,0.299,4.0,0.352,Muy bajo,,,,Sin datos
+02084,Comuna 12,Ciudad Autónoma de Buenos Aires,2026,4,109.4,80.0,80.9,Alto,18.17,84.0,17.6,Alto,0.378,80.0,0.323,Alto,0.299,4.0,0.352,Muy bajo,,,,Sin datos
+02014,Comuna 2,Ciudad Autónoma de Buenos Aires,2026,4,111.5,80.0,80.9,Alto,18.3,72.0,17.8,Alto,0.409,80.0,0.351,Alto,0.39,20.0,0.414,Bajo,31.1,80.0,27.3,Alto
+02056,Comuna 8,Ciudad Autónoma de Buenos Aires,2026,4,97.0,80.0,76.0,Alto,17.89,72.0,17.41,Alto,0.441,88.0,0.366,Alto,0.399,16.0,0.43,Bajo,,,,Sin datos
+02091,Comuna 13,Ciudad Autónoma de Buenos Aires,2026,4,109.5,80.0,80.9,Alto,18.17,84.0,17.61,Alto,0.379,80.0,0.324,Alto,0.302,4.0,0.354,Muy bajo,71.6,40.0,75.0,Normal
+02021,Comuna 3,Ciudad Autónoma de Buenos Aires,2026,4,111.5,80.0,80.9,Alto,18.3,72.0,17.8,Alto,0.409,80.0,0.351,Alto,0.39,20.0,0.414,Bajo,,,,Sin datos
+02098,Comuna 14,Ciudad Autónoma de Buenos Aires,2026,4,111.2,80.0,81.2,Alto,18.28,72.0,17.77,Alto,0.405,80.0,0.347,Alto,0.376,8.0,0.406,Muy bajo,59.3,60.0,57.2,Normal
+02063,Comuna 9,Ciudad Autónoma de Buenos Aires,2026,4,96.8,80.0,76.2,Alto,17.88,72.0,17.4,Alto,0.441,88.0,0.366,Alto,0.398,16.0,0.43,Bajo,,,,Sin datos
+02105,Comuna 15,Ciudad Autónoma de Buenos Aires,2026,4,109.5,80.0,80.9,Alto,18.17,84.0,17.61,Alto,0.379,80.0,0.324,Alto,0.303,4.0,0.355,Muy bajo,,,,Sin datos
+30028,Federaci?n,Entre Ríos,2026,4,140.2,60.0,123.9,Normal,19.79,64.0,19.7,Normal,0.397,68.0,0.369,Normal,0.361,28.0,0.38,Bajo,92.0,100.0,85.2,Muy alto
+30063,Islas del Ibicuy,Entre Ríos,2026,4,154.5,88.0,82.2,Alto,18.5,76.0,17.97,Alto,0.497,76.0,0.463,Alto,0.347,0.0,0.428,Muy bajo,90.6,80.0,85.5,Alto
+30098,Uruguay,Entre Ríos,2026,4,179.3,72.0,97.2,Alto,18.79,72.0,18.43,Alto,0.387,72.0,0.358,Alto,0.309,8.0,0.368,Muy bajo,89.8,100.0,80.0,Muy alto
+30056,Gualeguaych?,Entre Ríos,2026,4,183.8,84.0,89.4,Alto,18.64,76.0,18.19,Alto,0.437,72.0,0.405,Alto,0.332,4.0,0.414,Muy bajo,91.8,100.0,85.2,Muy alto
+30015,Concordia,Entre Ríos,2026,4,153.8,72.0,112.4,Alto,19.23,56.0,19.2,Normal,0.389,68.0,0.339,Normal,0.338,20.0,0.356,Bajo,95.7,100.0,85.9,Muy alto
+30113,Villaguay,Entre Ríos,2026,4,196.4,80.0,98.6,Alto,18.93,56.0,18.9,Normal,0.445,76.0,0.402,Alto,0.353,8.0,0.414,Muy bajo,89.3,100.0,81.3,Muy alto
+30035,Federal,Entre Ríos,2026,4,179.2,84.0,100.5,Alto,19.41,56.0,19.33,Normal,0.438,64.0,0.398,Normal,0.35,12.0,0.407,Bajo,98.4,100.0,90.1,Muy alto
+30088,San Salvador,Entre Ríos,2026,4,161.9,76.0,93.3,Alto,18.93,56.0,18.9,Normal,0.444,72.0,0.398,Alto,0.371,12.0,0.416,Bajo,89.9,100.0,79.9,Muy alto
+30077,Nogoy?,Entre Ríos,2026,4,255.1,96.0,88.8,Muy alto,18.45,52.0,18.42,Normal,0.445,76.0,0.398,Alto,0.328,12.0,0.399,Bajo,96.4,100.0,85.3,Muy alto
+30091,Tala,Entre Ríos,2026,4,210.4,80.0,87.8,Alto,18.6,60.0,18.43,Normal,0.439,76.0,0.398,Alto,0.331,4.0,0.414,Muy bajo,91.7,100.0,81.1,Muy alto
+30042,Feliciano,Entre Ríos,2026,4,164.5,68.0,99.9,Normal,19.91,56.0,19.79,Normal,0.425,60.0,0.397,Normal,0.337,4.0,0.396,Muy bajo,89.7,100.0,84.5,Muy alto
+30084,Paran?,Entre Ríos,2026,4,287.8,92.0,93.2,Muy alto,18.86,52.0,18.83,Normal,0.437,76.0,0.403,Alto,0.341,16.0,0.392,Bajo,90.6,100.0,82.0,Muy alto
+30021,Diamante,Entre Ríos,2026,4,263.9,92.0,79.6,Muy alto,18.72,48.0,18.73,Normal,0.465,76.0,0.422,Alto,0.331,16.0,0.387,Bajo,94.0,100.0,78.4,Muy alto
+30105,Victoria,Entre Ríos,2026,4,200.6,92.0,80.3,Muy alto,18.73,56.0,18.59,Normal,0.514,76.0,0.466,Alto,0.348,8.0,0.437,Muy bajo,97.0,100.0,87.1,Muy alto
+30049,Gualeguay,Entre Ríos,2026,4,198.2,96.0,88.4,Muy alto,18.57,60.0,18.29,Normal,0.495,76.0,0.453,Alto,0.345,4.0,0.44,Muy bajo,92.1,100.0,83.6,Muy alto
+86014,Alberdi,Santiago del Estero,2026,4,161.0,100.0,77.5,Muy alto,21.48,44.0,21.68,Normal,0.297,64.0,0.276,Normal,0.152,0.0,0.17,Muy bajo,82.0,40.0,97.7,Normal
+86098,Juan Felipe Ibarra,Santiago del Estero,2026,4,193.8,96.0,66.1,Muy alto,21.11,36.0,21.36,Normal,0.311,76.0,0.254,Alto,0.151,4.0,0.179,Muy bajo,85.2,100.0,77.3,Muy alto
+86077,General Taboada,Santiago del Estero,2026,4,205.2,96.0,59.0,Muy alto,20.76,32.0,21.02,Normal,0.324,76.0,0.245,Alto,0.153,0.0,0.184,Muy bajo,86.7,100.0,77.4,Muy alto
+86126,Ojo de Agua,Santiago del Estero,2026,4,80.5,76.0,55.0,Alto,20.04,40.0,20.26,Normal,0.248,52.0,0.245,Normal,0.133,0.0,0.185,Muy bajo,55.1,60.0,51.9,Normal
+86063,Choya,Santiago del Estero,2026,4,48.3,44.0,62.2,Normal,20.39,40.0,20.55,Normal,0.177,36.0,0.213,Normal,0.082,12.0,0.147,Bajo,77.3,60.0,76.3,Normal
+86140,Quebrachos,Santiago del Estero,2026,4,114.5,72.0,68.9,Alto,19.85,40.0,20.19,Normal,0.265,64.0,0.221,Normal,0.103,0.0,0.163,Muy bajo,76.8,60.0,72.5,Normal
+86056,Copo,Santiago del Estero,2026,4,165.7,100.0,70.2,Muy alto,21.59,44.0,22.07,Normal,0.307,72.0,0.273,Alto,0.154,0.0,0.176,Muy bajo,79.4,40.0,103.4,Normal
+86147,R?o Hondo,Santiago del Estero,2026,4,53.8,32.0,69.8,Normal,20.71,52.0,20.69,Normal,0.267,36.0,0.274,Normal,0.17,24.0,0.199,Bajo,103.2,80.0,92.5,Alto
+86035,Banda,Santiago del Estero,2026,4,59.0,52.0,57.7,Normal,21.27,44.0,21.37,Normal,0.237,36.0,0.269,Normal,0.143,20.0,0.192,Bajo,87.6,80.0,79.6,Alto
+86007,Aguirre,Santiago del Estero,2026,4,174.2,92.0,73.3,Muy alto,20.39,36.0,20.53,Normal,0.329,68.0,0.255,Normal,0.151,0.0,0.19,Muy bajo,81.3,60.0,78.3,Normal
+86084,Guasay?n,Santiago del Estero,2026,4,45.5,36.0,56.3,Normal,19.8,44.0,19.81,Normal,0.207,40.0,0.227,Normal,0.119,20.0,0.167,Bajo,110.0,80.0,105.1,Alto
+86161,Robles,Santiago del Estero,2026,4,76.1,60.0,62.6,Normal,21.16,40.0,21.33,Normal,0.208,44.0,0.215,Normal,0.101,20.0,0.137,Bajo,84.2,60.0,78.0,Normal
+86119,Moreno,Santiago del Estero,2026,4,200.2,96.0,75.5,Muy alto,21.3,44.0,21.36,Normal,0.31,72.0,0.259,Alto,0.153,0.0,0.17,Muy bajo,90.7,40.0,93.6,Normal
+86189,Sil?pica,Santiago del Estero,2026,4,61.1,52.0,56.2,Normal,20.96,40.0,21.23,Normal,0.245,44.0,0.256,Normal,0.124,16.0,0.179,Bajo,76.5,60.0,74.5,Normal
+86105,Loreto,Santiago del Estero,2026,4,61.5,52.0,52.4,Normal,21.04,36.0,21.32,Normal,0.209,48.0,0.235,Normal,0.112,8.0,0.158,Muy bajo,52.0,40.0,52.3,Normal
+86070,Figueroa,Santiago del Estero,2026,4,92.2,72.0,53.8,Alto,21.45,44.0,21.69,Normal,0.26,52.0,0.256,Normal,0.139,4.0,0.163,Muy bajo,80.7,60.0,78.8,Normal
+86168,Salavina,Santiago del Estero,2026,4,131.1,88.0,56.8,Alto,20.59,36.0,20.96,Normal,0.307,68.0,0.249,Normal,0.138,0.0,0.17,Muy bajo,65.2,60.0,64.0,Normal
+86133,Pellegrini,Santiago del Estero,2026,4,57.0,48.0,62.3,Normal,21.18,48.0,21.21,Normal,0.237,32.0,0.273,Normal,0.151,8.0,0.185,Muy bajo,81.9,20.0,112.4,Bajo
+86112,Mitre,Santiago del Estero,2026,4,142.1,92.0,71.5,Muy alto,20.28,40.0,20.56,Normal,0.328,68.0,0.279,Normal,0.148,0.0,0.194,Muy bajo,65.2,20.0,70.9,Bajo
+86021,Atamisqui,Santiago del Estero,2026,4,86.7,68.0,62.3,Normal,20.99,36.0,21.32,Normal,0.281,52.0,0.278,Normal,0.139,0.0,0.166,Muy bajo,60.0,100.0,56.9,Muy alto
+86091,Jim?nez,Santiago del Estero,2026,4,55.9,40.0,68.9,Normal,21.14,44.0,21.29,Normal,0.245,36.0,0.277,Normal,0.157,12.0,0.208,Bajo,87.5,40.0,89.3,Normal
+42014,Caleu Caleu,La Pampa,2026,4,12.5,12.0,42.8,Bajo,15.3,52.0,15.24,Normal,0.192,76.0,0.175,Alto,0.099,0.0,0.109,Muy bajo,41.4,80.0,34.9,Alto
+42063,Chical Co,La Pampa,2026,4,13.1,40.0,19.7,Normal,15.44,52.0,14.96,Normal,0.131,48.0,0.156,Normal,0.111,8.0,0.119,Muy bajo,29.2,60.0,20.9,Normal
+42056,Chapaleuf?,La Pampa,2026,4,80.8,56.0,66.5,Normal,16.58,44.0,16.98,Normal,0.284,76.0,0.255,Alto,0.128,8.0,0.164,Muy bajo,69.5,80.0,67.1,Alto
+42126,Rancul,La Pampa,2026,4,49.8,32.0,62.1,Normal,16.38,48.0,16.62,Normal,0.302,60.0,0.285,Normal,0.173,8.0,0.2,Muy bajo,72.1,100.0,61.5,Muy alto
+42084,Lihuel Calel,La Pampa,2026,4,16.6,20.0,34.9,Bajo,14.93,48.0,15.07,Normal,0.184,80.0,0.164,Alto,0.109,0.0,0.125,Muy bajo,33.3,60.0,33.1,Normal
+42077,Hucal,La Pampa,2026,4,23.6,28.0,55.0,Bajo,15.05,48.0,15.09,Normal,0.233,68.0,0.199,Normal,0.122,4.0,0.137,Muy bajo,54.2,80.0,48.8,Alto
+42091,Limay Mahuida,La Pampa,2026,4,12.7,24.0,24.6,Bajo,16.2,44.0,16.33,Normal,0.156,48.0,0.156,Normal,0.15,8.0,0.163,Muy bajo,29.6,60.0,28.8,Normal
+42070,Guatrach?,La Pampa,2026,4,35.7,28.0,56.8,Bajo,15.08,40.0,15.24,Normal,0.361,72.0,0.315,Alto,0.218,36.0,0.224,Normal,54.3,80.0,48.9,Alto
+42105,Marac?,La Pampa,2026,4,62.8,44.0,76.2,Normal,16.25,44.0,16.45,Normal,0.211,60.0,0.188,Normal,0.091,16.0,0.116,Bajo,72.1,80.0,67.3,Alto
+42133,Realic?,La Pampa,2026,4,71.1,56.0,64.7,Normal,16.5,44.0,16.99,Normal,0.282,64.0,0.249,Normal,0.135,8.0,0.176,Muy bajo,84.7,100.0,63.1,Muy alto
+42154,Utrac?n,La Pampa,2026,4,30.8,32.0,48.6,Normal,15.14,44.0,15.3,Normal,0.192,68.0,0.155,Normal,0.089,12.0,0.1,Bajo,47.9,80.0,43.3,Alto
+42140,Toay,La Pampa,2026,4,44.6,36.0,56.3,Normal,15.65,52.0,15.63,Normal,0.27,60.0,0.244,Normal,0.15,12.0,0.172,Bajo,57.7,80.0,49.3,Alto
+42147,Trenel,La Pampa,2026,4,54.4,40.0,76.8,Normal,16.22,44.0,16.42,Normal,0.279,56.0,0.254,Normal,0.155,12.0,0.178,Bajo,86.5,100.0,59.9,Muy alto
+42049,Chalileo,La Pampa,2026,4,21.1,36.0,31.8,Normal,16.57,44.0,16.75,Normal,0.17,56.0,0.15,Normal,0.144,20.0,0.153,Bajo,46.9,100.0,36.3,Muy alto
+42112,Puel?n,La Pampa,2026,4,8.9,40.0,11.9,Normal,15.64,56.0,15.32,Normal,0.146,44.0,0.154,Normal,0.126,36.0,0.128,Normal,19.4,20.0,20.0,Bajo
+42035,Conhelo,La Pampa,2026,4,34.6,32.0,65.5,Normal,16.07,48.0,16.07,Normal,0.271,44.0,0.282,Normal,0.169,12.0,0.19,Bajo,71.9,100.0,58.0,Muy alto
+42098,Loventu?,La Pampa,2026,4,41.0,44.0,43.0,Normal,15.78,48.0,15.83,Normal,0.171,56.0,0.16,Normal,0.081,12.0,0.097,Bajo,53.1,100.0,46.7,Muy alto
+42007,Atreuc?,La Pampa,2026,4,39.7,28.0,65.9,Bajo,15.42,40.0,15.59,Normal,0.292,64.0,0.245,Normal,0.168,40.0,0.172,Normal,62.2,60.0,54.0,Normal
+42028,Catril?,La Pampa,2026,4,38.3,28.0,66.0,Bajo,15.62,40.0,15.84,Normal,0.258,60.0,0.219,Normal,0.147,56.0,0.146,Normal,67.0,60.0,60.2,Normal
+42119,Quem? Quem?,La Pampa,2026,4,43.3,28.0,71.5,Bajo,15.91,40.0,16.11,Normal,0.214,60.0,0.193,Normal,0.11,48.0,0.111,Normal,73.4,100.0,63.9,Muy alto
+42042,Curac?,La Pampa,2026,4,16.9,44.0,24.1,Normal,15.56,48.0,15.72,Normal,0.191,60.0,0.181,Normal,0.166,24.0,0.173,Bajo,21.7,20.0,23.0,Bajo
+38014,El Carmen,Jujuy,2026,4,90.4,4.0,164.7,Muy bajo,17.53,56.0,17.39,Normal,0.407,20.0,0.428,Bajo,0.369,16.0,0.407,Bajo,130.7,0.0,158.1,Muy bajo
+38112,Yavi,Jujuy,2026,4,19.1,32.0,21.0,Normal,10.22,92.0,9.22,Muy alto,0.245,8.0,0.268,Muy bajo,0.302,44.0,0.304,Normal,26.9,40.0,26.9,Normal
+38077,Santa Catalina,Jujuy,2026,4,18.1,64.0,17.2,Normal,8.53,84.0,7.64,Alto,0.214,12.0,0.233,Bajo,0.246,28.0,0.257,Bajo,16.5,40.0,18.4,Normal
+38105,Valle Grande,Jujuy,2026,4,116.8,4.0,193.9,Muy bajo,11.86,80.0,11.32,Alto,0.427,16.0,0.435,Bajo,0.458,8.0,0.464,Muy bajo,149.9,60.0,148.7,Normal
+38084,Susques,Jujuy,2026,4,12.9,80.0,6.1,Alto,5.51,72.0,5.16,Alto,0.169,48.0,0.172,Normal,0.156,20.0,0.164,Bajo,8.9,20.0,9.7,Bajo
+38094,Tilcara,Jujuy,2026,4,101.6,36.0,112.8,Normal,10.06,76.0,9.36,Alto,0.403,24.0,0.412,Bajo,0.408,4.0,0.422,Muy bajo,70.2,40.0,72.6,Normal
+38042,Palpal?,Jujuy,2026,4,119.7,8.0,205.0,Muy bajo,15.68,56.0,15.62,Normal,0.46,20.0,0.468,Bajo,0.465,16.0,0.488,Bajo,152.7,0.0,191.6,Muy bajo
+38035,Ledesma,Jujuy,2026,4,118.3,8.0,205.5,Muy bajo,17.57,52.0,17.45,Normal,0.456,12.0,0.476,Bajo,0.451,12.0,0.491,Bajo,173.6,0.0,189.6,Muy bajo
+38028,Humahuaca,Jujuy,2026,4,29.7,40.0,32.3,Normal,9.56,84.0,8.71,Alto,0.308,8.0,0.33,Muy bajo,0.327,4.0,0.336,Muy bajo,24.0,60.0,23.5,Normal
+38007,Cochinoca,Jujuy,2026,4,15.5,48.0,18.3,Normal,9.36,84.0,8.56,Alto,0.2,8.0,0.222,Muy bajo,0.207,32.0,0.212,Normal,16.5,40.0,17.3,Normal
+38098,Tumbaya,Jujuy,2026,4,50.2,40.0,57.5,Normal,9.88,92.0,8.86,Muy alto,0.321,8.0,0.34,Muy bajo,0.33,4.0,0.347,Muy bajo,23.7,20.0,24.5,Bajo
+38021,Dr. Manuel Belgrano,Jujuy,2026,4,153.3,8.0,221.6,Muy bajo,11.06,80.0,10.57,Alto,0.417,8.0,0.425,Muy bajo,0.447,4.0,0.454,Muy bajo,124.0,20.0,126.1,Bajo
+38049,Rinconada,Jujuy,2026,4,25.0,88.0,13.9,Alto,5.01,60.0,4.52,Normal,0.182,56.0,0.169,Normal,0.201,12.0,0.215,Bajo,13.0,40.0,13.4,Normal
+38070,Santa B?rbara,Jujuy,2026,4,50.4,12.0,106.0,Bajo,19.67,64.0,19.13,Normal,0.339,8.0,0.393,Muy bajo,0.284,12.0,0.347,Bajo,133.2,0.0,172.7,Muy bajo
+58063,Loncopu?,Neuquén,2026,4,12.1,28.0,29.1,Bajo,10.16,64.0,9.52,Normal,0.159,84.0,0.139,Alto,0.183,36.0,0.194,Normal,15.4,20.0,17.4,Bajo
+58084,?orqu?n,Neuquén,2026,4,28.5,32.0,48.0,Normal,8.53,64.0,7.65,Normal,0.205,84.0,0.173,Alto,0.248,8.0,0.26,Muy bajo,20.9,20.0,23.4,Bajo
+58098,Pic?n Leuf?,Neuquén,2026,4,1.5,8.0,14.6,Muy bajo,12.89,60.0,12.56,Normal,0.095,16.0,0.109,Bajo,0.088,32.0,0.091,Normal,12.0,20.0,12.7,Bajo
+58112,Zapala,Neuquén,2026,4,3.9,8.0,19.4,Muy bajo,11.21,56.0,10.68,Normal,0.091,36.0,0.101,Normal,0.106,32.0,0.116,Normal,11.0,20.0,11.8,Bajo
+58035,Confluencia,Neuquén,2026,4,3.3,16.0,9.8,Bajo,14.28,52.0,13.93,Normal,0.14,36.0,0.15,Normal,0.104,64.0,0.095,Normal,14.1,40.0,14.3,Normal
+58014,A?elo,Neuquén,2026,4,4.0,12.0,13.5,Bajo,14.27,64.0,13.69,Normal,0.156,36.0,0.17,Normal,0.122,76.0,0.112,Alto,14.2,40.0,14.9,Normal
+58091,Pehuenches,Neuquén,2026,4,9.2,20.0,20.6,Bajo,12.57,64.0,11.97,Normal,0.134,36.0,0.149,Normal,0.136,24.0,0.141,Bajo,12.6,40.0,13.1,Normal
+58021,Cat?n Lil,Neuquén,2026,4,14.7,28.0,34.6,Bajo,8.83,68.0,8.38,Normal,0.146,68.0,0.131,Normal,0.198,12.0,0.215,Bajo,13.9,20.0,15.9,Bajo
+58028,Coll?n Cur?,Neuquén,2026,4,7.9,16.0,25.4,Bajo,10.3,64.0,9.93,Normal,0.15,68.0,0.14,Normal,0.196,12.0,0.213,Bajo,11.3,20.0,13.2,Bajo
+58007,Alumin?,Neuquén,2026,4,54.1,32.0,71.5,Normal,6.28,56.0,6.12,Normal,0.321,80.0,0.272,Alto,0.329,16.0,0.331,Bajo,30.6,40.0,39.2,Normal
+58070,Los Lagos,Neuquén,2026,4,80.6,28.0,112.4,Bajo,6.37,48.0,6.41,Normal,0.366,64.0,0.346,Normal,0.378,80.0,0.372,Alto,36.5,40.0,43.1,Normal
+58056,L?car,Neuquén,2026,4,51.7,24.0,77.0,Bajo,7.28,64.0,7.1,Normal,0.315,64.0,0.287,Normal,0.338,16.0,0.341,Bajo,29.9,40.0,36.8,Normal
+58105,Picunches,Neuquén,2026,4,13.7,20.0,32.4,Bajo,9.42,64.0,8.86,Normal,0.152,64.0,0.135,Normal,0.193,8.0,0.205,Muy bajo,16.4,20.0,19.1,Bajo
+58042,Chos Malal,Neuquén,2026,4,31.8,44.0,34.7,Normal,6.68,56.0,6.17,Normal,0.144,88.0,0.103,Alto,0.218,16.0,0.226,Bajo,14.9,40.0,15.2,Normal
+58049,Huiliches,Neuquén,2026,4,53.6,28.0,78.8,Bajo,7.36,60.0,7.26,Normal,0.346,68.0,0.311,Normal,0.365,28.0,0.367,Bajo,34.7,40.0,44.0,Normal
+22112,O'Higgins,Chaco,2026,4,279.6,96.0,86.2,Muy alto,21.88,76.0,21.57,Alto,0.317,64.0,0.258,Normal,0.151,0.0,0.204,Muy bajo,102.4,100.0,80.1,Muy alto
+70070,Pocito,San Juan,2026,4,22.8,20.0,40.7,Bajo,15.21,36.0,15.6,Normal,0.118,40.0,0.139,Normal,0.107,12.0,0.129,Bajo,43.1,80.0,38.8,Alto
+70133,Zonda,San Juan,2026,4,23.1,20.0,40.2,Bajo,11.59,56.0,11.38,Normal,0.187,32.0,0.218,Normal,0.2,16.0,0.224,Bajo,25.7,100.0,23.0,Muy alto
+70042,Chimbas,San Juan,2026,4,8.9,24.0,20.7,Bajo,16.51,24.0,17.12,Bajo,0.224,36.0,0.232,Normal,0.114,0.0,0.119,Muy bajo,29.0,80.0,28.4,Alto
+70007,Albard?n,San Juan,2026,4,6.9,28.0,18.3,Bajo,16.44,32.0,17.12,Normal,0.12,48.0,0.122,Normal,0.09,48.0,0.09,Normal,22.6,80.0,20.7,Alto
+70014,Angaco,San Juan,2026,4,8.0,32.0,13.2,Normal,16.66,36.0,17.42,Normal,0.098,36.0,0.105,Normal,0.082,68.0,0.078,Normal,20.3,80.0,17.2,Alto
+70035,Caucete,San Juan,2026,4,12.4,28.0,21.7,Bajo,17.46,44.0,17.88,Normal,0.118,16.0,0.135,Bajo,0.097,0.0,0.11,Muy bajo,30.0,100.0,22.3,Muy alto
+70056,J?chal,San Juan,2026,4,12.7,28.0,17.5,Bajo,15.68,48.0,15.94,Normal,0.098,20.0,0.115,Bajo,0.093,0.0,0.103,Muy bajo,25.0,60.0,23.3,Normal
+70119,Valle F?rtil,San Juan,2026,4,22.9,36.0,29.2,Normal,16.03,48.0,16.52,Normal,0.13,28.0,0.142,Bajo,0.111,0.0,0.131,Muy bajo,50.7,100.0,43.8,Muy alto
+70112,Ullum,San Juan,2026,4,14.5,12.0,39.1,Bajo,12.79,60.0,12.62,Normal,0.153,12.0,0.206,Bajo,0.148,0.0,0.188,Muy bajo,20.7,60.0,20.2,Normal
+70021,Calingasta,San Juan,2026,4,13.4,20.0,18.4,Bajo,6.0,68.0,4.89,Normal,0.149,8.0,0.167,Muy bajo,0.235,16.0,0.251,Bajo,11.9,40.0,12.6,Normal
+70049,Iglesia,San Juan,2026,4,19.2,28.0,27.3,Bajo,4.57,84.0,3.54,Alto,0.143,8.0,0.159,Muy bajo,0.198,8.0,0.214,Muy bajo,14.1,40.0,14.3,Normal
+70098,Santa Luc?a,San Juan,2026,4,6.3,32.0,15.0,Normal,16.85,24.0,17.48,Bajo,0.176,44.0,0.178,Normal,0.075,0.0,0.078,Muy bajo,67.0,60.0,65.8,Normal
+74042,Gobernador Dupuy,San Luis,2026,4,43.6,44.0,59.3,Normal,16.25,48.0,16.58,Normal,0.179,52.0,0.172,Normal,0.106,8.0,0.128,Muy bajo,59.2,100.0,47.1,Muy alto
+74007,Ayacucho,San Luis,2026,4,30.3,36.0,34.7,Normal,17.8,44.0,18.44,Normal,0.142,28.0,0.157,Bajo,0.093,0.0,0.107,Muy bajo,62.7,100.0,42.8,Muy alto
+74056,Juan Mart?n de Pueyrred?n,San Luis,2026,4,32.4,28.0,52.5,Bajo,16.42,40.0,16.93,Normal,0.194,36.0,0.209,Normal,0.139,4.0,0.158,Muy bajo,64.3,100.0,44.0,Muy alto
+74035,General Pedernera,San Luis,2026,4,40.8,28.0,46.7,Bajo,15.68,40.0,16.09,Normal,0.213,44.0,0.217,Normal,0.132,8.0,0.159,Muy bajo,63.2,100.0,49.5,Muy alto
+74021,Coronel Pringles,San Luis,2026,4,47.3,32.0,64.3,Normal,14.13,36.0,14.7,Normal,0.323,36.0,0.344,Normal,0.229,4.0,0.285,Muy bajo,62.2,60.0,55.5,Normal
+66070,Iruya,Salta,2026,4,126.5,0.0,243.6,Muy bajo,13.26,80.0,12.78,Alto,0.426,8.0,0.436,Muy bajo,0.456,16.0,0.465,Bajo,133.9,40.0,141.1,Normal
+66126,Or?n,Salta,2026,4,62.9,8.0,142.5,Muy bajo,20.68,60.0,20.32,Normal,0.328,8.0,0.373,Muy bajo,0.285,12.0,0.336,Bajo,96.0,0.0,138.5,Muy bajo
+66084,La Candelaria,Salta,2026,4,46.8,4.0,90.6,Muy bajo,16.49,52.0,16.41,Normal,0.344,12.0,0.392,Bajo,0.343,40.0,0.35,Normal,183.8,60.0,183.1,Normal
+66021,Cafayate,Salta,2026,4,27.7,8.0,51.3,Muy bajo,12.59,60.0,12.42,Normal,0.334,8.0,0.378,Muy bajo,0.355,36.0,0.362,Normal,52.2,80.0,47.2,Alto
+66161,Santa Victoria,Salta,2026,4,143.7,20.0,200.5,Bajo,12.26,80.0,11.82,Alto,0.424,28.0,0.43,Bajo,0.458,8.0,0.465,Muy bajo,122.1,40.0,129.8,Normal
+66056,General Jos? de San Mart?n,Salta,2026,4,57.2,24.0,78.4,Bajo,22.39,68.0,21.84,Normal,0.285,8.0,0.338,Muy bajo,0.223,8.0,0.304,Muy bajo,49.6,0.0,141.2,Muy bajo
+66035,Cerrillos,Salta,2026,4,91.8,12.0,133.6,Bajo,16.12,64.0,15.96,Normal,0.467,40.0,0.472,Normal,0.432,16.0,0.471,Bajo,151.5,40.0,153.0,Normal
+66042,Chicoana,Salta,2026,4,74.1,8.0,120.3,Muy bajo,14.15,72.0,13.78,Alto,0.398,8.0,0.417,Muy bajo,0.417,24.0,0.429,Bajo,151.9,80.0,141.3,Alto
+66147,Rosario de Lerma,Salta,2026,4,35.1,4.0,73.8,Muy bajo,10.02,88.0,9.12,Alto,0.346,8.0,0.37,Muy bajo,0.379,24.0,0.384,Bajo,47.8,80.0,46.2,Alto
+66077,La Caldera,Salta,2026,4,137.9,0.0,242.8,Muy bajo,12.96,64.0,12.67,Normal,0.413,16.0,0.421,Bajo,0.436,12.0,0.445,Bajo,166.1,60.0,160.4,Normal
+66014,Cachi,Salta,2026,4,21.0,8.0,45.8,Muy bajo,8.63,76.0,8.11,Alto,0.331,8.0,0.364,Muy bajo,0.377,52.0,0.376,Normal,28.3,60.0,26.2,Normal
+66098,La Vi?a,Salta,2026,4,60.0,12.0,97.3,Bajo,14.86,60.0,14.44,Normal,0.395,8.0,0.42,Muy bajo,0.409,36.0,0.416,Normal,133.2,80.0,121.6,Alto
+66007,Anta,Salta,2026,4,73.1,56.0,66.5,Normal,20.98,52.0,20.95,Normal,0.292,32.0,0.305,Normal,0.19,8.0,0.238,Muy bajo,95.4,20.0,126.7,Bajo
+66063,Guachipas,Salta,2026,4,50.7,12.0,82.7,Bajo,14.43,60.0,14.25,Normal,0.343,12.0,0.38,Bajo,0.32,24.0,0.343,Bajo,152.7,80.0,137.8,Alto
+66105,Los Andes,Salta,2026,4,6.5,76.0,4.2,Alto,7.07,80.0,6.47,Alto,0.2,36.0,0.208,Normal,0.223,0.0,0.229,Muy bajo,9.5,40.0,9.8,Normal
+66091,La Poma,Salta,2026,4,7.1,32.0,12.2,Normal,7.86,80.0,7.22,Alto,0.269,16.0,0.285,Bajo,0.277,0.0,0.287,Muy bajo,12.6,60.0,11.9,Normal
+66140,Rosario de la Frontera,Salta,2026,4,51.3,8.0,82.9,Muy bajo,18.78,56.0,18.6,Normal,0.343,20.0,0.383,Bajo,0.302,28.0,0.328,Bajo,135.3,0.0,157.0,Muy bajo
+66112,Met?n,Salta,2026,4,51.0,20.0,76.2,Bajo,19.25,56.0,19.08,Normal,0.329,24.0,0.366,Bajo,0.278,20.0,0.305,Bajo,122.9,0.0,149.7,Muy bajo
+66119,Molinos,Salta,2026,4,31.6,8.0,56.4,Muy bajo,8.01,76.0,7.61,Alto,0.343,4.0,0.376,Muy bajo,0.416,40.0,0.418,Normal,39.6,80.0,33.3,Alto
+94008,R?o Grande,Tierra del Fuego,2026,4,46.4,44.0,49.1,Normal,6.17,80.0,5.73,Alto,0.434,84.0,0.396,Alto,0.39,32.0,0.394,Normal,13.2,40.0,15.1,Normal
+94015,Ushuaia,Tierra del Fuego,2026,4,52.0,32.0,62.3,Normal,4.5,76.0,3.63,Alto,0.309,32.0,0.314,Normal,0.318,68.0,0.31,Normal,19.2,40.0,19.4,Normal
+94011,Tolhuin,Tierra del Fuego,2026,4,50.4,48.0,54.9,Normal,4.59,80.0,3.95,Alto,0.27,80.0,0.254,Alto,0.255,76.0,0.252,Alto,15.0,80.0,14.0,Alto
+10105,Tinogasta,Catamarca,2026,4,16.7,40.0,18.9,Normal,7.55,76.0,6.93,Alto,0.17,4.0,0.192,Muy bajo,0.194,0.0,0.213,Muy bajo,26.5,60.0,25.0,Normal
+10028,Antofagasta de la Sierra,Catamarca,2026,4,7.6,88.0,4.1,Alto,5.22,68.0,4.95,Normal,0.234,36.0,0.241,Normal,0.283,4.0,0.291,Muy bajo,8.9,40.0,9.4,Normal
+10063,Fray Mamerto Esqui?,Catamarca,2026,4,49.1,8.0,93.2,Muy bajo,17.27,60.0,16.99,Normal,0.216,16.0,0.243,Bajo,0.225,36.0,0.239,Normal,116.3,100.0,97.0,Muy alto
+10035,Bel?n,Catamarca,2026,4,18.9,28.0,29.8,Bajo,10.81,76.0,10.34,Alto,0.224,0.0,0.262,Muy bajo,0.237,8.0,0.27,Muy bajo,38.8,80.0,33.9,Alto
+10014,Ancasti,Catamarca,2026,4,36.5,24.0,61.4,Bajo,18.3,52.0,18.2,Normal,0.176,20.0,0.235,Bajo,0.112,0.0,0.14,Muy bajo,104.9,60.0,94.7,Normal
+10084,Pom?n,Catamarca,2026,4,24.7,52.0,24.6,Normal,18.14,48.0,18.15,Normal,0.2,24.0,0.216,Bajo,0.183,4.0,0.199,Muy bajo,45.1,60.0,41.7,Normal
+10042,Capay?n,Catamarca,2026,4,46.1,36.0,50.4,Normal,18.41,48.0,18.56,Normal,0.168,32.0,0.196,Normal,0.098,4.0,0.14,Muy bajo,72.6,80.0,59.3,Alto
+10021,Andalgal?,Catamarca,2026,4,33.9,20.0,47.4,Bajo,15.6,60.0,15.03,Normal,0.213,24.0,0.243,Bajo,0.2,12.0,0.228,Bajo,65.7,80.0,57.2,Alto
+10007,Ambato,Catamarca,2026,4,61.8,12.0,102.6,Bajo,14.13,72.0,13.37,Alto,0.312,16.0,0.337,Bajo,0.309,16.0,0.351,Bajo,113.7,80.0,103.0,Alto
+10077,Pacl?n,Catamarca,2026,4,81.6,8.0,129.4,Muy bajo,16.25,68.0,15.84,Normal,0.273,20.0,0.288,Bajo,0.294,48.0,0.306,Normal,143.9,80.0,138.9,Alto
+10056,El Alto,Catamarca,2026,4,42.1,12.0,75.0,Bajo,17.36,44.0,17.38,Normal,0.253,36.0,0.295,Normal,0.148,12.0,0.204,Bajo,146.8,60.0,140.1,Normal
+10112,Valle Viejo,Catamarca,2026,4,31.9,12.0,66.6,Bajo,17.52,52.0,17.44,Normal,0.153,12.0,0.198,Bajo,0.077,4.0,0.15,Muy bajo,103.0,80.0,87.1,Alto
+22036,12 de Octubre,Chaco,2026,4,229.4,100.0,75.3,Muy alto,21.71,68.0,21.38,Normal,0.298,64.0,0.279,Normal,0.156,0.0,0.192,Muy bajo,91.7,100.0,79.7,Muy alto
+22133,Quitilipi,Chaco,2026,4,259.6,96.0,83.1,Muy alto,22.31,68.0,21.89,Normal,0.307,68.0,0.267,Normal,0.15,0.0,0.214,Muy bajo,94.5,60.0,84.1,Normal
+22161,Tapenag?,Chaco,2026,4,268.5,92.0,115.2,Muy alto,21.73,72.0,21.4,Alto,0.345,64.0,0.317,Normal,0.193,8.0,0.25,Muy bajo,105.5,60.0,75.6,Normal
+22119,Presidencia de la Plaza,Chaco,2026,4,260.7,96.0,110.1,Muy alto,22.17,68.0,21.7,Normal,0.31,64.0,0.275,Normal,0.149,4.0,0.211,Muy bajo,103.5,60.0,82.8,Normal
+22154,Sargento Cabral,Chaco,2026,4,263.8,92.0,107.1,Muy alto,22.44,68.0,21.77,Normal,0.333,68.0,0.302,Normal,0.185,8.0,0.239,Muy bajo,92.7,60.0,88.9,Normal
+22098,Mayor Luis J. Fontana,Chaco,2026,4,270.6,96.0,88.2,Muy alto,21.69,76.0,21.43,Alto,0.351,64.0,0.316,Normal,0.199,0.0,0.263,Muy bajo,94.5,80.0,74.3,Alto
+22043,Fray Justo Santa Mar?a de Oro,Chaco,2026,4,223.6,92.0,72.1,Muy alto,21.66,68.0,21.41,Normal,0.32,60.0,0.311,Normal,0.177,0.0,0.238,Muy bajo,82.0,100.0,67.3,Muy alto
+22007,Almirante Brown,Chaco,2026,4,233.8,100.0,83.6,Muy alto,21.86,40.0,21.99,Normal,0.311,80.0,0.265,Alto,0.153,0.0,0.174,Muy bajo,81.2,40.0,103.4,Normal
+22039,2 de Abril,Chaco,2026,4,233.8,100.0,74.2,Muy alto,21.77,68.0,21.44,Normal,0.308,56.0,0.3,Normal,0.163,0.0,0.225,Muy bajo,86.5,100.0,70.7,Muy alto
+22056,General Donovan,Chaco,2026,4,249.5,84.0,129.6,Alto,22.25,72.0,21.62,Alto,0.383,68.0,0.368,Normal,0.244,8.0,0.309,Muy bajo,96.0,60.0,83.3,Normal
+22126,1? de Mayo,Chaco,2026,4,204.7,68.0,132.6,Normal,22.44,72.0,21.76,Alto,0.418,68.0,0.378,Normal,0.306,16.0,0.35,Bajo,90.4,60.0,87.4,Normal
+22140,San Fernando,Chaco,2026,4,222.0,84.0,128.5,Alto,21.98,72.0,21.36,Alto,0.354,64.0,0.317,Normal,0.235,16.0,0.287,Bajo,96.3,60.0,79.3,Normal
+22077,Libertad,Chaco,2026,4,221.8,84.0,135.7,Alto,22.19,72.0,21.56,Alto,0.375,64.0,0.334,Normal,0.244,12.0,0.303,Bajo,102.6,80.0,81.6,Alto
+22021,Comandante Fern?ndez,Chaco,2026,4,296.8,100.0,83.5,Muy alto,22.11,68.0,21.83,Normal,0.315,72.0,0.268,Alto,0.149,0.0,0.198,Muy bajo,96.4,60.0,82.2,Normal
+14091,Punilla,Córdoba,2026,4,98.7,84.0,67.7,Alto,14.5,48.0,14.64,Normal,0.347,64.0,0.33,Normal,0.212,8.0,0.272,Muy bajo,77.2,40.0,77.7,Normal
+14126,San Alberto,Córdoba,2026,4,85.7,80.0,70.1,Alto,15.34,40.0,15.73,Normal,0.277,60.0,0.262,Normal,0.171,12.0,0.216,Bajo,73.2,80.0,68.7,Alto
+14119,R?o Segundo,Córdoba,2026,4,124.7,96.0,77.2,Muy alto,17.81,40.0,18.38,Normal,0.35,76.0,0.314,Alto,0.185,12.0,0.228,Bajo,81.2,100.0,67.5,Muy alto
+14182,Uni?n,Córdoba,2026,4,105.3,76.0,79.3,Alto,17.91,48.0,18.32,Normal,0.354,72.0,0.327,Alto,0.212,16.0,0.247,Bajo,72.8,100.0,55.7,Muy alto
+14161,Tercero Arriba,Córdoba,2026,4,105.9,92.0,69.6,Muy alto,17.15,44.0,17.84,Normal,0.338,76.0,0.308,Alto,0.185,28.0,0.2,Bajo,70.1,80.0,65.3,Alto
+14098,R?o Cuarto,Córdoba,2026,4,59.1,52.0,58.2,Normal,16.29,40.0,16.56,Normal,0.299,44.0,0.301,Normal,0.175,12.0,0.206,Bajo,70.4,80.0,64.8,Alto
+14175,Tulumba,Córdoba,2026,4,89.9,76.0,72.1,Alto,19.27,36.0,19.57,Normal,0.228,56.0,0.203,Normal,0.112,0.0,0.152,Muy bajo,75.4,80.0,61.4,Alto
+14028,Cruz del Eje,Córdoba,2026,4,54.0,52.0,48.8,Normal,18.68,40.0,18.83,Normal,0.278,40.0,0.301,Normal,0.165,0.0,0.208,Muy bajo,59.4,80.0,52.3,Alto
+14084,Presidente Roque S?enz Pe?a,Córdoba,2026,4,82.5,60.0,72.2,Normal,17.26,48.0,17.59,Normal,0.337,76.0,0.314,Alto,0.19,12.0,0.223,Bajo,73.9,100.0,59.4,Muy alto
+14112,R?o Seco,Córdoba,2026,4,113.0,80.0,84.5,Alto,19.37,36.0,19.77,Normal,0.265,72.0,0.235,Alto,0.116,0.0,0.168,Muy bajo,83.7,60.0,73.3,Normal
+14154,Sobremonte,Córdoba,2026,4,76.6,76.0,58.2,Alto,18.73,40.0,18.85,Normal,0.246,60.0,0.229,Normal,0.126,4.0,0.166,Muy bajo,69.6,60.0,63.4,Normal
+14056,Ju?rez Celman,Córdoba,2026,4,73.1,52.0,72.3,Normal,17.47,48.0,17.92,Normal,0.331,64.0,0.314,Normal,0.198,20.0,0.223,Bajo,73.9,100.0,63.2,Muy alto
+14049,Ischil?n,Córdoba,2026,4,69.8,64.0,54.5,Normal,18.56,36.0,18.77,Normal,0.277,60.0,0.266,Normal,0.146,8.0,0.179,Muy bajo,74.4,100.0,66.2,Muy alto
+14168,Totoral,Córdoba,2026,4,113.0,88.0,80.3,Alto,16.84,40.0,17.24,Normal,0.301,80.0,0.253,Alto,0.137,4.0,0.196,Muy bajo,84.6,60.0,77.2,Normal
+14105,R?o Primero,Córdoba,2026,4,111.5,88.0,75.2,Alto,18.49,40.0,19.04,Normal,0.334,80.0,0.292,Alto,0.16,0.0,0.201,Muy bajo,86.1,80.0,73.1,Alto
+14063,Marcos Ju?rez,Córdoba,2026,4,122.3,88.0,81.3,Alto,17.92,44.0,18.22,Normal,0.393,80.0,0.359,Alto,0.248,12.0,0.284,Bajo,65.4,100.0,50.0,Muy alto
+14007,Calamuchita,Córdoba,2026,4,91.4,76.0,74.5,Alto,14.55,44.0,14.99,Normal,0.335,60.0,0.328,Normal,0.209,12.0,0.266,Bajo,84.1,100.0,73.4,Muy alto
+14077,Pocho,Córdoba,2026,4,66.6,56.0,58.6,Normal,17.21,36.0,18.11,Normal,0.222,60.0,0.215,Normal,0.113,12.0,0.132,Bajo,68.9,100.0,53.0,Muy alto
+62028,Conesa,Río Negro,2026,4,9.7,16.0,22.3,Bajo,15.26,52.0,14.89,Normal,0.143,40.0,0.157,Normal,0.095,12.0,0.101,Bajo,24.2,20.0,26.3,Bajo
+62084,Valcheta,Río Negro,2026,4,5.2,16.0,17.0,Bajo,13.09,48.0,13.23,Normal,0.173,64.0,0.168,Normal,0.144,20.0,0.148,Bajo,10.4,40.0,11.7,Normal
+62056,?orquinco,Río Negro,2026,4,18.5,16.0,31.0,Bajo,7.03,68.0,6.82,Normal,0.196,64.0,0.186,Normal,0.249,0.0,0.27,Muy bajo,9.3,40.0,9.7,Normal
+62070,Pilcaniyeu,Río Negro,2026,4,15.0,16.0,35.7,Bajo,7.91,56.0,7.71,Normal,0.209,72.0,0.189,Alto,0.252,0.0,0.273,Muy bajo,11.0,40.0,11.9,Normal
+62035,El Cuy,Río Negro,2026,4,3.3,8.0,17.5,Muy bajo,12.37,52.0,12.09,Normal,0.152,20.0,0.164,Bajo,0.156,8.0,0.166,Muy bajo,12.0,60.0,11.7,Normal
+62063,Pichi Mahuida,Río Negro,2026,4,10.4,16.0,30.8,Bajo,15.06,52.0,14.82,Normal,0.162,64.0,0.147,Normal,0.081,0.0,0.09,Muy bajo,23.7,0.0,27.0,Muy bajo
+62007,Adolfo Alsina,Río Negro,2026,4,12.9,28.0,21.6,Bajo,15.06,52.0,15.0,Normal,0.105,20.0,0.138,Bajo,0.076,4.0,0.082,Muy bajo,36.6,80.0,31.2,Alto
+62021,Bariloche,Río Negro,2026,4,91.1,32.0,113.9,Normal,5.27,52.0,5.11,Normal,0.417,68.0,0.403,Normal,0.413,56.0,0.41,Normal,35.7,40.0,41.4,Normal
+90105,Taf? Viejo,Tucumán,2026,4,85.6,4.0,140.6,Muy bajo,14.04,60.0,13.96,Normal,0.371,12.0,0.392,Bajo,0.407,28.0,0.413,Bajo,170.7,80.0,162.1,Alto
+90119,Yerba Buena,Tucumán,2026,4,123.8,8.0,216.1,Muy bajo,16.3,40.0,16.69,Normal,0.385,20.0,0.398,Bajo,0.414,32.0,0.42,Normal,199.6,80.0,188.3,Alto
+90063,Lules,Tucumán,2026,4,115.4,8.0,186.3,Muy bajo,15.88,48.0,16.01,Normal,0.388,20.0,0.398,Bajo,0.412,44.0,0.415,Normal,184.0,80.0,168.9,Alto
+90028,Famaill?,Tucumán,2026,4,146.3,20.0,197.5,Bajo,16.72,48.0,16.93,Normal,0.395,44.0,0.398,Normal,0.401,40.0,0.408,Normal,190.8,80.0,174.3,Alto
+90098,Taf? del Valle,Tucumán,2026,4,44.9,8.0,75.1,Muy bajo,12.25,76.0,11.72,Alto,0.313,4.0,0.356,Muy bajo,0.342,4.0,0.354,Muy bajo,62.4,80.0,54.9,Alto
+90112,Trancas,Tucumán,2026,4,60.5,4.0,111.7,Muy bajo,15.36,52.0,15.33,Normal,0.369,12.0,0.399,Bajo,0.363,24.0,0.395,Bajo,184.0,80.0,173.5,Alto
+90007,Burruyac?,Tucumán,2026,4,63.8,16.0,100.3,Bajo,18.71,56.0,18.6,Normal,0.373,20.0,0.408,Bajo,0.364,36.0,0.382,Normal,140.7,80.0,133.5,Alto
+90014,Cruz Alta,Tucumán,2026,4,52.8,12.0,90.4,Bajo,19.36,44.0,19.41,Normal,0.373,16.0,0.4,Bajo,0.334,36.0,0.355,Normal,114.5,80.0,104.3,Alto
+90056,Leales,Tucumán,2026,4,51.6,16.0,99.5,Bajo,20.04,60.0,19.99,Normal,0.317,16.0,0.355,Bajo,0.256,24.0,0.295,Bajo,118.6,80.0,107.0,Alto
+90070,Monteros,Tucumán,2026,4,187.0,20.0,232.9,Bajo,15.77,56.0,15.7,Normal,0.398,40.0,0.401,Normal,0.409,28.0,0.418,Bajo,179.4,80.0,166.9,Alto
+90021,Chicligasta,Tucumán,2026,4,151.2,20.0,195.3,Bajo,14.16,60.0,13.9,Normal,0.392,36.0,0.396,Normal,0.407,32.0,0.414,Normal,152.2,80.0,140.7,Alto
+90091,Simoca,Tucumán,2026,4,57.9,16.0,95.3,Bajo,19.87,52.0,19.79,Normal,0.331,36.0,0.346,Normal,0.226,16.0,0.276,Bajo,130.6,80.0,125.1,Alto
+90035,Graneros,Tucumán,2026,4,49.1,24.0,78.9,Bajo,20.01,52.0,19.98,Normal,0.302,36.0,0.311,Normal,0.184,16.0,0.242,Bajo,123.1,80.0,113.0,Alto
+90049,La Cocha,Tucumán,2026,4,104.5,16.0,150.5,Bajo,17.46,56.0,17.36,Normal,0.378,48.0,0.384,Normal,0.387,52.0,0.382,Normal,153.5,80.0,138.9,Alto
+90042,Juan Bautista Alberdi,Tucumán,2026,4,121.8,24.0,157.4,Bajo,15.92,52.0,15.66,Normal,0.393,48.0,0.394,Normal,0.406,52.0,0.404,Normal,171.7,80.0,158.0,Alto
+46098,Vinchina,La Rioja,2026,4,24.5,52.0,24.3,Normal,5.7,80.0,5.17,Alto,0.137,20.0,0.153,Bajo,0.163,0.0,0.183,Muy bajo,18.7,20.0,18.9,Bajo
+46035,Chamical,La Rioja,2026,4,49.0,64.0,41.1,Normal,20.0,40.0,20.3,Normal,0.135,40.0,0.145,Normal,0.07,0.0,0.087,Muy bajo,53.2,80.0,42.4,Alto
+46084,General Ortiz de Ocampo,La Rioja,2026,4,59.3,56.0,46.4,Normal,18.27,36.0,19.01,Normal,0.18,60.0,0.174,Normal,0.069,0.0,0.11,Muy bajo,65.3,80.0,48.3,Alto
+46007,Arauco,La Rioja,2026,4,42.4,84.0,22.7,Alto,18.24,36.0,18.59,Normal,0.135,52.0,0.132,Normal,0.11,0.0,0.12,Muy bajo,27.4,100.0,23.6,Muy alto
+78042,Magallanes,Santa Cruz,2026,4,21.4,52.0,20.6,Normal,9.84,60.0,9.64,Normal,0.158,76.0,0.153,Alto,0.157,96.0,0.152,Muy alto,5.5,40.0,5.7,Normal
+78007,Corpen Aike,Santa Cruz,2026,4,22.7,52.0,21.4,Normal,8.63,60.0,8.49,Normal,0.179,52.0,0.178,Normal,0.197,52.0,0.196,Normal,5.0,20.0,5.6,Bajo
+34042,Pilag?s,Formosa,2026,4,227.3,84.0,126.0,Alto,23.78,76.0,23.07,Alto,0.406,48.0,0.41,Normal,0.293,4.0,0.343,Muy bajo,35.9,20.0,61.1,Bajo
+34021,Laishi,Formosa,2026,4,213.0,64.0,122.0,Normal,23.0,72.0,22.24,Alto,0.406,64.0,0.383,Normal,0.325,32.0,0.365,Normal,64.3,20.0,86.0,Bajo
+34056,Piran?,Formosa,2026,4,231.1,92.0,134.8,Muy alto,23.2,76.0,22.28,Alto,0.376,56.0,0.365,Normal,0.258,8.0,0.296,Muy bajo,61.0,20.0,85.5,Bajo
+34035,Pati?o,Formosa,2026,4,168.1,68.0,112.5,Normal,23.47,72.0,23.03,Alto,0.301,40.0,0.311,Normal,0.185,8.0,0.203,Muy bajo,38.5,20.0,71.3,Bajo
+34028,Matacos,Formosa,2026,4,146.4,84.0,83.7,Alto,22.89,36.0,23.44,Normal,0.296,64.0,0.275,Normal,0.166,0.0,0.19,Muy bajo,42.1,20.0,72.7,Bajo
+78035,Lago Buenos Aires,Santa Cruz,2026,4,45.7,80.0,35.5,Alto,5.98,16.0,6.46,Bajo,0.219,88.0,0.191,Alto,0.254,96.0,0.245,Muy alto,5.4,20.0,5.7,Bajo
+78014,Deseado,Santa Cruz,2026,4,19.8,68.0,16.2,Normal,10.02,60.0,9.88,Normal,0.145,52.0,0.144,Normal,0.151,60.0,0.15,Normal,6.8,40.0,6.9,Normal
+78028,Lago Argentino,Santa Cruz,2026,4,185.0,96.0,133.3,Muy alto,3.34,20.0,4.07,Bajo,0.332,92.0,0.308,Muy alto,0.356,96.0,0.349,Muy alto,5.2,20.0,5.9,Bajo
+26042,Gaiman,Chubut,2026,4,7.8,32.0,9.1,Normal,13.85,56.0,13.65,Normal,0.172,40.0,0.183,Normal,0.143,72.0,0.136,Alto,10.2,40.0,10.3,Normal
+46021,Castro Barros,La Rioja,2026,4,65.8,60.0,61.4,Normal,14.62,44.0,15.05,Normal,0.201,40.0,0.218,Normal,0.225,12.0,0.256,Bajo,47.2,100.0,41.8,Muy alto
+26070,Paso de Indios,Chubut,2026,4,8.9,24.0,19.4,Bajo,10.44,56.0,10.04,Normal,0.18,68.0,0.17,Normal,0.161,16.0,0.164,Bajo,8.1,40.0,8.5,Normal
+46112,Rosario Vera Pe?aloza,La Rioja,2026,4,30.7,52.0,28.3,Normal,18.17,40.0,18.8,Normal,0.118,36.0,0.128,Normal,0.089,0.0,0.104,Muy bajo,66.9,100.0,45.9,Muy alto
+46028,General Felipe Varela,La Rioja,2026,4,24.6,60.0,19.3,Normal,13.63,48.0,13.82,Normal,0.112,32.0,0.121,Normal,0.098,0.0,0.108,Muy bajo,25.3,80.0,23.8,Alto
+46126,Sanagasta,La Rioja,2026,4,55.0,48.0,57.6,Normal,14.08,52.0,14.05,Normal,0.206,32.0,0.227,Normal,0.218,8.0,0.264,Muy bajo,50.7,60.0,47.6,Normal
+18140,San Luis del Palmar,Corrientes,2026,4,187.3,64.0,119.6,Normal,22.4,76.0,21.64,Alto,0.426,64.0,0.403,Normal,0.405,48.0,0.406,Normal,79.7,40.0,79.8,Normal
+46042,Chilecito,La Rioja,2026,4,91.2,40.0,103.4,Normal,14.66,52.0,14.59,Normal,0.216,28.0,0.247,Bajo,0.201,0.0,0.24,Muy bajo,42.7,60.0,42.5,Normal
+46056,?ngel Vicente Pe?aloza,La Rioja,2026,4,51.9,64.0,34.9,Normal,18.28,44.0,18.67,Normal,0.16,60.0,0.151,Normal,0.105,0.0,0.136,Muy bajo,59.9,80.0,49.7,Alto
+46070,General Juan Facundo Quiroga,La Rioja,2026,4,38.6,64.0,35.7,Normal,16.9,44.0,17.55,Normal,0.138,40.0,0.143,Normal,0.095,0.0,0.121,Muy bajo,55.0,60.0,52.8,Normal
+18098,Mburucuy?,Corrientes,2026,4,217.0,72.0,124.2,Alto,21.97,76.0,21.15,Alto,0.419,60.0,0.397,Normal,0.396,40.0,0.401,Normal,77.8,40.0,79.6,Normal
+18105,Mercedes,Corrientes,2026,4,253.9,80.0,130.3,Alto,20.92,60.0,20.21,Normal,0.406,72.0,0.366,Alto,0.385,44.0,0.386,Normal,79.1,60.0,76.4,Normal
+18161,San Roque,Corrientes,2026,4,256.3,84.0,125.9,Alto,21.12,60.0,20.5,Normal,0.372,72.0,0.341,Alto,0.308,24.0,0.34,Bajo,83.8,60.0,82.3,Normal
+18063,General Paz,Corrientes,2026,4,188.6,68.0,129.2,Normal,22.44,72.0,21.6,Alto,0.416,56.0,0.397,Normal,0.417,64.0,0.411,Normal,69.3,20.0,75.8,Bajo
+18042,Empedrado,Corrientes,2026,4,218.4,80.0,127.8,Alto,21.92,68.0,21.2,Normal,0.395,60.0,0.365,Normal,0.337,20.0,0.364,Bajo,89.2,60.0,81.9,Normal
+18126,Saladas,Corrientes,2026,4,246.8,84.0,125.7,Alto,21.57,64.0,20.92,Normal,0.364,68.0,0.333,Normal,0.301,20.0,0.329,Bajo,88.4,60.0,82.7,Normal
+18007,Bella Vista,Corrientes,2026,4,277.7,88.0,134.4,Alto,21.32,60.0,20.76,Normal,0.348,76.0,0.316,Alto,0.294,20.0,0.318,Bajo,85.8,60.0,79.0,Normal
+18070,Goya,Corrientes,2026,4,174.1,72.0,110.2,Alto,20.65,60.0,20.32,Normal,0.348,68.0,0.293,Normal,0.236,16.0,0.306,Bajo,88.6,100.0,81.0,Muy alto
+18049,Esquina,Corrientes,2026,4,174.2,76.0,107.7,Alto,20.3,56.0,20.15,Normal,0.387,64.0,0.326,Normal,0.26,4.0,0.327,Muy bajo,89.7,80.0,83.1,Alto
+18175,Sauce,Corrientes,2026,4,167.8,72.0,117.0,Alto,20.25,60.0,20.04,Normal,0.426,60.0,0.384,Normal,0.324,8.0,0.397,Muy bajo,86.0,80.0,78.6,Alto
+18035,Curuz? Cuati?,Corrientes,2026,4,179.7,68.0,133.8,Normal,20.4,60.0,19.96,Normal,0.421,60.0,0.393,Normal,0.379,28.0,0.407,Bajo,82.7,80.0,77.2,Alto
+18112,Monte Caseros,Corrientes,2026,4,173.7,60.0,122.7,Normal,20.15,60.0,19.96,Normal,0.389,64.0,0.364,Normal,0.368,44.0,0.372,Normal,88.2,80.0,81.4,Alto
+18119,Paso de los Libres,Corrientes,2026,4,245.7,76.0,151.7,Alto,20.65,56.0,20.18,Normal,0.395,76.0,0.351,Alto,0.378,60.0,0.373,Normal,83.3,60.0,75.7,Normal
+18168,Santo Tom?,Corrientes,2026,4,179.3,56.0,170.9,Normal,21.71,68.0,20.91,Normal,0.401,56.0,0.387,Normal,0.388,64.0,0.379,Normal,84.5,20.0,97.7,Bajo
+18154,San Miguel,Corrientes,2026,4,193.4,64.0,127.1,Normal,22.31,72.0,21.49,Alto,0.366,56.0,0.351,Normal,0.366,64.0,0.351,Normal,66.5,20.0,77.2,Bajo
+18084,Ituzaing?,Corrientes,2026,4,191.0,64.0,144.5,Normal,22.22,68.0,21.44,Normal,0.362,52.0,0.343,Normal,0.347,64.0,0.335,Normal,72.2,20.0,84.9,Bajo
+18014,Ber?n de Astrada,Corrientes,2026,4,182.8,60.0,136.5,Normal,22.77,72.0,21.95,Alto,0.41,56.0,0.404,Normal,0.416,64.0,0.403,Normal,63.7,20.0,68.1,Bajo
+18077,Itat?,Corrientes,2026,4,162.1,56.0,148.8,Normal,22.74,72.0,21.95,Alto,0.315,56.0,0.308,Normal,0.317,60.0,0.314,Normal,71.8,20.0,76.5,Bajo
+18133,San Cosme,Corrientes,2026,4,180.5,64.0,124.8,Normal,22.53,76.0,21.8,Alto,0.329,60.0,0.3,Normal,0.286,32.0,0.293,Normal,87.1,60.0,85.7,Normal
+46049,Famatina,La Rioja,2026,4,84.0,44.0,86.8,Normal,13.62,56.0,13.25,Normal,0.206,24.0,0.233,Bajo,0.191,0.0,0.231,Muy bajo,37.4,60.0,35.9,Normal
+46119,San Blas de Los Sauces,La Rioja,2026,4,53.3,88.0,32.7,Alto,15.22,56.0,15.05,Normal,0.139,52.0,0.137,Normal,0.117,0.0,0.138,Muy bajo,42.4,100.0,40.5,Muy alto
+46077,General Lamadrid,La Rioja,2026,4,12.7,36.0,14.5,Normal,8.22,76.0,7.7,Alto,0.116,4.0,0.126,Muy bajo,0.133,0.0,0.144,Muy bajo,17.8,60.0,17.2,Normal
+34014,Formosa,Formosa,2026,4,219.7,80.0,136.2,Alto,23.34,72.0,22.71,Alto,0.413,64.0,0.402,Normal,0.325,16.0,0.373,Bajo,56.3,20.0,76.2,Bajo
+34049,Pilcomayo,Formosa,2026,4,239.2,84.0,153.2,Alto,23.69,68.0,23.06,Normal,0.412,76.0,0.393,Alto,0.316,16.0,0.359,Bajo,38.1,20.0,61.2,Bajo
+34063,Ram?n Lista,Formosa,2026,4,124.6,76.0,74.7,Alto,23.57,44.0,23.84,Normal,0.269,56.0,0.266,Normal,0.159,0.0,0.177,Muy bajo,25.5,20.0,54.6,Bajo
+78021,G?er Aike,Santa Cruz,2026,4,60.0,76.0,43.9,Alto,5.98,48.0,6.06,Normal,0.314,60.0,0.3,Normal,0.324,44.0,0.325,Normal,6.3,0.0,7.8,Muy bajo
+26084,R?o Senguer,Chubut,2026,4,50.5,72.0,40.8,Alto,6.77,28.0,7.02,Bajo,0.238,88.0,0.216,Alto,0.26,60.0,0.26,Normal,7.9,40.0,8.0,Normal
+26007,Biedma,Chubut,2026,4,9.0,28.0,11.3,Bajo,14.31,52.0,14.28,Normal,0.181,68.0,0.156,Normal,0.126,64.0,0.121,Normal,12.2,0.0,16.4,Muy bajo
+26063,M?rtires,Chubut,2026,4,8.9,32.0,14.0,Normal,12.9,56.0,12.64,Normal,0.17,20.0,0.178,Bajo,0.143,64.0,0.136,Normal,8.5,40.0,8.7,Normal
+26105,Telsen,Chubut,2026,4,6.9,20.0,12.0,Bajo,11.13,56.0,10.67,Normal,0.17,76.0,0.156,Alto,0.147,52.0,0.146,Normal,9.3,40.0,9.7,Normal
+26028,Florentino Ameghino,Chubut,2026,4,14.9,48.0,15.4,Normal,12.69,60.0,12.37,Normal,0.139,4.0,0.156,Muy bajo,0.138,64.0,0.134,Normal,10.9,20.0,13.2,Bajo
+26021,Escalante,Chubut,2026,4,14.4,40.0,18.1,Normal,11.0,56.0,10.66,Normal,0.147,20.0,0.153,Bajo,0.153,40.0,0.154,Normal,10.1,40.0,11.1,Normal
+26098,Tehuelches,Chubut,2026,4,44.7,48.0,47.4,Normal,6.32,36.0,6.43,Normal,0.228,72.0,0.221,Alto,0.255,16.0,0.261,Bajo,10.1,40.0,10.1,Normal
+26056,Langui?eo,Chubut,2026,4,27.1,20.0,43.0,Bajo,7.14,56.0,7.03,Normal,0.206,52.0,0.204,Normal,0.255,0.0,0.267,Muy bajo,9.5,60.0,9.0,Normal
+26049,Gastre,Chubut,2026,4,9.7,12.0,20.7,Bajo,8.67,60.0,8.24,Normal,0.18,56.0,0.178,Normal,0.179,8.0,0.187,Muy bajo,7.9,40.0,8.2,Normal
+26014,Cushamen,Chubut,2026,4,43.8,24.0,64.1,Bajo,7.25,52.0,7.2,Normal,0.242,72.0,0.231,Alto,0.273,0.0,0.283,Muy bajo,15.0,40.0,15.4,Normal
+26035,Futaleuf?,Chubut,2026,4,101.7,40.0,111.8,Normal,5.34,48.0,5.67,Normal,0.355,76.0,0.341,Alto,0.36,56.0,0.358,Normal,25.1,40.0,26.6,Normal
+54098,San Ignacio,Misiones,2026,4,118.4,28.0,149.3,Bajo,21.97,68.0,21.1,Normal,0.427,52.0,0.424,Normal,0.409,60.0,0.408,Normal,88.4,0.0,131.5,Muy bajo
+54021,Candelaria,Misiones,2026,4,124.4,32.0,162.6,Normal,22.02,68.0,21.09,Normal,0.425,52.0,0.421,Normal,0.407,60.0,0.404,Normal,98.6,0.0,114.2,Muy bajo
+54084,Montecarlo,Misiones,2026,4,95.4,28.0,162.7,Bajo,21.84,68.0,20.92,Normal,0.423,48.0,0.426,Normal,0.431,60.0,0.42,Normal,96.5,0.0,158.2,Muy bajo
+54014,Caingu?s,Misiones,2026,4,128.0,32.0,168.2,Normal,21.14,68.0,20.23,Normal,0.447,52.0,0.444,Normal,0.436,52.0,0.436,Normal,101.3,0.0,150.1,Muy bajo
+54091,Ober?,Misiones,2026,4,114.6,28.0,168.4,Bajo,21.52,68.0,20.51,Normal,0.435,44.0,0.441,Normal,0.424,44.0,0.431,Normal,107.1,0.0,142.3,Muy bajo
+54070,Leandro N. Alem,Misiones,2026,4,128.4,28.0,165.3,Bajo,21.52,64.0,20.53,Normal,0.443,44.0,0.445,Normal,0.427,48.0,0.43,Normal,105.4,0.0,128.0,Muy bajo
+54007,Ap?stoles,Misiones,2026,4,135.0,36.0,150.2,Normal,21.7,64.0,20.83,Normal,0.445,56.0,0.439,Normal,0.435,44.0,0.435,Normal,104.8,20.0,111.8,Bajo
+54056,Guaran?,Misiones,2026,4,95.6,28.0,143.1,Bajo,21.23,68.0,20.23,Normal,0.435,40.0,0.437,Normal,0.443,60.0,0.433,Normal,109.6,0.0,162.1,Muy bajo
+54063,Iguaz?,Misiones,2026,4,110.7,32.0,152.7,Normal,22.89,72.0,21.82,Alto,0.389,16.0,0.423,Bajo,0.429,56.0,0.426,Normal,71.4,0.0,115.7,Muy bajo
+54049,General Manuel Belgrano,Misiones,2026,4,129.5,36.0,161.1,Normal,21.84,72.0,20.79,Alto,0.414,24.0,0.437,Bajo,0.439,52.0,0.438,Normal,99.6,0.0,151.7,Muy bajo
+54042,Eldorado,Misiones,2026,4,97.2,28.0,159.1,Bajo,22.28,72.0,21.32,Alto,0.396,36.0,0.414,Normal,0.418,60.0,0.41,Normal,90.1,0.0,138.1,Muy bajo
+50126,Tupungato,Mendoza,2026,4,51.9,40.0,60.2,Normal,7.01,52.0,6.75,Normal,0.228,44.0,0.239,Normal,0.272,36.0,0.274,Normal,35.5,40.0,36.9,Normal
+50077,Malarg?e,Mendoza,2026,4,34.7,52.0,31.4,Normal,9.61,64.0,9.23,Normal,0.166,44.0,0.176,Normal,0.2,12.0,0.209,Bajo,14.8,40.0,14.8,Normal
+50063,Luj?n de Cuyo,Mendoza,2026,4,30.2,36.0,34.6,Normal,4.76,48.0,4.77,Normal,0.19,40.0,0.194,Normal,0.264,40.0,0.269,Normal,24.8,40.0,25.6,Normal
+50049,Las Heras,Mendoza,2026,4,25.4,28.0,33.4,Bajo,7.67,68.0,7.09,Normal,0.141,36.0,0.162,Normal,0.168,16.0,0.188,Bajo,20.7,60.0,18.9,Normal
+50119,Tunuy?n,Mendoza,2026,4,40.1,20.0,48.1,Bajo,2.75,60.0,2.56,Normal,0.202,44.0,0.215,Normal,0.277,32.0,0.281,Normal,32.4,60.0,31.0,Normal
+50105,San Rafael,Mendoza,2026,4,27.2,40.0,29.0,Normal,13.01,48.0,13.13,Normal,0.148,44.0,0.155,Normal,0.134,0.0,0.154,Muy bajo,30.2,60.0,27.0,Normal
+50028,Guaymall?n,Mendoza,2026,4,15.9,32.0,23.6,Normal,15.94,44.0,16.33,Normal,0.142,56.0,0.126,Normal,0.106,0.0,0.121,Muy bajo,73.8,80.0,61.8,Alto
+50021,Godoy Cruz,Mendoza,2026,4,26.1,24.0,46.6,Bajo,13.24,48.0,13.43,Normal,0.26,40.0,0.283,Normal,0.232,8.0,0.28,Muy bajo,46.6,80.0,32.4,Alto
+82028,Constituci?n,Santa Fe,2026,4,144.1,84.0,78.7,Alto,17.86,52.0,17.81,Normal,0.449,84.0,0.416,Alto,0.308,0.0,0.379,Muy bajo,79.6,100.0,68.1,Muy alto
+82084,Rosario,Santa Fe,2026,4,156.3,84.0,75.1,Alto,18.22,52.0,18.07,Normal,0.438,80.0,0.403,Alto,0.289,4.0,0.363,Muy bajo,88.0,100.0,71.4,Muy alto
+82056,Iriondo,Santa Fe,2026,4,169.3,92.0,81.9,Muy alto,18.15,44.0,18.28,Normal,0.45,84.0,0.417,Alto,0.299,4.0,0.36,Muy bajo,75.1,100.0,58.3,Muy alto
+82070,Las Colonias,Santa Fe,2026,4,323.6,100.0,89.3,Muy alto,18.96,44.0,19.17,Normal,0.448,80.0,0.402,Alto,0.311,12.0,0.365,Bajo,93.3,100.0,84.2,Muy alto
+82035,Garay,Santa Fe,2026,4,244.8,88.0,89.2,Alto,19.68,48.0,19.7,Normal,0.433,76.0,0.395,Alto,0.363,28.0,0.391,Bajo,90.6,100.0,84.9,Muy alto
+82105,San Jer?nimo,Santa Fe,2026,4,227.8,92.0,80.7,Muy alto,18.72,40.0,18.88,Normal,0.452,80.0,0.41,Alto,0.32,12.0,0.372,Bajo,84.1,100.0,71.2,Muy alto
+82021,Castellanos,Santa Fe,2026,4,232.1,96.0,83.8,Muy alto,18.72,36.0,18.93,Normal,0.451,80.0,0.412,Alto,0.294,4.0,0.354,Muy bajo,86.6,100.0,76.7,Muy alto
+82049,General Obligado,Santa Fe,2026,4,258.9,88.0,116.6,Alto,21.17,60.0,20.97,Normal,0.422,68.0,0.4,Normal,0.311,12.0,0.365,Bajo,96.6,80.0,86.5,Alto
+82042,General L?pez,Santa Fe,2026,4,126.2,84.0,67.6,Alto,17.4,44.0,17.53,Normal,0.359,80.0,0.307,Alto,0.207,8.0,0.254,Muy bajo,66.8,100.0,55.2,Muy alto
+82014,Caseros,Santa Fe,2026,4,142.0,92.0,86.2,Muy alto,17.84,44.0,18.06,Normal,0.422,84.0,0.4,Alto,0.282,12.0,0.336,Bajo,65.4,100.0,54.8,Muy alto
+82133,Vera,Santa Fe,2026,4,240.0,92.0,87.6,Muy alto,20.83,60.0,20.7,Normal,0.434,72.0,0.398,Alto,0.301,0.0,0.357,Muy bajo,89.1,100.0,81.6,Muy alto
+82091,San Crist?bal,Santa Fe,2026,4,223.0,96.0,85.6,Muy alto,19.71,48.0,19.81,Normal,0.427,72.0,0.39,Alto,0.286,4.0,0.341,Muy bajo,91.7,100.0,85.0,Muy alto
+82063,La Capital,Santa Fe,2026,4,361.2,100.0,92.8,Muy alto,19.27,48.0,19.3,Normal,0.43,76.0,0.396,Alto,0.341,28.0,0.371,Bajo,92.8,100.0,82.7,Muy alto
+70126,25 de Mayo,San Juan,2026,4,5.4,20.0,20.2,Bajo,18.19,48.0,18.36,Normal,0.186,24.0,0.202,Bajo,0.159,36.0,0.159,Normal,26.6,100.0,21.2,Muy alto
+22168,25 de Mayo,Chaco,2026,4,255.1,92.0,95.9,Muy alto,22.27,68.0,21.83,Normal,0.306,68.0,0.276,Normal,0.147,0.0,0.205,Muy bajo,98.8,60.0,84.9,Normal
+62091,25 de Mayo,Río Negro,2026,4,4.1,0.0,18.9,Muy bajo,8.75,52.0,8.48,Normal,0.146,16.0,0.157,Bajo,0.179,0.0,0.202,Muy bajo,8.2,40.0,8.3,Normal
+54119,25 de Mayo,Misiones,2026,4,102.6,24.0,156.8,Bajo,21.69,68.0,20.59,Normal,0.435,44.0,0.439,Normal,0.435,56.0,0.433,Normal,102.8,0.0,142.3,Muy bajo
+70063,9 de Julio,San Juan,2026,4,5.8,32.0,15.0,Normal,17.32,28.0,17.89,Bajo,0.168,40.0,0.171,Normal,0.077,92.0,0.076,Muy alto,63.6,80.0,57.0,Alto
+22105,9 de Julio,Chaco,2026,4,239.5,100.0,76.3,Muy alto,21.8,60.0,21.55,Normal,0.309,68.0,0.267,Normal,0.155,0.0,0.184,Muy bajo,98.4,100.0,87.5,Muy alto
+62049,9 de Julio,Río Negro,2026,4,3.2,4.0,17.5,Muy bajo,10.92,52.0,10.77,Normal,0.165,64.0,0.162,Normal,0.152,8.0,0.163,Muy bajo,9.1,40.0,9.4,Normal
+82077,9 de Julio,Santa Fe,2026,4,202.4,88.0,78.9,Alto,20.91,56.0,20.84,Normal,0.408,68.0,0.37,Normal,0.266,8.0,0.324,Muy bajo,84.9,100.0,74.1,Muy alto
+86028,Avellaneda,Santiago del Estero,2026,4,131.6,84.0,61.0,Alto,20.79,36.0,21.25,Normal,0.27,68.0,0.219,Normal,0.115,0.0,0.147,Muy bajo,74.2,80.0,70.4,Alto
+62014,Avellaneda,Río Negro,2026,4,10.0,32.0,24.3,Normal,15.23,52.0,14.91,Normal,0.187,40.0,0.198,Normal,0.149,36.0,0.151,Normal,18.7,20.0,19.0,Bajo
+86042,Belgrano,Santiago del Estero,2026,4,200.6,96.0,71.1,Muy alto,20.49,36.0,20.7,Normal,0.334,72.0,0.258,Alto,0.156,0.0,0.194,Muy bajo,82.5,60.0,77.3,Normal
+74014,Belgrano,San Luis,2026,4,31.5,48.0,36.2,Normal,16.8,36.0,17.49,Normal,0.151,40.0,0.154,Normal,0.104,0.0,0.121,Muy bajo,62.2,100.0,46.6,Muy alto
+82007,Belgrano,Santa Fe,2026,4,175.2,92.0,81.3,Muy alto,18.02,44.0,18.31,Normal,0.455,88.0,0.419,Alto,0.3,8.0,0.355,Muy bajo,64.6,100.0,52.1,Muy alto
+22014,Bermejo,Chaco,2026,4,213.4,64.0,141.6,Normal,22.66,76.0,21.95,Alto,0.401,64.0,0.37,Normal,0.312,24.0,0.346,Bajo,76.5,20.0,86.4,Bajo
+34007,Bermejo,Formosa,2026,4,172.6,88.0,95.8,Alto,23.08,36.0,23.36,Normal,0.29,60.0,0.271,Normal,0.168,4.0,0.175,Muy bajo,34.4,20.0,54.7,Bajo
+86049,Capital,Santiago del Estero,2026,4,57.2,48.0,62.6,Normal,20.73,40.0,20.84,Normal,0.242,44.0,0.254,Normal,0.155,28.0,0.206,Bajo,87.1,60.0,78.7,Normal
+42021,Capital,La Pampa,2026,4,31.9,20.0,59.2,Bajo,15.72,40.0,15.8,Normal,0.294,60.0,0.282,Normal,0.172,24.0,0.182,Bajo,70.6,100.0,55.0,Muy alto
+70028,Capital,San Juan,2026,4,9.0,20.0,22.1,Bajo,16.39,32.0,16.91,Normal,0.147,36.0,0.161,Normal,0.092,0.0,0.105,Muy bajo,,,,Sin datos
+66028,Capital,Salta,2026,4,74.6,8.0,117.2,Muy bajo,16.29,64.0,16.11,Normal,0.425,20.0,0.445,Bajo,0.38,16.0,0.407,Bajo,174.7,0.0,193.1,Muy bajo
+10049,Capital,Catamarca,2026,4,36.6,8.0,63.2,Muy bajo,16.47,52.0,16.3,Normal,0.177,12.0,0.228,Bajo,0.148,16.0,0.203,Bajo,113.9,100.0,98.3,Muy alto
+14014,Capital,Córdoba,2026,4,110.7,84.0,62.7,Alto,16.58,40.0,17.06,Normal,0.349,64.0,0.319,Normal,0.183,8.0,0.249,Muy bajo,82.9,60.0,78.1,Normal
+90084,Capital,Tucumán,2026,4,84.0,16.0,138.0,Bajo,17.87,40.0,18.16,Normal,0.44,32.0,0.449,Normal,0.46,52.0,0.444,Normal,110.5,100.0,99.7,Muy alto
+46014,Capital,La Rioja,2026,4,42.4,52.0,38.6,Normal,19.71,44.0,19.93,Normal,0.151,36.0,0.162,Normal,0.115,0.0,0.155,Muy bajo,58.9,80.0,44.8,Alto
+18021,Capital,Corrientes,2026,4,187.8,68.0,122.1,Normal,22.26,72.0,21.62,Alto,0.358,64.0,0.32,Normal,0.304,24.0,0.326,Bajo,81.9,60.0,78.8,Normal
+54028,Capital,Misiones,2026,4,122.4,32.0,158.2,Normal,22.09,64.0,21.15,Normal,0.411,52.0,0.403,Normal,0.41,60.0,0.402,Normal,91.6,20.0,102.1,Bajo
+50007,Capital,Mendoza,2026,4,24.2,28.0,40.5,Bajo,13.87,44.0,14.2,Normal,0.25,40.0,0.272,Normal,0.219,4.0,0.271,Muy bajo,50.4,100.0,31.4,Muy alto
+74028,Chacabuco,San Luis,2026,4,52.6,60.0,47.5,Normal,14.54,36.0,15.27,Normal,0.306,64.0,0.291,Normal,0.194,0.0,0.207,Muy bajo,72.9,80.0,69.6,Alto
+22028,Chacabuco,Chaco,2026,4,238.8,100.0,75.3,Muy alto,21.79,64.0,21.45,Normal,0.304,64.0,0.281,Normal,0.155,0.0,0.189,Muy bajo,96.9,100.0,83.5,Muy alto
+30008,Col?n,Entre Ríos,2026,4,166.2,72.0,94.9,Alto,18.84,64.0,18.63,Normal,0.386,68.0,0.349,Normal,0.318,12.0,0.364,Bajo,94.3,100.0,86.2,Muy alto
+14021,Col?n,Córdoba,2026,4,128.2,92.0,76.9,Muy alto,16.25,40.0,16.64,Normal,0.354,72.0,0.31,Alto,0.183,4.0,0.261,Muy bajo,86.3,60.0,82.6,Normal
+18028,Concepci?n,Corrientes,2026,4,235.6,76.0,131.9,Alto,21.62,68.0,20.82,Normal,0.341,60.0,0.304,Normal,0.318,40.0,0.32,Normal,70.3,20.0,75.7,Bajo
+54035,Concepci?n,Misiones,2026,4,129.0,40.0,156.2,Normal,21.85,64.0,20.9,Normal,0.429,44.0,0.431,Normal,0.42,44.0,0.428,Normal,101.8,20.0,111.3,Bajo
+18056,General Alvear,Corrientes,2026,4,223.1,72.0,147.9,Alto,21.38,68.0,20.65,Normal,0.367,64.0,0.352,Normal,0.346,48.0,0.347,Normal,79.8,60.0,78.4,Normal
+50014,General Alvear,Mendoza,2026,4,36.2,52.0,36.1,Normal,16.51,44.0,17.2,Normal,0.181,48.0,0.189,Normal,0.14,0.0,0.16,Muy bajo,42.5,80.0,37.8,Alto
+22049,General Belgrano,Chaco,2026,4,260.3,100.0,74.3,Muy alto,21.9,64.0,21.66,Normal,0.315,76.0,0.262,Alto,0.154,0.0,0.185,Muy bajo,93.6,100.0,85.9,Muy alto
+46063,General Belgrano,La Rioja,2026,4,57.7,64.0,44.2,Normal,19.18,40.0,19.63,Normal,0.162,44.0,0.171,Normal,0.07,0.0,0.107,Muy bajo,61.4,80.0,48.7,Alto
+66049,General G?emes,Salta,2026,4,48.9,8.0,89.6,Muy bajo,18.21,56.0,18.03,Normal,0.405,12.0,0.443,Bajo,0.356,16.0,0.411,Bajo,144.2,0.0,177.7,Muy bajo
+22063,General G?emes,Chaco,2026,4,204.3,100.0,83.4,Muy alto,22.42,40.0,22.77,Normal,0.307,68.0,0.282,Normal,0.158,8.0,0.173,Muy bajo,67.0,20.0,89.8,Bajo
+14035,General Roca,Córdoba,2026,4,64.7,52.0,62.6,Normal,16.82,40.0,17.16,Normal,0.296,64.0,0.269,Normal,0.155,4.0,0.183,Muy bajo,77.8,100.0,61.7,Muy alto
+62042,General Roca,Río Negro,2026,4,14.0,48.0,14.1,Normal,15.13,52.0,14.93,Normal,0.179,40.0,0.182,Normal,0.137,56.0,0.136,Normal,17.6,60.0,17.1,Normal
+14042,General San Mart?n,Córdoba,2026,4,111.3,88.0,74.5,Alto,17.75,44.0,18.38,Normal,0.355,76.0,0.33,Alto,0.228,28.0,0.257,Bajo,84.7,100.0,64.6,Muy alto
+46091,General San Mart?n,La Rioja,2026,4,47.3,48.0,49.1,Normal,18.59,40.0,19.54,Normal,0.138,36.0,0.149,Normal,0.063,8.0,0.071,Muy bajo,61.8,100.0,45.3,Muy alto
+22070,Independencia,Chaco,2026,4,305.9,100.0,80.0,Muy alto,22.02,68.0,21.79,Normal,0.324,76.0,0.266,Alto,0.156,0.0,0.195,Muy bajo,94.8,60.0,85.3,Normal
+46105,Independencia,La Rioja,2026,4,32.9,56.0,31.5,Normal,16.01,44.0,16.43,Normal,0.142,40.0,0.156,Normal,0.104,0.0,0.146,Muy bajo,45.6,60.0,39.3,Normal
+74049,Jun?n,San Luis,2026,4,58.1,44.0,60.4,Normal,16.75,36.0,17.38,Normal,0.234,64.0,0.224,Normal,0.121,8.0,0.151,Muy bajo,77.1,100.0,63.1,Muy alto
+50035,Jun?n,Mendoza,2026,4,15.4,40.0,24.7,Normal,16.46,44.0,17.01,Normal,0.287,56.0,0.283,Normal,0.222,76.0,0.213,Alto,65.4,60.0,60.9,Normal
+30070,La Paz,Entre Ríos,2026,4,197.1,84.0,99.0,Alto,19.57,48.0,19.58,Normal,0.437,72.0,0.385,Alto,0.334,12.0,0.391,Bajo,96.1,100.0,86.5,Muy alto
+10070,La Paz,Catamarca,2026,4,33.1,32.0,43.7,Normal,20.67,48.0,20.75,Normal,0.128,16.0,0.158,Bajo,0.076,0.0,0.112,Muy bajo,58.2,80.0,48.1,Alto
+50042,La Paz,Mendoza,2026,4,39.1,48.0,41.2,Normal,17.03,40.0,17.65,Normal,0.185,40.0,0.206,Normal,0.155,0.0,0.175,Muy bajo,49.6,100.0,36.3,Muy alto
+18091,Lavalle,Corrientes,2026,4,232.9,80.0,121.2,Alto,20.95,56.0,20.42,Normal,0.401,72.0,0.367,Alto,0.341,20.0,0.375,Bajo,86.0,80.0,83.8,Alto
+50056,Lavalle,Mendoza,2026,4,8.2,24.0,25.1,Bajo,17.88,44.0,18.26,Normal,0.184,40.0,0.197,Normal,0.16,0.0,0.164,Muy bajo,37.5,100.0,26.7,Muy alto
+74063,Libertador General San Mart?n,San Luis,2026,4,66.7,40.0,74.0,Normal,14.33,40.0,14.75,Normal,0.304,56.0,0.296,Normal,0.181,4.0,0.251,Muy bajo,66.3,100.0,54.9,Muy alto
+22084,Libertador General San Mart?n,Chaco,2026,4,250.7,92.0,100.0,Muy alto,22.73,68.0,21.97,Normal,0.36,64.0,0.337,Normal,0.228,8.0,0.275,Muy bajo,77.3,20.0,90.5,Bajo
+54077,Libertador General San Mart?n,Misiones,2026,4,115.2,36.0,143.3,Normal,21.97,68.0,21.09,Normal,0.41,52.0,0.409,Normal,0.406,64.0,0.399,Normal,87.3,0.0,144.3,Muy bajo
+22091,Maip?,Chaco,2026,4,288.8,100.0,90.1,Muy alto,22.31,64.0,22.14,Normal,0.321,76.0,0.273,Alto,0.152,4.0,0.186,Muy bajo,86.5,60.0,85.0,Normal
+50070,Maip?,Mendoza,2026,4,13.5,32.0,20.3,Normal,16.13,44.0,16.54,Normal,0.268,60.0,0.253,Normal,0.247,0.0,0.256,Muy bajo,57.7,80.0,49.4,Alto
+58077,Minas,Neuquén,2026,4,52.2,48.0,53.5,Normal,6.9,60.0,6.28,Normal,0.27,88.0,0.194,Alto,0.315,32.0,0.317,Normal,21.2,20.0,22.4,Bajo
+14070,Minas,Córdoba,2026,4,61.3,56.0,43.1,Normal,18.19,36.0,18.89,Normal,0.243,56.0,0.242,Normal,0.122,0.0,0.166,Muy bajo,64.8,100.0,55.8,Muy alto
+90077,R?o Chico,Tucumán,2026,4,150.3,20.0,206.9,Bajo,16.48,52.0,16.48,Normal,0.404,48.0,0.405,Normal,0.417,44.0,0.418,Normal,172.0,80.0,155.5,Alto
+78049,R?o Chico,Santa Cruz,2026,4,73.1,96.0,56.7,Muy alto,4.22,20.0,4.88,Bajo,0.272,92.0,0.249,Muy alto,0.306,96.0,0.293,Muy alto,5.0,20.0,5.9,Bajo
+70077,Rawson,San Juan,2026,4,7.6,28.0,17.3,Bajo,16.81,28.0,17.26,Bajo,0.115,40.0,0.124,Normal,0.074,0.0,0.079,Muy bajo,56.7,100.0,52.9,Muy alto
+26077,Rawson,Chubut,2026,4,9.6,40.0,12.4,Normal,14.25,52.0,14.04,Normal,0.172,56.0,0.162,Normal,0.134,76.0,0.128,Alto,16.6,40.0,18.3,Normal
+86154,Rivadavia,Santiago del Estero,2026,4,166.5,92.0,84.9,Muy alto,20.27,44.0,20.39,Normal,0.301,72.0,0.274,Alto,0.165,0.0,0.207,Muy bajo,75.6,60.0,71.4,Normal
+70084,Rivadavia,San Juan,2026,4,17.2,16.0,46.1,Bajo,15.17,44.0,15.65,Normal,0.182,28.0,0.213,Bajo,0.168,0.0,0.217,Muy bajo,23.1,60.0,22.3,Normal
+66133,Rivadavia,Salta,2026,4,93.4,68.0,67.0,Normal,23.17,44.0,23.36,Normal,0.291,56.0,0.286,Normal,0.185,0.0,0.217,Muy bajo,38.8,0.0,88.8,Muy bajo
+50084,Rivadavia,Mendoza,2026,4,23.0,40.0,27.7,Normal,15.16,44.0,15.48,Normal,0.176,44.0,0.198,Normal,0.132,12.0,0.143,Bajo,34.4,20.0,36.2,Bajo
+38056,San Antonio,Jujuy,2026,4,152.9,0.0,258.5,Muy bajo,10.93,64.0,10.58,Normal,0.384,8.0,0.398,Muy bajo,0.413,4.0,0.422,Muy bajo,139.8,60.0,133.6,Normal
+62077,San Antonio,Río Negro,2026,4,4.6,12.0,17.6,Bajo,14.79,48.0,14.82,Normal,0.137,28.0,0.162,Bajo,0.127,0.0,0.132,Muy bajo,13.0,20.0,17.1,Bajo
+66154,San Carlos,Salta,2026,4,29.7,8.0,51.6,Muy bajo,10.08,80.0,9.83,Alto,0.354,0.0,0.389,Muy bajo,0.397,20.0,0.404,Bajo,34.5,80.0,30.7,Alto
+50091,San Carlos,Mendoza,2026,4,42.3,40.0,43.9,Normal,8.55,44.0,8.58,Normal,0.197,48.0,0.214,Normal,0.222,12.0,0.24,Bajo,23.8,40.0,24.4,Normal
+14133,San Javier,Córdoba,2026,4,67.5,72.0,52.1,Alto,16.19,36.0,16.89,Normal,0.26,64.0,0.252,Normal,0.126,0.0,0.162,Muy bajo,84.4,60.0,80.2,Normal
+54105,San Javier,Misiones,2026,4,116.4,28.0,163.6,Bajo,21.88,68.0,20.78,Normal,0.42,36.0,0.435,Normal,0.423,40.0,0.433,Normal,105.5,0.0,127.7,Muy bajo
+82098,San Javier,Santa Fe,2026,4,192.4,80.0,106.3,Alto,20.26,52.0,20.26,Normal,0.43,72.0,0.375,Alto,0.314,4.0,0.367,Muy bajo,91.9,100.0,84.8,Muy alto
+14140,San Justo,Córdoba,2026,4,136.4,92.0,90.1,Muy alto,18.88,36.0,19.29,Normal,0.353,80.0,0.328,Alto,0.211,0.0,0.252,Muy bajo,88.6,100.0,70.2,Muy alto
+82112,San Justo,Santa Fe,2026,4,283.7,96.0,95.1,Muy alto,19.7,48.0,19.8,Normal,0.448,76.0,0.403,Alto,0.33,4.0,0.398,Muy bajo,95.1,100.0,86.5,Muy alto
+22147,San Lorenzo,Chaco,2026,4,261.6,96.0,98.3,Muy alto,21.85,72.0,21.48,Alto,0.31,68.0,0.268,Normal,0.143,0.0,0.194,Muy bajo,109.0,80.0,81.7,Alto
+82119,San Lorenzo,Santa Fe,2026,4,157.4,84.0,78.4,Alto,18.17,48.0,18.2,Normal,0.441,80.0,0.407,Alto,0.294,4.0,0.362,Muy bajo,81.0,100.0,62.2,Muy alto
+86175,San Mart?n,Santiago del Estero,2026,4,85.0,60.0,57.9,Normal,21.11,40.0,21.43,Normal,0.251,56.0,0.241,Normal,0.111,12.0,0.157,Bajo,74.3,80.0,69.0,Alto
+70091,San Mart?n,San Juan,2026,4,9.2,36.0,17.1,Normal,16.18,40.0,16.7,Normal,0.127,24.0,0.146,Bajo,0.069,28.0,0.071,Bajo,35.3,80.0,29.3,Alto
+18147,San Mart?n,Corrientes,2026,4,250.5,84.0,159.9,Alto,21.34,64.0,20.64,Normal,0.367,64.0,0.341,Normal,0.346,48.0,0.347,Normal,74.7,40.0,79.9,Normal
+50098,San Mart?n,Mendoza,2026,4,8.0,24.0,21.2,Bajo,17.36,44.0,17.7,Normal,0.245,44.0,0.248,Normal,0.205,32.0,0.206,Normal,52.0,100.0,37.8,Muy alto
+82126,San Mart?n,Santa Fe,2026,4,183.4,96.0,86.8,Muy alto,18.3,40.0,18.64,Normal,0.452,84.0,0.416,Alto,0.293,0.0,0.344,Muy bajo,70.5,100.0,59.6,Muy alto
+38063,San Pedro,Jujuy,2026,4,54.1,8.0,107.3,Muy bajo,18.94,56.0,18.8,Normal,0.404,8.0,0.448,Muy bajo,0.354,12.0,0.416,Bajo,143.8,0.0,168.6,Muy bajo
+54112,San Pedro,Misiones,2026,4,85.6,20.0,160.5,Bajo,21.05,68.0,20.02,Normal,0.427,20.0,0.442,Bajo,0.445,56.0,0.443,Normal,112.1,0.0,166.4,Muy bajo
+10091,Santa Mar?a,Catamarca,2026,4,20.4,8.0,39.8,Muy bajo,11.0,84.0,10.54,Alto,0.28,0.0,0.319,Muy bajo,0.313,4.0,0.327,Muy bajo,37.0,80.0,33.5,Alto
+14147,Santa Mar?a,Córdoba,2026,4,104.0,84.0,68.5,Alto,15.93,40.0,16.4,Normal,0.35,80.0,0.325,Alto,0.213,12.0,0.251,Bajo,79.0,60.0,74.9,Normal
+10098,Santa Rosa,Catamarca,2026,4,51.7,24.0,82.9,Bajo,18.62,52.0,18.57,Normal,0.303,44.0,0.313,Normal,0.199,20.0,0.236,Bajo,133.8,60.0,127.4,Normal
+50112,Santa Rosa,Mendoza,2026,4,33.6,60.0,29.9,Normal,16.35,44.0,17.04,Normal,0.13,48.0,0.147,Normal,0.086,0.0,0.101,Muy bajo,41.6,80.0,34.4,Alto
+86182,Sarmiento,Santiago del Estero,2026,4,110.4,76.0,69.1,Alto,21.02,32.0,21.38,Normal,0.233,60.0,0.2,Normal,0.095,8.0,0.126,Muy bajo,74.1,60.0,71.5,Normal
+70105,Sarmiento,San Juan,2026,4,28.6,24.0,42.1,Bajo,14.5,44.0,14.57,Normal,0.19,40.0,0.211,Normal,0.183,20.0,0.205,Bajo,41.7,100.0,29.1,Muy alto
+26091,Sarmiento,Chubut,2026,4,14.5,36.0,21.9,Normal,9.92,56.0,9.62,Normal,0.174,40.0,0.178,Normal,0.191,28.0,0.195,Bajo,8.1,40.0,8.4,Normal
+06707,Saladillo,Buenos Aires,2026,4,71.1,52.0,69.1,Normal,16.75,60.0,16.32,Normal,0.423,88.0,0.382,Alto,0.321,36.0,0.336,Normal,89.0,80.0,74.6,Alto
+06455,Las Flores,Buenos Aires,2026,4,67.8,52.0,64.2,Normal,16.54,60.0,16.13,Normal,0.429,84.0,0.396,Alto,0.325,16.0,0.35,Bajo,87.0,60.0,81.4,Normal
+06686,Rojas,Buenos Aires,2026,4,123.4,80.0,76.1,Alto,17.34,56.0,17.15,Normal,0.422,84.0,0.385,Alto,0.292,8.0,0.35,Muy bajo,67.5,80.0,61.3,Alto
+06252,Escobar,Buenos Aires,2026,4,124.0,80.0,76.9,Alto,17.91,76.0,17.49,Alto,0.464,80.0,0.399,Alto,0.318,12.0,0.376,Bajo,83.0,60.0,80.6,Normal
+06412,Jos? C. Paz,Buenos Aires,2026,4,103.2,80.0,75.7,Alto,17.72,72.0,17.34,Alto,0.437,84.0,0.366,Alto,0.301,12.0,0.364,Bajo,71.8,40.0,75.9,Normal
+06735,San Antonio de Areco,Buenos Aires,2026,4,99.3,64.0,58.3,Normal,17.73,76.0,17.31,Alto,0.43,76.0,0.39,Alto,0.323,12.0,0.383,Bajo,79.1,80.0,74.2,Alto
+06511,Maip?,Buenos Aires,2026,4,123.9,88.0,59.3,Alto,16.29,76.0,15.62,Alto,0.44,92.0,0.383,Muy alto,0.322,12.0,0.356,Bajo,82.6,20.0,96.9,Bajo
+06560,Moreno,Buenos Aires,2026,4,90.9,76.0,72.5,Alto,17.6,72.0,17.16,Alto,0.436,84.0,0.367,Alto,0.304,12.0,0.373,Bajo,77.3,40.0,80.7,Normal
+06427,La Matanza,Buenos Aires,2026,4,88.5,68.0,75.6,Normal,17.68,72.0,17.23,Alto,0.437,88.0,0.367,Alto,0.327,12.0,0.383,Bajo,84.9,60.0,79.2,Normal
+06014,Adolfo Gonzales Chaves,Buenos Aires,2026,4,66.5,48.0,67.5,Normal,14.89,56.0,14.65,Normal,0.37,68.0,0.347,Normal,0.25,0.0,0.274,Muy bajo,77.0,60.0,75.3,Normal
+06056,Bah?a Blanca,Buenos Aires,2026,4,22.4,16.0,47.9,Bajo,15.32,48.0,15.59,Normal,0.256,64.0,0.226,Normal,0.176,28.0,0.178,Bajo,69.7,80.0,60.5,Alto
+06280,General Alvarado,Buenos Aires,2026,4,112.8,92.0,72.3,Muy alto,16.15,76.0,15.36,Alto,0.387,84.0,0.348,Alto,0.295,20.0,0.315,Bajo,85.4,20.0,87.7,Bajo
+06357,General Pueyrred?n,Buenos Aires,2026,4,121.3,92.0,67.6,Muy alto,16.0,76.0,15.27,Alto,0.362,80.0,0.311,Alto,0.254,4.0,0.282,Muy bajo,81.0,20.0,91.5,Bajo
+06518,Mar Chiquita,Buenos Aires,2026,4,130.3,88.0,57.6,Alto,16.04,76.0,15.42,Alto,0.427,76.0,0.379,Alto,0.319,4.0,0.354,Muy bajo,85.4,20.0,100.6,Bajo
+06868,Villa Gesell,Buenos Aires,2026,4,157.7,100.0,58.3,Muy alto,16.69,80.0,16.14,Alto,0.3,96.0,0.231,Muy alto,0.212,28.0,0.231,Bajo,55.0,0.0,68.0,Muy bajo
+06644,Pinamar,Buenos Aires,2026,4,152.4,96.0,66.6,Muy alto,17.15,80.0,16.51,Alto,0.418,96.0,0.341,Muy alto,0.302,20.0,0.321,Bajo,83.8,0.0,108.7,Muy bajo
+06336,General Lavalle,Buenos Aires,2026,4,118.1,88.0,68.2,Alto,17.18,80.0,16.43,Alto,0.408,92.0,0.367,Muy alto,0.306,8.0,0.351,Muy bajo,84.7,0.0,106.9,Muy bajo
+06420,La Costa,Buenos Aires,2026,4,128.8,92.0,73.7,Muy alto,17.61,80.0,16.84,Alto,0.264,92.0,0.23,Muy alto,0.225,24.0,0.24,Bajo,64.7,0.0,86.4,Muy bajo
+06505,Magdalena,Buenos Aires,2026,4,78.7,60.0,60.3,Normal,17.66,76.0,17.07,Alto,0.446,88.0,0.372,Alto,0.323,12.0,0.389,Bajo,97.5,20.0,104.2,Bajo
+06861,Vicente L?pez,Buenos Aires,2026,4,109.4,80.0,80.9,Alto,18.17,84.0,17.6,Alto,0.378,80.0,0.323,Alto,0.299,4.0,0.352,Muy bajo,54.4,0.0,62.0,Muy bajo
+06343,General Paz,Buenos Aires,2026,4,67.7,48.0,74.3,Normal,17.03,68.0,16.63,Normal,0.434,92.0,0.4,Muy alto,0.322,12.0,0.377,Bajo,88.2,40.0,89.3,Normal
+06308,General Guido,Buenos Aires,2026,4,94.1,68.0,64.6,Normal,16.26,76.0,15.76,Alto,0.433,84.0,0.394,Alto,0.32,16.0,0.359,Bajo,83.9,20.0,95.5,Bajo
+06315,General Juan Madariaga,Buenos Aires,2026,4,146.4,100.0,56.3,Muy alto,16.48,80.0,15.83,Alto,0.43,96.0,0.364,Muy alto,0.318,16.0,0.348,Bajo,87.2,20.0,103.8,Bajo
+06791,Tandil,Buenos Aires,2026,4,105.5,72.0,65.7,Alto,14.96,72.0,14.66,Alto,0.406,80.0,0.367,Alto,0.294,16.0,0.31,Bajo,75.6,20.0,79.6,Bajo
+06203,Coronel Su?rez,Buenos Aires,2026,4,63.9,44.0,74.6,Normal,14.32,52.0,14.08,Normal,0.301,52.0,0.278,Normal,0.188,8.0,0.213,Muy bajo,81.8,100.0,75.4,Muy alto
+06875,Villarino,Buenos Aires,2026,4,12.7,12.0,45.0,Bajo,15.63,48.0,15.8,Normal,0.264,68.0,0.233,Normal,0.164,12.0,0.172,Bajo,63.7,80.0,50.9,Alto
+06672,Rauch,Buenos Aires,2026,4,88.4,56.0,62.0,Normal,15.99,68.0,15.53,Normal,0.431,80.0,0.39,Alto,0.322,16.0,0.35,Bajo,85.7,20.0,90.5,Bajo
+06721,Salliquel?,Buenos Aires,2026,4,57.9,48.0,59.2,Normal,15.53,48.0,15.76,Normal,0.197,60.0,0.166,Normal,0.098,60.0,0.097,Normal,66.4,40.0,67.7,Normal
+06091,Berazategui,Buenos Aires,2026,4,90.8,64.0,74.1,Normal,18.12,76.0,17.69,Alto,0.441,84.0,0.368,Alto,0.334,8.0,0.392,Muy bajo,91.7,20.0,95.7,Bajo
+06819,Tornquist,Buenos Aires,2026,4,31.2,24.0,57.0,Bajo,14.38,48.0,14.68,Normal,0.275,68.0,0.239,Normal,0.183,20.0,0.194,Bajo,72.0,80.0,61.2,Alto
+06196,Coronel Pringles,Buenos Aires,2026,4,38.4,28.0,63.8,Bajo,14.43,52.0,14.21,Normal,0.278,52.0,0.261,Normal,0.181,16.0,0.197,Bajo,72.5,60.0,70.4,Normal
+06351,General Pinto,Buenos Aires,2026,4,131.4,80.0,69.5,Alto,16.89,44.0,17.03,Normal,0.416,84.0,0.35,Alto,0.263,16.0,0.29,Bajo,73.6,100.0,59.6,Muy alto
+06742,San Cayetano,Buenos Aires,2026,4,72.3,52.0,66.7,Normal,15.69,64.0,15.24,Normal,0.278,68.0,0.263,Normal,0.172,12.0,0.193,Bajo,77.5,40.0,78.2,Normal
+06833,Tres Arroyos,Buenos Aires,2026,4,45.9,32.0,63.3,Normal,15.61,64.0,15.37,Normal,0.258,60.0,0.246,Normal,0.166,8.0,0.187,Muy bajo,75.9,60.0,74.4,Normal
+06189,Coronel Dorrego,Buenos Aires,2026,4,31.7,16.0,60.8,Bajo,15.37,52.0,15.25,Normal,0.256,64.0,0.234,Normal,0.17,20.0,0.181,Bajo,70.4,60.0,63.4,Normal
+06581,Necochea,Buenos Aires,2026,4,85.0,68.0,71.8,Normal,15.72,72.0,15.16,Alto,0.296,80.0,0.264,Alto,0.183,12.0,0.204,Bajo,73.3,20.0,78.9,Bajo
+06466,Lezama,Buenos Aires,2026,4,69.3,56.0,63.5,Normal,16.93,72.0,16.54,Alto,0.436,92.0,0.397,Muy alto,0.331,12.0,0.379,Bajo,82.2,20.0,91.8,Bajo
+06218,Chascom?s,Buenos Aires,2026,4,69.8,48.0,70.8,Normal,17.12,72.0,16.79,Alto,0.439,92.0,0.39,Muy alto,0.329,12.0,0.381,Bajo,88.4,20.0,93.0,Bajo
+06655,Punta Indio,Buenos Aires,2026,4,71.8,60.0,63.6,Normal,17.7,76.0,17.11,Alto,0.444,92.0,0.372,Muy alto,0.333,12.0,0.391,Bajo,94.0,20.0,116.5,Bajo
+06126,Campana,Buenos Aires,2026,4,135.6,88.0,82.8,Alto,17.94,76.0,17.47,Alto,0.501,80.0,0.443,Alto,0.336,12.0,0.401,Bajo,90.6,80.0,86.6,Alto
+06007,Adolfo Alsina,Buenos Aires,2026,4,47.9,44.0,85.8,Normal,15.2,48.0,15.52,Normal,0.299,68.0,0.273,Normal,0.192,48.0,0.192,Normal,66.7,80.0,59.7,Alto
+06616,Pellegrini,Buenos Aires,2026,4,57.1,48.0,72.9,Normal,15.8,48.0,16.1,Normal,0.211,64.0,0.169,Normal,0.101,48.0,0.101,Normal,62.2,40.0,67.5,Normal
+06651,Pu?n,Buenos Aires,2026,4,25.8,16.0,68.8,Bajo,14.93,48.0,15.19,Normal,0.27,64.0,0.239,Normal,0.171,12.0,0.188,Bajo,61.0,80.0,53.0,Alto
+06392,General Villegas,Buenos Aires,2026,4,96.4,68.0,65.2,Normal,16.8,44.0,17.05,Normal,0.4,80.0,0.36,Alto,0.249,8.0,0.271,Muy bajo,70.6,100.0,60.7,Muy alto
+06329,General Las Heras,Buenos Aires,2026,4,65.6,44.0,69.5,Normal,17.35,72.0,16.92,Alto,0.41,64.0,0.383,Normal,0.309,12.0,0.365,Bajo,95.0,60.0,87.8,Normal
+06525,Marcos Paz,Buenos Aires,2026,4,77.2,56.0,67.7,Normal,17.48,72.0,17.01,Alto,0.428,80.0,0.371,Alto,0.309,8.0,0.373,Muy bajo,89.5,60.0,86.0,Normal
+06270,Ezeiza,Buenos Aires,2026,4,84.2,60.0,77.0,Normal,17.52,72.0,17.13,Alto,0.439,88.0,0.367,Alto,0.311,12.0,0.375,Bajo,83.8,60.0,81.6,Normal
+06623,Pergamino,Buenos Aires,2026,4,123.0,76.0,72.4,Alto,17.61,56.0,17.45,Normal,0.439,84.0,0.388,Alto,0.304,4.0,0.382,Muy bajo,75.1,100.0,65.8,Muy alto
+06749,San Fernando,Buenos Aires,2026,4,148.5,88.0,76.2,Alto,18.37,76.0,17.95,Alto,0.49,80.0,0.424,Alto,0.331,0.0,0.405,Muy bajo,80.8,60.0,80.3,Normal
+06805,Tigre,Buenos Aires,2026,4,127.3,84.0,79.6,Alto,18.21,76.0,17.78,Alto,0.364,80.0,0.308,Alto,0.254,16.0,0.308,Bajo,69.5,60.0,66.2,Normal
+06168,Castelli,Buenos Aires,2026,4,73.7,60.0,65.5,Normal,17.01,72.0,16.45,Alto,0.423,92.0,0.381,Muy alto,0.328,12.0,0.375,Bajo,87.7,20.0,102.5,Bajo
+06028,Almirante Brown,Buenos Aires,2026,4,91.5,68.0,75.9,Normal,17.76,72.0,17.32,Alto,0.442,88.0,0.368,Alto,0.313,8.0,0.381,Muy bajo,70.4,20.0,76.4,Bajo
+06648,Presidente Per?n,Buenos Aires,2026,4,84.5,56.0,71.7,Normal,17.51,72.0,17.07,Alto,0.442,88.0,0.368,Alto,0.312,12.0,0.378,Bajo,78.0,20.0,85.4,Bajo
+06847,Tres Lomas,Buenos Aires,2026,4,73.4,52.0,68.9,Normal,15.65,48.0,15.74,Normal,0.202,60.0,0.173,Normal,0.102,32.0,0.112,Normal,69.6,60.0,68.4,Normal
+06042,Ayacucho,Buenos Aires,2026,4,104.2,76.0,58.8,Alto,15.77,76.0,15.18,Alto,0.431,80.0,0.387,Alto,0.32,16.0,0.345,Bajo,84.7,20.0,93.5,Bajo
+06399,Guamin?,Buenos Aires,2026,4,80.1,48.0,86.0,Normal,15.5,52.0,15.36,Normal,0.307,60.0,0.281,Normal,0.208,8.0,0.227,Muy bajo,81.6,100.0,71.2,Muy alto
+06119,Brandsen,Buenos Aires,2026,4,76.9,56.0,73.7,Normal,17.25,72.0,16.86,Alto,0.443,92.0,0.373,Muy alto,0.32,12.0,0.384,Bajo,92.3,40.0,95.1,Normal
+06245,Ensenada,Buenos Aires,2026,4,86.7,60.0,69.6,Normal,18.12,76.0,17.65,Alto,0.44,84.0,0.365,Alto,0.323,8.0,0.38,Muy bajo,93.1,20.0,95.9,Bajo
+06448,Laprida,Buenos Aires,2026,4,80.1,52.0,71.9,Normal,14.66,52.0,14.38,Normal,0.398,68.0,0.376,Normal,0.278,0.0,0.307,Muy bajo,85.1,80.0,78.5,Alto
+06756,San Isidro,Buenos Aires,2026,4,114.5,80.0,79.6,Alto,18.09,72.0,17.64,Alto,0.423,80.0,0.357,Alto,0.302,8.0,0.356,Muy bajo,68.9,0.0,73.2,Muy bajo
+06084,Benito Ju?rez,Buenos Aires,2026,4,104.4,84.0,81.2,Alto,14.72,60.0,14.48,Normal,0.409,92.0,0.381,Muy alto,0.283,4.0,0.314,Muy bajo,81.0,40.0,82.7,Normal
+06175,Col?n,Buenos Aires,2026,4,126.8,80.0,78.3,Alto,17.46,52.0,17.39,Normal,0.421,80.0,0.381,Alto,0.285,4.0,0.339,Muy bajo,71.7,100.0,60.4,Muy alto
+06147,Carlos Casares,Buenos Aires,2026,4,145.4,92.0,73.9,Muy alto,16.32,52.0,16.23,Normal,0.357,92.0,0.287,Muy alto,0.193,20.0,0.225,Bajo,76.7,100.0,68.5,Muy alto
+06154,Carlos Tejedor,Buenos Aires,2026,4,131.6,92.0,80.5,Muy alto,16.57,44.0,16.81,Normal,0.433,88.0,0.39,Alto,0.279,12.0,0.306,Bajo,77.4,100.0,61.2,Muy alto
+06854,25 de Mayo,Buenos Aires,2026,4,94.3,64.0,69.2,Normal,16.7,56.0,16.28,Normal,0.349,84.0,0.304,Alto,0.234,28.0,0.247,Bajo,84.9,100.0,72.0,Muy alto
+06588,9 de Julio,Buenos Aires,2026,4,131.7,80.0,74.5,Alto,16.53,56.0,16.29,Normal,0.352,88.0,0.294,Alto,0.21,28.0,0.224,Bajo,77.5,100.0,67.0,Muy alto
+06609,Pehuaj?,Buenos Aires,2026,4,176.1,100.0,69.7,Muy alto,16.33,52.0,16.25,Normal,0.384,88.0,0.346,Alto,0.235,12.0,0.266,Bajo,76.2,100.0,62.5,Muy alto
+06826,Trenque Lauquen,Buenos Aires,2026,4,114.1,84.0,72.5,Alto,16.14,52.0,16.12,Normal,0.304,72.0,0.273,Alto,0.182,12.0,0.208,Bajo,70.3,80.0,66.0,Alto
+06301,General Belgrano,Buenos Aires,2026,4,59.5,40.0,77.0,Normal,16.82,68.0,16.35,Normal,0.421,76.0,0.381,Alto,0.321,12.0,0.351,Bajo,84.8,60.0,82.3,Normal
+06547,Monte,Buenos Aires,2026,4,60.4,36.0,79.5,Normal,17.04,64.0,16.65,Normal,0.421,76.0,0.382,Alto,0.323,12.0,0.359,Bajo,84.1,60.0,81.4,Normal
+06693,Roque P?rez,Buenos Aires,2026,4,55.9,40.0,71.6,Normal,17.03,60.0,16.68,Normal,0.372,68.0,0.349,Normal,0.276,16.0,0.301,Bajo,87.7,80.0,76.6,Alto
+06595,Olavarr?a,Buenos Aires,2026,4,132.5,92.0,90.2,Muy alto,15.18,56.0,14.9,Normal,0.434,92.0,0.401,Muy alto,0.306,12.0,0.342,Bajo,78.9,40.0,83.2,Normal
+06539,Merlo,Buenos Aires,2026,4,87.1,64.0,72.7,Normal,17.62,72.0,17.17,Alto,0.436,88.0,0.364,Alto,0.301,8.0,0.368,Muy bajo,78.0,40.0,82.4,Normal
+06260,Esteban Echeverr?a,Buenos Aires,2026,4,87.9,64.0,77.8,Normal,17.61,68.0,17.23,Normal,0.441,88.0,0.367,Alto,0.318,12.0,0.381,Bajo,72.5,20.0,76.8,Bajo
+06077,Arrecifes,Buenos Aires,2026,4,111.3,68.0,62.6,Normal,17.69,60.0,17.43,Normal,0.442,84.0,0.389,Alto,0.306,8.0,0.383,Muy bajo,76.6,100.0,67.1,Muy alto
+06140,Capit?n Sarmiento,Buenos Aires,2026,4,102.8,68.0,60.7,Normal,17.69,68.0,17.37,Normal,0.437,84.0,0.394,Alto,0.31,12.0,0.375,Bajo,76.8,80.0,72.9,Alto
+06161,Carmen de Areco,Buenos Aires,2026,4,91.8,68.0,57.9,Normal,17.49,64.0,17.14,Normal,0.424,76.0,0.393,Alto,0.315,12.0,0.372,Bajo,85.1,60.0,74.7,Normal
+06714,Salto,Buenos Aires,2026,4,113.2,72.0,74.6,Alto,17.42,56.0,17.22,Normal,0.437,84.0,0.398,Alto,0.313,8.0,0.384,Muy bajo,70.4,100.0,60.6,Muy alto
+06266,Exaltaci?n de la Cruz,Buenos Aires,2026,4,107.5,76.0,67.3,Alto,17.74,76.0,17.29,Alto,0.437,80.0,0.377,Alto,0.322,12.0,0.385,Bajo,83.1,60.0,75.6,Normal
+06760,San Miguel,Buenos Aires,2026,4,102.3,80.0,75.5,Alto,17.81,72.0,17.38,Alto,0.436,80.0,0.365,Alto,0.303,12.0,0.366,Bajo,85.2,40.0,87.2,Normal
+06728,San Andr?s de Giles,Buenos Aires,2026,4,86.4,56.0,61.1,Normal,17.57,72.0,17.12,Alto,0.422,76.0,0.386,Alto,0.321,12.0,0.38,Bajo,81.7,80.0,72.9,Alto
+06413,Jun?n,Buenos Aires,2026,4,123.5,84.0,75.8,Alto,17.13,56.0,16.95,Normal,0.331,72.0,0.291,Alto,0.213,20.0,0.252,Bajo,71.2,100.0,60.9,Muy alto
+06532,Mercedes,Buenos Aires,2026,4,67.2,52.0,66.6,Normal,17.45,72.0,16.95,Alto,0.397,60.0,0.385,Normal,0.31,12.0,0.367,Bajo,91.3,60.0,83.6,Normal
+06638,Pilar,Buenos Aires,2026,4,103.9,76.0,74.8,Alto,17.68,72.0,17.31,Alto,0.436,84.0,0.371,Alto,0.307,12.0,0.372,Bajo,85.3,60.0,81.4,Normal
+06497,Luj?n,Buenos Aires,2026,4,83.1,56.0,64.9,Normal,17.55,72.0,17.07,Alto,0.423,76.0,0.376,Alto,0.312,12.0,0.378,Bajo,88.4,60.0,80.7,Normal
+06408,Hurlingham,Buenos Aires,2026,4,101.8,80.0,77.2,Alto,17.87,72.0,17.42,Alto,0.436,80.0,0.365,Alto,0.309,12.0,0.373,Bajo,85.4,40.0,86.8,Normal
+06568,Mor?n,Buenos Aires,2026,4,95.0,80.0,77.0,Alto,17.8,72.0,17.36,Alto,0.437,88.0,0.366,Alto,0.305,8.0,0.371,Muy bajo,77.4,40.0,83.8,Normal
+06210,Chacabuco,Buenos Aires,2026,4,101.7,68.0,75.3,Normal,17.23,56.0,16.91,Normal,0.425,76.0,0.397,Alto,0.316,12.0,0.369,Bajo,73.5,100.0,63.4,Muy alto
+06515,Malvinas Argentinas,Buenos Aires,2026,4,107.8,80.0,76.4,Alto,17.84,72.0,17.43,Alto,0.435,80.0,0.369,Alto,0.302,12.0,0.362,Bajo,82.5,40.0,83.4,Normal
+06700,Saavedra,Buenos Aires,2026,4,45.9,36.0,71.2,Normal,14.02,48.0,14.23,Normal,0.293,64.0,0.263,Normal,0.186,20.0,0.205,Bajo,70.8,80.0,65.0,Alto
+06553,Monte Hermoso,Buenos Aires,2026,4,35.5,32.0,49.2,Normal,16.16,52.0,15.99,Normal,0.201,64.0,0.159,Normal,0.138,44.0,0.144,Normal,65.7,60.0,63.5,Normal
+06476,Lober?a,Buenos Aires,2026,4,98.4,84.0,70.7,Alto,15.65,72.0,14.94,Alto,0.367,84.0,0.329,Alto,0.256,12.0,0.281,Bajo,76.3,20.0,82.9,Bajo
+06371,General San Mart?n,Buenos Aires,2026,4,109.1,80.0,80.5,Alto,18.09,72.0,17.57,Alto,0.404,80.0,0.344,Alto,0.305,4.0,0.359,Muy bajo,71.2,40.0,72.1,Normal
+06469,Lincoln,Buenos Aires,2026,4,142.2,88.0,72.1,Alto,16.66,48.0,16.83,Normal,0.393,88.0,0.333,Alto,0.245,20.0,0.258,Bajo,84.9,100.0,67.1,Muy alto
+06098,Berisso,Buenos Aires,2026,4,83.7,60.0,66.1,Normal,18.15,84.0,17.55,Alto,0.451,84.0,0.392,Alto,0.373,4.0,0.418,Muy bajo,95.4,20.0,109.5,Bajo
+06812,Tordillo,Buenos Aires,2026,4,95.5,68.0,54.6,Normal,16.88,80.0,16.11,Alto,0.394,92.0,0.343,Muy alto,0.27,12.0,0.32,Bajo,86.5,20.0,103.1,Bajo
+06882,Z?rate,Buenos Aires,2026,4,132.4,88.0,79.5,Alto,18.06,76.0,17.6,Alto,0.497,80.0,0.447,Alto,0.34,12.0,0.415,Bajo,89.6,100.0,81.8,Muy alto
+06665,Ramallo,Buenos Aires,2026,4,143.9,80.0,68.7,Alto,18.2,60.0,17.91,Normal,0.432,84.0,0.39,Alto,0.29,12.0,0.374,Bajo,78.9,80.0,74.0,Alto
+06763,San Nicol?s,Buenos Aires,2026,4,145.7,80.0,73.1,Alto,18.22,56.0,17.94,Normal,0.469,84.0,0.424,Alto,0.321,4.0,0.413,Muy bajo,80.6,100.0,73.7,Muy alto
+06410,Ituzaing?,Buenos Aires,2026,4,92.3,76.0,74.3,Alto,17.68,72.0,17.24,Alto,0.437,88.0,0.364,Alto,0.299,12.0,0.364,Bajo,81.3,40.0,82.3,Normal
+06364,General Rodr?guez,Buenos Aires,2026,4,82.8,60.0,68.1,Normal,17.52,72.0,17.06,Alto,0.43,84.0,0.375,Alto,0.309,8.0,0.38,Muy bajo,89.1,60.0,85.7,Normal
+06784,Suipacha,Buenos Aires,2026,4,67.8,52.0,67.1,Normal,17.37,68.0,16.94,Normal,0.396,60.0,0.394,Normal,0.317,12.0,0.366,Bajo,89.2,60.0,79.7,Normal
+06840,Tres de Febrero,Buenos Aires,2026,4,105.0,80.0,79.9,Alto,18.01,72.0,17.5,Alto,0.416,80.0,0.351,Alto,0.316,8.0,0.37,Muy bajo,79.2,60.0,79.1,Normal
+06224,Chivilcoy,Buenos Aires,2026,4,72.2,56.0,66.6,Normal,17.22,60.0,16.83,Normal,0.412,72.0,0.4,Alto,0.324,16.0,0.363,Bajo,74.6,60.0,67.4,Normal
+06021,Alberti,Buenos Aires,2026,4,88.3,68.0,68.1,Normal,17.04,56.0,16.67,Normal,0.386,84.0,0.353,Alto,0.286,20.0,0.311,Bajo,73.2,100.0,66.3,Muy alto
+06112,Bragado,Buenos Aires,2026,4,107.3,76.0,71.0,Alto,16.94,56.0,16.61,Normal,0.345,80.0,0.303,Alto,0.236,36.0,0.251,Normal,76.1,100.0,63.1,Muy alto
+06679,Rivadavia,Buenos Aires,2026,4,80.5,48.0,81.4,Normal,16.38,44.0,16.59,Normal,0.284,64.0,0.253,Normal,0.139,12.0,0.16,Bajo,62.4,40.0,64.3,Normal
+06385,General Viamonte,Buenos Aires,2026,4,131.6,80.0,74.9,Alto,16.86,56.0,16.66,Normal,0.335,84.0,0.285,Alto,0.208,36.0,0.215,Normal,80.5,100.0,63.2,Muy alto
+06274,Florencio Varela,Buenos Aires,2026,4,89.2,60.0,71.6,Normal,17.8,76.0,17.36,Alto,0.442,88.0,0.369,Alto,0.315,8.0,0.381,Muy bajo,85.0,40.0,88.3,Normal
+06574,Navarro,Buenos Aires,2026,4,58.3,40.0,70.1,Normal,17.29,64.0,16.82,Normal,0.392,52.0,0.388,Normal,0.31,12.0,0.362,Bajo,86.8,60.0,78.2,Normal
+06134,Ca?uelas,Buenos Aires,2026,4,68.7,44.0,76.9,Normal,17.22,64.0,16.84,Normal,0.426,76.0,0.379,Alto,0.316,12.0,0.373,Bajo,92.9,60.0,87.5,Normal
+06778,San Vicente,Buenos Aires,2026,4,77.2,52.0,73.2,Normal,17.32,68.0,16.88,Normal,0.439,84.0,0.377,Alto,0.318,12.0,0.381,Bajo,91.1,40.0,91.6,Normal
+06483,Lobos,Buenos Aires,2026,4,55.1,28.0,72.2,Bajo,17.23,64.0,16.87,Normal,0.398,56.0,0.386,Normal,0.314,12.0,0.366,Bajo,85.8,60.0,79.0,Normal
+06287,General Alvear,Buenos Aires,2026,4,117.8,80.0,72.7,Alto,16.23,60.0,15.79,Normal,0.451,92.0,0.387,Muy alto,0.333,32.0,0.352,Normal,86.3,60.0,75.5,Normal
+06658,Quilmes,Buenos Aires,2026,4,95.4,76.0,77.2,Alto,17.96,72.0,17.53,Alto,0.441,88.0,0.369,Alto,0.318,8.0,0.388,Muy bajo,81.8,20.0,94.5,Bajo
+06322,General La Madrid,Buenos Aires,2026,4,77.0,48.0,79.6,Normal,14.74,52.0,14.41,Normal,0.334,52.0,0.317,Normal,0.225,0.0,0.258,Muy bajo,86.7,80.0,75.7,Alto
+06105,Bol?var,Buenos Aires,2026,4,154.4,96.0,79.3,Muy alto,15.86,56.0,15.61,Normal,0.377,92.0,0.327,Muy alto,0.236,12.0,0.27,Bajo,80.8,100.0,72.1,Muy alto
+06063,Balcarce,Buenos Aires,2026,4,107.9,80.0,64.2,Alto,15.46,76.0,14.75,Alto,0.414,76.0,0.377,Alto,0.303,12.0,0.325,Bajo,76.7,20.0,85.0,Bajo
+06798,Tapalqu?,Buenos Aires,2026,4,131.8,80.0,77.0,Alto,15.88,60.0,15.46,Normal,0.451,96.0,0.397,Muy alto,0.327,24.0,0.353,Bajo,85.6,60.0,76.7,Normal
+06406,Hip?lito Yrigoyen,Buenos Aires,2026,4,169.0,100.0,76.0,Muy alto,15.9,52.0,15.56,Normal,0.261,84.0,0.227,Alto,0.141,12.0,0.172,Bajo,80.6,100.0,71.3,Muy alto
+06238,Dolores,Buenos Aires,2026,4,85.0,68.0,62.4,Normal,16.59,72.0,15.97,Alto,0.437,92.0,0.388,Muy alto,0.319,12.0,0.367,Bajo,87.1,20.0,98.8,Bajo
+06049,Azul,Buenos Aires,2026,4,110.8,68.0,77.6,Normal,15.44,64.0,15.04,Normal,0.429,96.0,0.395,Muy alto,0.311,16.0,0.345,Bajo,84.0,40.0,88.6,Normal
+06231,Daireaux,Buenos Aires,2026,4,131.2,96.0,87.4,Muy alto,15.62,52.0,15.27,Normal,0.305,56.0,0.285,Normal,0.2,8.0,0.229,Muy bajo,81.4,100.0,71.1,Muy alto
+06462,Leandro N. Alem,Buenos Aires,2026,4,126.1,84.0,70.8,Alto,17.06,52.0,17.06,Normal,0.339,80.0,0.275,Alto,0.189,16.0,0.223,Bajo,71.7,100.0,59.5,Muy alto
+06294,General Arenales,Buenos Aires,2026,4,121.3,84.0,67.2,Alto,17.24,52.0,17.11,Normal,0.324,84.0,0.276,Alto,0.183,16.0,0.232,Bajo,64.2,100.0,53.1,Muy alto
+06602,Patagones,Buenos Aires,2026,4,12.1,16.0,27.7,Bajo,15.06,48.0,15.27,Normal,0.158,60.0,0.149,Normal,0.079,0.0,0.085,Muy bajo,49.7,80.0,39.4,Alto
+06182,Coronel de Marina Leonardo Rosales,Buenos Aires,2026,4,21.4,12.0,39.8,Bajo,15.89,48.0,16.02,Normal,0.239,64.0,0.219,Normal,0.17,32.0,0.173,Normal,70.4,60.0,59.3,Normal
+06070,Baradero,Buenos Aires,2026,4,123.9,76.0,65.8,Alto,18.04,76.0,17.59,Alto,0.465,80.0,0.423,Alto,0.323,12.0,0.389,Bajo,84.6,80.0,78.8,Alto
+06770,San Pedro,Buenos Aires,2026,4,134.7,76.0,69.4,Alto,18.08,68.0,17.7,Normal,0.45,84.0,0.412,Alto,0.31,8.0,0.39,Muy bajo,82.5,100.0,72.5,Muy alto
+06277,Florentino Ameghino,Buenos Aires,2026,4,122.9,80.0,60.9,Alto,16.74,44.0,16.9,Normal,0.449,88.0,0.394,Alto,0.304,12.0,0.324,Bajo,76.5,100.0,61.8,Muy alto
+06434,Lan?s,Buenos Aires,2026,4,100.9,80.0,74.4,Alto,18.05,72.0,17.57,Alto,0.442,88.0,0.368,Alto,0.408,16.0,0.44,Bajo,,,,Sin datos
+06490,Lomas de Zamora,Buenos Aires,2026,4,96.4,80.0,75.8,Alto,17.9,72.0,17.46,Alto,0.442,88.0,0.367,Alto,0.371,12.0,0.416,Bajo,82.1,0.0,86.8,Muy bajo
+06035,Avellaneda,Buenos Aires,2026,4,101.0,80.0,74.4,Alto,18.06,72.0,17.57,Alto,0.442,88.0,0.368,Alto,0.408,16.0,0.44,Bajo,87.4,20.0,98.1,Bajo
+06630,Pila,Buenos Aires,2026,4,68.5,48.0,71.3,Normal,16.56,68.0,16.08,Normal,0.425,84.0,0.386,Alto,0.319,12.0,0.356,Bajo,84.3,40.0,86.0,Normal
+06441,La Plata,Buenos Aires,2026,4,81.1,60.0,69.3,Normal,17.65,72.0,17.22,Alto,0.441,88.0,0.37,Alto,0.313,12.0,0.378,Bajo,89.5,40.0,91.7,Normal
